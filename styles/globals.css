@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*@import "https://code.highcharts.com/css/highcharts.css";*/
+
+.bg-english-lang {
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fvectors%2Fvector-flag-of-spain-proportion-23-spanish-national-bicolor-flag-vector-id967321166%3Fk%3D6%26m%3D967321166%26s%3D170667a%26w%3D0%26h%3DvygQXzKrae0A8lWMLtZeP2ADODfU0LAw2pTHAN18rRo%3D&f=1&nofb=1");
+}
+
+/*@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1f2227;
+    --text-color: #c0c0c0;
+    --hilight-color: #8db4d6;
+  }
+
+  .highcharts-color-0 {
+    fill: #0460ba;
+    stroke: #0460ba;
+  }
+  .highcharts-color-1 {
+    fill: #9696ab;
+    stroke: #9696ab;
+  }
+  .highcharts-color-2 {
+    fill: var(--text-color);
+    stroke: var(--text-color);
+  }
+  .highcharts-color-3 {
+    fill: var(--text-color);
+    stroke: var(--text-color);
+  }
+  .highcharts-color-4 {
+    fill: var(--text-color);
+    stroke: var(--text-color);
+  }
+  .highcharts-color-0 {
+    fill: #7cb5ec;
+    stroke: #7cb5ec;
+  }
+  .highcharts-color-1 {
+    fill: var(--text-color);
+    stroke: var(--text-color);
+  }
+  .highcharts-color-2 {
+    fill: #90ed7d;
+    stroke: #90ed7d;
+  }
+  .highcharts-color-3 {
+    fill: #f7a35c;
+    stroke: #f7a35c;
+  }
+  .highcharts-color-4 {
+    fill: #8085e9;
+    stroke: #8085e9;
+  }
+  .highcharts-color-5 {
+    fill: #f15c80;
+    stroke: #f15c80;
+  }
+  .highcharts-color-6 {
+    fill: #e4d354;
+    stroke: #e4d354;
+  }
+  .highcharts-color-7 {
+    fill: #2b908f;
+    stroke: #2b908f;
+  }
+  .highcharts-color-8 {
+    fill: #f45b5b;
+    stroke: #f45b5b;
+  }
+  .highcharts-color-9 {
+    fill: #91e8e1;
+    stroke: #91e8e1;
+  }
+  .highcharts-background {
+    fill: var(--background-color);
+  }
+  .highcharts-container text {
+    fill: var(--text-color);
+  }
+  .highcharts-title {
+    fill: var(--text-color);
+    fill-opacity: 1;
+  }
+  .highcharts-subtitle,
+  .highcharts-credits,
+  .highcharts-axis-title {
+    fill-opacity: 1;
+  }
+  .highcharts-grid-line {
+    stroke: var(--text-color);
+    stroke-opacity: 0.2;
+  }
+  .highcharts-tooltip-box {
+    fill: var(--background-color);
+  }
+  .highcharts-column-series rect.highcharts-point {
+    stroke: var(--background-color);
+  }
+}*/
