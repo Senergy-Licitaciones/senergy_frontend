@@ -1,8 +1,11 @@
+import { ReactNode } from "react";
 import DynamicNavProveedor from "./DynamicNavProveedor";
 import HeaderProveedor from "./HeaderProveedor";
 import StaticNavProveedor from "./StaticNavProveedor";
-
-export default function LayoutProveedor({children}){
+type Props={
+    children?:ReactNode
+}
+export default function LayoutProveedor({children}:Props):JSX.Element{
     return(
         <section className="flex">
             <StaticNavProveedor/>

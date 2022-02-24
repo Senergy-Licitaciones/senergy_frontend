@@ -1,11 +1,16 @@
-import { useRouter } from "next/router"
+import { NextRouter, useRouter } from "next/router"
 import { getFormatRoute, getRouteTitle, getRouteTitleProveedor } from "../../../utils";
 import {IoIosArrowBack} from "react-icons/io";
 import { BsBell, BsSunFill } from "react-icons/bs";
 import { useTemplate } from "../../../stateManagement/contexts/HandleTemplateContext";
-export default function HeaderProveedor({children}){
-    const {pathname}=useRouter();
-    const {template,toggleDynamicNav,toggleTheme}=useTemplate();
+import { ReactNode } from "react";
+import { ValueTemplateProvider } from "../../../types/stateManagement/handleTemplate";
+type Props={
+    children?:ReactNode
+}
+export default function HeaderProveedor({children}:Props):JSX.Element{
+    const {pathname}:NextRouter=useRouter();
+    const {template,toggleDynamicNav,toggleTheme}:ValueTemplateProvider=useTemplate();
     return(
         <section className="bg-gray-200 flex-1 " >
         <header className="py-4 px-8 flex justify-between">

@@ -5,42 +5,41 @@ import { AiOutlineQuestionCircle, AiOutlineUser } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { getFormatRoute } from "../../../utils";
 import { useState } from "react";
-import { BsSearch } from "react-icons/bs";
-export default function StaticNavProveedor(){
+export default function StaticNav():JSX.Element{
     const {pathname,push}=useRouter();
     const [show,setShow]=useState(false);
     return(
-        <aside className="flex dark:bg-black sticky top-0 bottom-0 z-20 flex-col py-4 px-8 h-screen bg-gray-100">
+        <aside className="flex sticky top-0 bottom-0 z-20 flex-col py-4 px-8 h-screen bg-gray-100 dark:bg-gray-900">
             <div className=" " >
                 <img className="w-8 h-auto" src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
             </div>
             <ul className="flex flex-col flex-1 justify-around" >
                 <li>
-                    <Link href="/empresaAccount/dashboard" >
-                        <a className={`text-2xl transition-all duration-300 hover:text-yellow-500 
-                        ${getFormatRoute(pathname)==="historialLicitaciones" || getFormatRoute(pathname)==="dashboard" || getFormatRoute(pathname)==="proveedoresFrecuentes" || getFormatRoute(pathname)==="mejoresOfertas"
+                    <Link href="/userAccount" >
+                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 
+                        ${getFormatRoute(pathname)==="userAccount" || getFormatRoute(pathname)==="dashboard" || getFormatRoute(pathname)==="proveedoresFrecuentes" || getFormatRoute(pathname)==="mejoresOfertas"
                         ?"text-yellow-500":"text-gray-400 dark:text-white"} `} >
                             <IoAnalyticsOutline/>
                         </a>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/empresaAccount/licitaciones" >
-                        <a className={`text-2xl transition-all duration-300 hover:text-yellow-500 ${getFormatRoute(pathname)==="licitaciones" || getFormatRoute(pathname)==="licitacionesGuardadas" ?"text-yellow-500":"text-gray-400 dark:text-white "} `} >
-                            <BsSearch/>
+                    <Link href="/userAccount/licitaciones" >
+                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split("/").pop()==="licitaciones" || getFormatRoute(pathname)==="crearLicitacion" || getFormatRoute(pathname)==="actualizarLicitacion"?"text-yellow-500":"text-gray-400 dark:text-white"} `} >
+                            <IoDocumentTextOutline/>
                         </a>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/empresaAccount" >
-                        <a className={`text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split("/").pop()==="questions"?"text-yellow-500":"text-gray-400 dark:text-white"} `} >
+                    <Link href="/userAccount" >
+                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split("/").pop()==="questions"?"text-yellow-500":"text-gray-400 dark:text-white"} `} >
                             <AiOutlineQuestionCircle/>
                         </a>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/empresaAccount" >
-                        <a className={`text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split("/").pop()==="settings"?"text-yellow-500":"text-gray-400 dark:text-white"} `} >
+                    <Link href="/userAccount" >
+                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split("/").pop()==="settings"?"text-yellow-500":"text-gray-400 dark:text-white"} `} >
                             <FiSettings/>
                         </a>
                     </Link>
@@ -53,9 +52,8 @@ export default function StaticNavProveedor(){
                         <img className="w-16 h-16 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
                     
                         <div className="flex flex-col p-2 justify-center">
-                            <p className="font-semibold" >Robert Kalinsky</p>
-                            <p className="text-xs font-semibold text-gray-400 uppercase" >EnergySur</p>
-                            <p className="text-xs font-semibold text-gray-400 uppercase" >Proveedor</p>
+                            <p className="font-semibold" >John Doe</p>
+                            <p className="text-xs font-semibold text-gray-400 uppercase" >Usuario</p>
                         </div>
                     </article>
                     <div className="flex">

@@ -1,12 +1,12 @@
 import {IoIosArrowDown, IoIosArrowForward} from "react-icons/io";
 import {HiOutlineDocumentText} from "react-icons/hi";
 import {RiFileHistoryLine} from "react-icons/ri";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { useTemplate } from "../../../stateManagement/contexts/HandleTemplateContext";
 import { getFormatRoute } from "../../../utils";
-export default function DynamicNavProveedor(){
+export default function DynamicNavProveedor():JSX.Element{
     const {template}=useTemplate();
     const {pathname}=useRouter();
     return(
@@ -20,9 +20,9 @@ export default function DynamicNavProveedor(){
         </aside>
     )   
 }
-function LicitacionNav(){
+function LicitacionNav():JSX.Element{
     const [show,setShow]=useState({});
-    const {pathname,push}=useRouter();
+    const {pathname,push}:NextRouter=useRouter();
     useEffect(()=>{
         if(getFormatRoute(pathname)==="licitacioens" ) setShow({...show,licitaciones:true});
     },[]);
@@ -70,10 +70,12 @@ function LicitacionNav(){
         </div>
     )
 }
-function DashboardNav(){
+function DashboardNav():JSX.Element{
     
-    const [show,setShow]=useState({});
-    const {pathname}=useRouter();
+    const [show,setShow]=useState({
+        licitaciones:false
+    });
+    const {pathname}:NextRouter=useRouter();
     useEffect(()=>{
         if(pathname.split("/").pop()==="userAccount" || pathname.split("/").pop()==="dashboard") setShow({...show,licitaciones:true});
     },[]);
