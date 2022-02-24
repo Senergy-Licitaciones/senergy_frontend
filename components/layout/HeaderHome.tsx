@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function HeaderHome(){
+export default function HeaderHome():JSX.Element{
     const {push}=useRouter();
     return(
         <header className="sticky bg-white top-0 left-0 right-0 p-4 grid grid-cols-4" >

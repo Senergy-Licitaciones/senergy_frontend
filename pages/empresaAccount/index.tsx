@@ -1,6 +1,6 @@
 import LayoutProveedor from "../../components/layout/layoutProveedor";
 
-export default function HomeProveedor(){
+export default function HomeProveedor():JSX.Element{
     return(
         <LayoutProveedor>
             <section>

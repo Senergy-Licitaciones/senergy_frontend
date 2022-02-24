@@ -1,20 +1,19 @@
-import LayoutUser from "../../components/layout/layoutUser";
+import LayoutUser from "../../components/layout/layoutUser/LayoutUser";
 import {BiTrendingUp,BiTrendingDown} from "react-icons/bi";
 import Link from "next/link";
 var Highcharts = require('highcharts');  
 import {BsTelephone} from "react-icons/bs";
 import { HiOutlineDocumentAdd,HiOutlineLocationMarker } from "react-icons/hi";
 import {FaUserAlt} from  "react-icons/fa";
-import { useEffect, useState } from "react";
-import { useTemplate } from "../../stateManagement/contexts/HandleTemplateContext";
-export default function UserAccount(){
-    const {template}=useTemplate();
-  
-    const ids={
+import { useEffect } from "react";
+export default function UserAccount(){    
+    const ids:{
+        [index:string]:number
+    }={
         id1:1,
         id2:2,
         id3:3,
-        id4:4
+        id4:5
     }
     useEffect(()=>{
 

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import LayoutHome from "../../components/layout";
 import {useRouter} from "next/router";
-export default function LoginEmpresa(){
+export default function LoginEmpresa():JSX.Element{
     const {push}=useRouter();
-    const login=(e)=>{
+    const login=(e:any):void=>{
         e.preventDefault();
         push("/empresaAccount");
     }

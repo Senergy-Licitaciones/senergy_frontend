@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import LayoutUser from "../../../components/layout/layoutUser";
+import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 var Highchart=require("highcharts");
-export default function HistorialLicitacioens(){
+export default function HistorialLicitacioens():JSX.Element{
     useEffect(()=>{
         Highchart.chart("container",{
             chart:{

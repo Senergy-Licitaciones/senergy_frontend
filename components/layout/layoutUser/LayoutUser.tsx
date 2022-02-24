@@ -1,8 +1,11 @@
+import { ReactNode } from "react";
 import DynamicNav from "./DynamicNav";
 import HeaderUser from "./HeaderUser";
 import StaticNav from "./StaticNav";
-
-export default function LayoutUser({children}){
+type Props = {
+  children?: ReactNode
+}
+export default function LayoutUser({children}:Props):JSX.Element{
     return(
         <section className="flex" >
             <StaticNav/>

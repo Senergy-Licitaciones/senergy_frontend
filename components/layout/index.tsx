@@ -1,7 +1,10 @@
+import { ReactNode } from "react";
 import Footer from "./Footer";
 import HeaderHome from "./HeaderHome";
-
-export default function LayoutHome({children}){
+type Props = {
+  children?: ReactNode
+}
+export default function LayoutHome({children}:Props):JSX.Element{
     return(
         <section className="flex flex-col" >
             <HeaderHome/>

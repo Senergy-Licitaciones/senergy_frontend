@@ -1,9 +1,9 @@
 import LayoutHome from "../../components/layout";
 import Link from "next/link";
 import {useRouter} from "next/router";
-export default function RegisterEmpresa(){
+export default function RegisterEmpresa():JSX.Element{
     const {push}=useRouter();
-    const register=(e)=>{
+    const register=(e:any):void=>{
         e.preventDefault();
         push("/login/empresa");
     }

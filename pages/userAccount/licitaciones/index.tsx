@@ -1,24 +1,28 @@
-import LayoutUser from "../../../components/layout/layoutUser";
+import { BsSearch } from "react-icons/bs";
+import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 
-export default function ActualizarLicitacion(){
+export default function UserLicitaciones():JSX.Element{
     return(
         <LayoutUser>
             <section>
                 <div className="flex justify-between">
                     <article className="flex flex-col w-32">
-                        <select className="rounded" value={5} name="" id="">
+                        <select className="rounded dark:bg-gray-800 dark:text-zinc-200" value={5} name="" id="">
                             <option value={5}>5</option>
                             <option value={10}>10</option>
                         </select>
-                        <p className="text-sm text-gray-500">items por página</p>
+                        <p className="text-sm dark:text-gray-400 text-gray-500">items por página</p>
                     </article>
-                    <article className="flex items-center" >
-                    <input placeholder="Buscar..." className="rounded" type="search"/>
+                    <article className="flex items-center relative" >
+                    <input placeholder="Buscar..." className="rounded dark:placeholder:text-gray-300 dark:bg-gray-800 dark:text-gray-200" type="search"/>
+                    <span className="flex items-center absolute dark:text-gray-300 text-gray-700 right-4">
+                        <BsSearch/>
+                    </span>
                     </article>
                 </div>
-                <table className="bg-white w-full divide-y mt-4">
+                <table className="bg-white dark:bg-gray-800 w-full dark:divide-gray-600 divide-y mt-4">
                     <thead>
-                        <tr className="text-sm font-semibold divide-x">
+                        <tr className="text-sm dark:text-gray-400 dark:divide-gray-600 font-semibold divide-x">
                             <th className="p-4">IMAGEN</th>
                             <th className="p-4">TÍTULO</th>
                             <th className="p-4">FECHA CREACIÓN</th>
@@ -27,8 +31,8 @@ export default function ActualizarLicitacion(){
                             <th className="p-4">PARTICIPANTES</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y">
-                        <tr className="text-sm divide-x">
+                    <tbody className=" dark:divide-gray-600 divide-y">
+                        <tr className="text-sm dark:divide-gray-600 dark:text-gray-400 divide-x">
                             <td>
                                 <img src="" alt=""/>
                             </td>
@@ -39,12 +43,7 @@ export default function ActualizarLicitacion(){
                                 23/12/2021
                             </td>
                             <td className="p-4">
-                                <select value={"2"} name="" id="">
-                                    <option value="0">Creado</option>
-                                    <option value="1">Apertura</option>
-                                    <option value="2">Evaluación</option>
-                                    <option value="3">Cierre</option>
-                                </select>
+                                Creado
                             </td>
                             <td className="p-4">
                                 AZX-112123
@@ -53,7 +52,7 @@ export default function ActualizarLicitacion(){
                                 34
                             </td>
                         </tr>
-                        <tr className="text-sm divide-x">
+                        <tr className="text-sm dark:divide-gray-600 dark:text-gray-400 divide-x">
                             <td>
                                 <img src="" alt=""/>
                             </td>
@@ -64,12 +63,7 @@ export default function ActualizarLicitacion(){
                                 23/11/2021
                             </td>
                             <td className="p-4">
-                                <select value={"1"} name="" id="">
-                                    <option value="0">Creado</option>
-                                    <option value="1">Apertura</option>
-                                    <option value="2">Evaluación</option>
-                                    <option value="3">Cierre</option>
-                                </select>
+                                En evaluación
                             </td>
                             <td className="p-4">
                                 BZX-102111
@@ -78,7 +72,7 @@ export default function ActualizarLicitacion(){
                                 5
                             </td>
                         </tr>
-                        <tr className="text-sm divide-x">
+                        <tr className="text-sm dark:divide-gray-600 dark:text-gray-400 divide-x">
                             <td>
                                 <img src="" alt=""/>
                             </td>
@@ -89,12 +83,7 @@ export default function ActualizarLicitacion(){
                                 15/12/2021
                             </td>
                             <td className="p-4">
-                                <select value={"3"} name="" id="">
-                                    <option value="0">Creado</option>
-                                    <option value="1">Apertura</option>
-                                    <option value="2">Evaluación</option>
-                                    <option value="3">Cierre</option>
-                                </select>
+                                En evaluación
                             </td>
                             <td className="p-4">
                                 BZU-102109
@@ -105,6 +94,19 @@ export default function ActualizarLicitacion(){
                         </tr>
                     </tbody>
                 </table>
+                <article className="flex justify-between items-center py-4" >
+                    <div className="dark:text-gray-400 text-sm">
+                        Mostrando de 1 a 5 de 17 items 
+                    </div>
+                    <div className="flex">
+                        <span className="bg-yellow-500 flex shadow-xl cursor-pointer rounded-full w-8 h-8 justify-center items-center text-white">
+                            1
+                        </span>
+                        <span className="flex mx-2 rounded-full cursor-pointer hover:bg-white hover:text-black w-8 h-8 justify-center items-center dark:text-gray-200" >
+                            2
+                        </span>
+                    </div>
+                </article>
             </section>
         </LayoutUser>
     )

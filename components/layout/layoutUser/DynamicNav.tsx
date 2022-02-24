@@ -6,8 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTemplate } from "../../../stateManagement/contexts/HandleTemplateContext";
 import { getFormatRoute } from "../../../utils";
-export default function DynamicNav(){
-    const {template}=useTemplate();
+import { ValueTemplateProvider } from "../../../types/stateManagement/handleTemplate";
+export default function DynamicNav():JSX.Element{
+    const {template}:ValueTemplateProvider=useTemplate();
     const {pathname}=useRouter();
     return(
         <aside className={`z-0 sticky dark:bg-gray-800 top-0 bottom-0 h-screen transition-all duration-500 ${template.dynamicNavState?" w-72 p-4":" w-0 overflow-hidden"}`} >
@@ -71,9 +72,12 @@ function LicitacionNav(){
         </div>
     )
 }
-function DashboardNav(){
+function DashboardNav():JSX.Element{
     
-    const [show,setShow]=useState({});
+    const [show,setShow]=useState({
+        licitaciones:false,
+        proveedores:false
+    });
     const {pathname}=useRouter();
     useEffect(()=>{
         if(pathname.split("/").pop()==="userAccount" || pathname.split("/").pop()==="dashboard") setShow({...show,licitaciones:true});

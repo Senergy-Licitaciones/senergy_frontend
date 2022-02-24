@@ -1,9 +1,9 @@
 import Link from "next/link";
 import LayoutHome from "../../components/layout";
 import {useRouter} from "next/router";
-export default function RegisterUser(){
+export default function RegisterUser():JSX.Element{
     const {push}=useRouter();
-    const register=(e)=>{
+    const register=(e:any):void=>{
         e.preventDefault();
         push("/login");
     }
@@ -52,7 +52,7 @@ export default function RegisterUser(){
                         </article>
                         <article className="flex flex-col my-4">
                             <label htmlFor="description">Descripción</label>
-                            <textarea name="description" className="resize-none" cols="30" rows="10"></textarea>
+                            <textarea name="description" className="resize-none" cols={30} rows={10}></textarea>
                            
                         </article>
                         <article className="my-2 flex items-center">

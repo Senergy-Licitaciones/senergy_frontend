@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import LayoutUser from "../../../components/layout/layoutUser";
+import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 
-export default function CrearLicitacion(){
+export default function CrearLicitacion():JSX.Element{
     const [step,setStep]=useState(1);
     return(
         <LayoutUser>
@@ -21,7 +21,7 @@ export default function CrearLicitacion(){
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm dark:text-gray-400" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="dark:bg-gray-800 dark:text-gray-400 rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" name="" id="" cols="30" rows="5"></textarea>
+                            <textarea name="descripcionLicitacion" className="dark:bg-gray-800 dark:text-gray-400 rounded placeholder:text-sm" placeholder="Agregar descripción de licitación"  id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>
@@ -39,7 +39,7 @@ export default function CrearLicitacion(){
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" name="" id="" cols="30" rows="5"></textarea>
+                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>
@@ -57,7 +57,7 @@ export default function CrearLicitacion(){
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" name="" id="" cols="30" rows="5"></textarea>
+                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>
@@ -75,7 +75,7 @@ export default function CrearLicitacion(){
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" name="" id="" cols="30" rows="5"></textarea>
+                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>

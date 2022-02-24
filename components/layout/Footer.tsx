@@ -1,5 +1,5 @@
 import {BsFacebook,BsTwitter,BsInstagram} from "react-icons/bs";
-export default function Footer(){
+export default function Footer():JSX.Element{
     return(
         <footer className="flex flex-1 flex-col p-8 items-center bg-gray-800" >
             <nav className="text-gray-400">

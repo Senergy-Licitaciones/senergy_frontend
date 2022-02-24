@@ -1,5 +1,5 @@
-export const getFormatRoute=pathname=>pathname.split("/").pop();
-export const getRouteTitle=(route)=>{
+export const getFormatRoute=(pathname:string):string=>pathname.split("/").pop();
+export const getRouteTitle=(route:string):string=>{
     switch (route) {
         case "userAccount":{
             return "Licitaciones actuales"} 
@@ -25,7 +25,7 @@ export const getRouteTitle=(route)=>{
             return "Detalles"}
     }
 }
-export const getRouteTitleProveedor=(route)=>{
+export const getRouteTitleProveedor=(route:string):string=>{
     switch (route) {
         case "dashboard":{
             return "Dashboard de proveedor"

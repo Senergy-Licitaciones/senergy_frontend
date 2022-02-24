@@ -2,9 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LayoutHome from "../../components/layout";
 
-export default function LoginUser(){
+export default function LoginUser():JSX.Element{
     const {push}=useRouter();
-    const loginUser=(e)=>{
+    const loginUser=(e:any):void=>{
         e.preventDefault();
         push("/userAccount");
     }
