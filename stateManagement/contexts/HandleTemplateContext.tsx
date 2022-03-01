@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useReducer } from "rea
 import { ValueTemplateProvider } from "../../types/stateManagement/handleTemplate";
 import { handleTemplateReducer, initialTemplateState } from "../reducers/handleTemplateReducer";
 
-const HandleTemplateContext=createContext({});
+const HandleTemplateContext=createContext<ValueTemplateProvider>({template:{dynamicNavState:false}});
 type Props = {
   children?: ReactNode
 }
@@ -31,7 +31,7 @@ export const HandleTemplateProvider=({children}:Props):JSX.Element=>{
         </HandleTemplateContext.Provider>
     )
 }
-export const useTemplate=():ValueTemplateProvider=>{
-    const value:ValueTemplateProvider=useContext(HandleTemplateContext);
+export const useTemplate=()=>{
+    const value=useContext(HandleTemplateContext);
     return value
 }

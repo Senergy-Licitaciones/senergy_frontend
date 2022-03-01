@@ -75,7 +75,7 @@ export default function RegisterUser():JSX.Element{
                         </Link>
                         </article>
                     </form>
-                    <span className="flex flex-1" >
+                    <span className=" hidden md:flex flex-1" >
                         <img className="w-full h-auto" src="https://media.istockphoto.com/photos/pylon-picture-id661805558?k=20&m=661805558&s=612x612&w=0&h=Co2VIXzP1r7nP_C1gBfnjglEGaFmEiXl7s8h4BZhYjo=" alt="empresa registro" />
                     </span>
                 </div>

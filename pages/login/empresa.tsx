@@ -9,8 +9,8 @@ export default function LoginEmpresa():JSX.Element{
     }
     return(
         <LayoutHome>
-            <section className="flex p-4 justify-around ">
-            <span className="flex">
+            <section className="flex min-h-screen p-4 justify-around ">
+            <span className="hidden md:flex">
                 <img src="https://media.istockphoto.com/vectors/flat-design-concept-of-meeting-business-presentation-training-annual-vector-id1162009708?k=20&m=1162009708&s=612x612&w=0&h=_ZoT-71l7RyDyPXl6DVT3eLYvPzg_S643MMTwmFYBQ4=" alt="login user"/>
             </span>
             <form onSubmit={login} className=" p-8 flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]" >

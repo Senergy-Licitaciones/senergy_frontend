@@ -11,8 +11,8 @@ export default function LoginUser():JSX.Element{
     return(
         <LayoutHome>
 
-        <section className="flex p-4 justify-around ">
-            <span className="flex">
+        <section className="flex min-h-screen p-4 justify-center md:justify-around ">
+            <span className=" hidden md:flex">
                 <img src="https://cdn.pixabay.com/photo/2018/03/21/06/30/people-3245739__480.png" alt="login user"/>
             </span>
             <form onSubmit={loginUser} className=" p-8 flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]" >

@@ -1,6 +1,7 @@
+import React from "react";
 import LayoutHome from "../components/layout";
 
-export default function About(){
+export default function About():JSX.Element{
     return(
 
     <LayoutHome>

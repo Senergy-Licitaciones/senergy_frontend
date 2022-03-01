@@ -3,6 +3,6 @@ export type StateTemplate={
 }
 export type ValueTemplateProvider={
     template:StateTemplate,
-    toggleDynamicNav():void,
-    toggleTheme():void
+    toggleDynamicNav?:()=>void,
+    toggleTheme?:()=>void
 };

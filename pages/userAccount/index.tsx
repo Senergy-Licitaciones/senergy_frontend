@@ -49,8 +49,8 @@ export default function UserAccount(){
     },[]);
     return(
         <LayoutUser>
-            <section className="grid grid-cols-4 gap-4 grid-flow-row" >
-                <div className="bg-white dark:bg-gray-800 row-span-2 flex flex-col p-4" >
+            <section className="grid grid-cols-1 md:grid-cols-4 gap-4 grid-flow-row" >
+                <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
                     <article className="flex justify-between items-center" >
                     <h2 className="font-semibold dark:text-gray-400 ">Licitaciones</h2>
                     <span className="flex items-center rounded-full p-1  bg-green-100 text-2xl dark:bg-green-500 dark:text-white text-green-600" >
@@ -68,7 +68,7 @@ export default function UserAccount(){
                     <p className="text-xs text-gray-500 dark:text-slate-400" >desde el último mes</p>
                     </div>
                 </div>
-                <div className="bg-white dark:bg-gray-800 row-span-2 flex flex-col p-4">
+                <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4">
                     <article className="flex justify-between items-center" >
                     <h2 className="font-semibold dark:text-gray-400 ">Participantes</h2>
                     <span className="flex items-center rounded-full p-2 bg-orange-100 text-lg dark:bg-orange-400 dark:text-white text-orange-400" >
@@ -86,7 +86,7 @@ export default function UserAccount(){
                     <p className="text-xs text-gray-500 dark:text-gray-400" >desde el último mes</p>
                     </div>
                 </div>
-                <div className="bg-white dark:bg-gray-800 row-span-2 flex flex-col p-4" >
+                <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
                     <article className="flex justify-between items-center" >
                     <h2 className="font-semibold dark:text-gray-400 ">Detalles</h2>
                     <span className="flex items-center rounded-full p-1  bg-green-100 text-2xl dark:bg-green-500 dark:text-white text-green-600" >
@@ -104,7 +104,7 @@ export default function UserAccount(){
                     <p className="text-xs text-gray-500 dark:text-slate-400" >desde el último mes</p>
                     </div>
                 </div>
-                <div className="bg-white row-span-3 flex flex-col p-4 dark:bg-gray-800">
+                <div className="bg-white md:row-span-3 flex flex-col p-4 dark:bg-gray-800">
                     <div className="flex justify-between">
                         <article className="flex flex-col">
                             <p className="font-semibold dark:text-gray-400">Jhon D.</p>
@@ -133,18 +133,18 @@ export default function UserAccount(){
                     <p className="text-gray-500 text-center text-xs dark:text-gray-400">jhon.doe@empresa.com</p>
                     </div>
                 </div>
-                <div className="bg-white col-span-2 row-span-5 " >
+                <div className="bg-white md:col-span-2 md:row-span-5 " >
                     <div id="container" className="w-full " >
 
                     </div>
                 </div>
-                <div className="bg-white row-span-5">
+                <div className="bg-white md:row-span-5">
                     <h2>Dashboard 05</h2>
                 </div>
-                <div className="bg-white row-span-3">
+                <div className="bg-white md:row-span-3">
                     <h2>Calendar</h2>
                 </div>
-                <div className="bg-white row-span-2 p-4">
+                <div className="bg-white md:row-span-2 p-4">
                     <h2 className="font-semibold">Licitaciones detalles</h2>
                     <ul>
                         <li>
@@ -185,10 +185,10 @@ export default function UserAccount(){
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white row-span-4">
+                <div className="bg-white md:row-span-4">
                     <h2>Dashboard 06</h2>
                 </div>
-                <div className="bg-white col-span-2 row-span-4">
+                <div className="bg-white md:col-span-2 md:row-span-4">
                     <h2>Dashboard 07</h2>
                 </div>
             </section>

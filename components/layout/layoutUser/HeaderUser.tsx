@@ -5,6 +5,7 @@ import { BsBell, BsSunFill } from "react-icons/bs";
 import { useTemplate } from "../../../stateManagement/contexts/HandleTemplateContext";
 import { ReactNode } from "react";
 import { ValueTemplateProvider } from "../../../types/stateManagement/handleTemplate";
+import { RiMenu4Line } from "react-icons/ri";
 type Props = {
   children?: ReactNode
 }
@@ -13,9 +14,18 @@ export default function HeaderUser({children}:Props):JSX.Element{
     const {template,toggleDynamicNav,toggleTheme}:ValueTemplateProvider=useTemplate();
     return(
         <section className="bg-gray-200 dark:bg-gray-700 flex-1 " >
+          <div className="sticky p-4 flex justify-between bg-gray-900 top-0 z-30 md:hidden" >
+            <button className="text-gray-200" >
+              <RiMenu4Line/>
+            </button>
+            <div className=" " >
+                <img className="w-24 h-auto" src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
+            </div>
+            <nav></nav>
+          </div>
         <header className="py-4 px-8 flex justify-between">
-            <div className="flex text-2xl" >
-                <span onClick={toggleDynamicNav} className={`transition-all duration-500 cursor-pointer flex items-center mr-4 text-3xl text-yellow-500 ${!template.dynamicNavState && "rotate-180"}`} >
+            <div className="flex text-lg md:text-2xl" >
+                <span onClick={toggleDynamicNav} className={`transition-all duration-500 cursor-pointer hidden md:flex items-center mr-4 text-3xl text-yellow-500 ${!template.dynamicNavState && "rotate-180"}`} >
                     <IoIosArrowBack/>
                 </span>
             <h1 className="font-semibold flex dark:text-gray-300 items-center" >{getRouteTitle(getFormatRoute(pathname))}</h1>

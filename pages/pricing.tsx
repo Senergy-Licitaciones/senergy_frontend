@@ -1,6 +1,6 @@
 import LayoutHome from "../components/layout";
 
-export default function Pricing(){
+const Pricing:React.FC=()=>{
     return(
         <LayoutHome>
             <section>
@@ -9,3 +9,4 @@ export default function Pricing(){
         </LayoutHome>
     )
 }
+export default Pricing;

@@ -11,7 +11,7 @@ export default function DynamicNav():JSX.Element{
     const {template}:ValueTemplateProvider=useTemplate();
     const {pathname}=useRouter();
     return(
-        <aside className={`z-0 sticky dark:bg-gray-800 top-0 bottom-0 h-screen transition-all duration-500 ${template.dynamicNavState?" w-72 p-4":" w-0 overflow-hidden"}`} >
+        <aside className={`z-0 hidden md:block sticky dark:bg-gray-800 top-0 bottom-0 h-screen transition-all duration-500 ${template.dynamicNavState?" w-72 p-2":" w-0 overflow-hidden"}`} >
             <div className="relative " >
                 {getFormatRoute(pathname)==="licitaciones" || getFormatRoute(pathname)==="crearLicitacion" || getFormatRoute(pathname)==="actualizarLicitacion" ?
                 <LicitacionNav/>:
@@ -28,7 +28,6 @@ function LicitacionNav(){
     useEffect(()=>{
         if(pathname.split("/").pop()==="licitacioens" ) setShow({...show,licitaciones:true});
     },[]);
-    console.log(show);
     return(
         <div className="right-2 absolute " >
             <div className="flex justify-center" >
