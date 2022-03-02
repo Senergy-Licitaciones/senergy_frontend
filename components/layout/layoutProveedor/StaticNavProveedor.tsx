@@ -10,7 +10,7 @@ export default function StaticNavProveedor():JSX.Element{
     const {pathname,push}=useRouter();
     const [show,setShow]=useState(false);
     return(
-        <aside className="flex dark:bg-black sticky top-0 bottom-0 z-20 flex-col py-4 px-8 h-screen bg-gray-100">
+        <aside className="hidden md:flex sticky top-0 bottom-0 z-20 flex-col py-4 px-4 lg:px-8 h-screen bg-gray-100 dark:bg-gray-900">
             <div className=" " >
                 <img className="w-8 h-auto" src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
             </div>

@@ -6,8 +6,8 @@ export default function CrearLicitacion():JSX.Element{
     const [step,setStep]=useState(1);
     return(
         <LayoutUser>
-            <section className="flex">
-                <div className="flex-1">
+            <section className="flex md:flex-row flex-col">
+                <div className="flex-1 mb-4 md:m-0">
                     <div className={`bg-white p-4 dark:bg-gray-900 ${step===1 ?"block":"hidden"}`}>
                         <article className="flex items-center">
                         <p className="font-semibold dark:text-gray-400">Información general</p>

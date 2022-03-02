@@ -26,7 +26,7 @@ export default function HistorialLicitacioens():JSX.Element{
     },[])
     return(
         <LayoutUser>
-            <section className="grid grid-cols-4 grid-flow-row gap-4">
+            <section className="grid grid-cols-1 md:grid-cols-4 grid-flow-row gap-4">
                 <div className="bg-white rounded p-4">
                     <h2 className="font-semibold text-gray-500">Total de licitaciones creadas</h2>
                     <p className="font-bold text-2xl">23</p>

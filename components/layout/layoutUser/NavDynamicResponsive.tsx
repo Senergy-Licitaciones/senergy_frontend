@@ -4,14 +4,11 @@ import {RiFileHistoryLine} from "react-icons/ri";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTemplate } from "../../../stateManagement/contexts/HandleTemplateContext";
 import { getFormatRoute } from "../../../utils";
-import { ValueTemplateProvider } from "../../../types/stateManagement/handleTemplate";
-export default function DynamicNav():JSX.Element{
-    const {template}:ValueTemplateProvider=useTemplate();
+export default function NavDynamicResponsive(){
     const {pathname}=useRouter();
     return(
-        <aside className={`z-0 hidden md:block sticky dark:bg-gray-800 top-0 bottom-0 h-screen transition-all duration-500 ${template.dynamicNavState?" w-72 p-2":" w-0 overflow-hidden"}`} >
+        <aside className={` block  dark:bg-gray-800 left-0 top-0 w-72 bottom-0 h-screen transition-all duration-500 `} >
             <div className="relative " >
                 {getFormatRoute(pathname)==="licitaciones" || getFormatRoute(pathname)==="crearLicitacion" || getFormatRoute(pathname)==="actualizarLicitacion" ?
                 <LicitacionNav/>:
