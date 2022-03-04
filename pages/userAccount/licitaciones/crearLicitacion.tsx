@@ -6,25 +6,25 @@ export default function CrearLicitacion():JSX.Element{
     const [step,setStep]=useState(1);
     return(
         <LayoutUser>
-            <section className="flex md:flex-row flex-col">
+            <section className="flex 2xl:text-2xl md:flex-row flex-col">
                 <div className="flex-1 mb-4 md:m-0">
                     <div className={`bg-white p-4 dark:bg-gray-900 ${step===1 ?"block":"hidden"}`}>
                         <article className="flex items-center">
                         <p className="font-semibold dark:text-gray-400">Información general</p>
-                        <span className="flex ml-2 items-center cursor-pointer dark:text-gray-400 text-xl" >
+                        <span className="flex ml-2 items-center cursor-pointer dark:text-gray-400 2xl:text-2xl text-xl" >
                             <AiOutlineQuestionCircle/>
                         </span>
                         </article>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="title">Título de licitación</label>
-                            <input name="title" className="rounded dark:bg-gray-800 dark:text-gray-400 placeholder:text-sm " placeholder="Agregar título de licitación" type="text" />
+                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="title">Título de licitación</label>
+                            <input name="title" className="rounded dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar título de licitación" type="text" />
                         </article>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm dark:text-gray-400" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="dark:bg-gray-800 dark:text-gray-400 rounded placeholder:text-sm" placeholder="Agregar descripción de licitación"  id="" cols={30} rows={5}></textarea>
+                            <label className="text-gray-500 2xl:text-lg text-sm dark:text-gray-400" htmlFor="descripcionLicitacion">Descripción de licitación</label>
+                            <textarea name="descripcionLicitacion" className="dark:bg-gray-800 dark:text-gray-400 rounded 2xl:placeholder:text-lg placeholder:text-sm" placeholder="Agregar descripción de licitación"  id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>
+                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="fechaInicio">Fecha de inicio</label>
                             <input className="dark:bg-gray-800 dark:text-gray-400  " name="fechaInicio" type="date" />
                         </article>
                         <article className="flex justify-end pt-4">

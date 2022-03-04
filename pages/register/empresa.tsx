@@ -10,9 +10,9 @@ export default function RegisterEmpresa():JSX.Element{
     return(
         <LayoutHome>
             <section className="p-8">
-                <div className="shadow-2xl flex">
-                    <form onSubmit={register} className="p-8 flex flex-col">
-                        <h1 className="font-extrabold text-4xl text-center ">Registro de proveedores</h1>
+                <div className="shadow-2xl flex rounded-xl overflow-hidden">
+                    <form onSubmit={register} className="p-8 flex 2xl:text-2xl 2xl:p-12 flex-col">
+                        <h1 className="font-extrabold text-4xl 2xl:text-5xl text-center ">Registro de proveedores</h1>
                         <hr className="bg-gray-400 my-4" />
                         <article className="flex flex-col my-2">
                             <label htmlFor="email">Correo</label>
@@ -53,7 +53,7 @@ export default function RegisterEmpresa():JSX.Element{
                             <input className="focus:outline-purple-500 text-purple-600" type="checkbox" name="terminos"  />
                             <label className="ml-2" htmlFor="terminos">Acepto los <a className="text-blue-500" href="">Términos y condiciones</a></label>
                         </article>
-                        <button type="submit" className="my-4 rounded-md py-2 font-bold bg-blue-500 text-white">Registrarse</button>
+                        <button type="submit" className="my-4 rounded-md py-2 2xl:py-3 font-bold bg-blue-500 text-white">Registrarse</button>
                         <article className="flex justify-center">
 
                         <Link href="/login/empresa">

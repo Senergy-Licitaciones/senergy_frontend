@@ -69,9 +69,9 @@ export default function HeaderUser({children}:Props):JSX.Element{
             </div>
             </nav>
           </div>
-        <header className="py-4 px-8 flex justify-between">
-            <div className="flex text-lg md:text-2xl" >
-                <span onClick={toggleDynamicNav} className={`transition-all duration-500 cursor-pointer hidden md:flex items-center mr-4 text-3xl text-yellow-500 ${!template.dynamicNavState && "rotate-180"}`} >
+        <header className="py-4 px-8 flex  justify-between">
+            <div className="flex text-lg md:text-2xl 2xl:text-3xl " >
+                <span onClick={toggleDynamicNav} className={`transition-all duration-500 cursor-pointer hidden md:flex items-center mr-4 text-3xl 2xl:text-4xl text-yellow-500 ${!template.dynamicNavState && "rotate-180"}`} >
                     <IoIosArrowBack/>
                 </span>
             <h1 className="font-semibold flex dark:text-gray-300 items-center" >{getRouteTitle(getFormatRoute(pathname))}</h1>
@@ -80,17 +80,17 @@ export default function HeaderUser({children}:Props):JSX.Element{
             <nav>
                 <ul className="flex items-center" >
                     <li className="px-2">
-                      <span onClick={toggleTheme} className="flex items-center text-yellow-500 text-2xl rounded-full hover:bg-white p-2 dark:hover:bg-gray-900 cursor-pointer transition-all duration-300 " >
+                      <span onClick={toggleTheme} className="flex items-center text-yellow-500 text-2xl 2xl:text-3xl rounded-full hover:bg-white p-2 dark:hover:bg-gray-900 cursor-pointer transition-all duration-300 " >
                         <BsSunFill/>
                       </span>  
                     </li>
                     <li className="px-2">
-                        <span className="flex items-center text-yellow-500 text-2xl rounded-full hover:bg-white dark:hover:bg-gray-900 p-2 cursor-pointer transition-all duration-300 " >
+                        <span className="flex items-center text-yellow-500 text-2xl rounded-full hover:bg-white 2xl:text-3xl dark:hover:bg-gray-900 p-2 cursor-pointer transition-all duration-300 " >
                         <div className="w-8 h-8 bg-cover rounded-full bg-english-lang "  ></div>
                       </span> 
                     </li>
                     <li className="px-2">
-                        <span className="flex items-center dark:text-gray-300 text-gray-500 text-2xl rounded-full hover:bg-white dark:hover:bg-gray-900 p-2 cursor-pointer transition-all duration-300 " >
+                        <span className="flex items-center dark:text-gray-300 text-gray-500 text-2xl rounded-full 2xl:text-3xl hover:bg-white dark:hover:bg-gray-900 p-2 cursor-pointer transition-all duration-300 " >
                         <BsBell/>
                       </span> 
                     </li>

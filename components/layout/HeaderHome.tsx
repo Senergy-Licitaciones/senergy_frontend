@@ -7,8 +7,8 @@ export default function HeaderHome():JSX.Element{
     const {push}=useRouter();
     const [burger,setBurger]=useState(false);
     return(
-        <header className="sticky  bg-white top-0 left-0 right-0 p-4 grid grid-cols-4" >
-            <span className="col-span-2 md:col-span-1 w-40 h-auto flex">
+        <header className="sticky 2xl:text-2xl bg-gray-100 top-0 left-0 right-0 p-4 grid grid-cols-4" >
+            <span className="col-span-2 md:col-span-1 w-40 2xl:w-48 h-auto flex">
                 <img src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
             </span>
             <div className="col-span-2 flex md:hidden items-center justify-center">
@@ -65,7 +65,7 @@ export default function HeaderHome():JSX.Element{
             </nav>
             <article className="md:flex hidden  justify-around items-center">
                 <button onClick={()=>push("/login")} className="font-bold text-gray-400" >Iniciar sesión</button>
-                <button onClick={()=>push("/register")} className="bg-blue-500 rounded-full py-2 px-4 font-bold text-white" >Registrarse</button>
+                <button onClick={()=>push("/register")} className="bg-yellow-500 rounded-full 2xl:py-3 2xl:px-6 py-2 px-4 font-bold text-white" >Registrarse</button>
             </article>
         </header>
     )

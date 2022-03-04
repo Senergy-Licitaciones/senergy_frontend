@@ -1,8 +1,8 @@
 import {BsFacebook,BsTwitter,BsInstagram} from "react-icons/bs";
 export default function Footer():JSX.Element{
     return(
-        <footer className="flex flex-1 flex-col p-8 items-center bg-gray-800" >
-            <nav className="text-gray-400">
+        <footer className="flex flex-1 flex-col 2xl:text-2xl p-8 items-center bg-gray-800" >
+            <nav className="text-gray-400 flex flex-col sm:flex-row ">
                 <a className="mx-2">
                     Enlace 1
                 </a><a className="mx-2">

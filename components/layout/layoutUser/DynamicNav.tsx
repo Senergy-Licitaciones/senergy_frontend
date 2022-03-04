@@ -11,7 +11,7 @@ export default function DynamicNav():JSX.Element{
     const {template}:ValueTemplateProvider=useTemplate();
     const {pathname}=useRouter();
     return(
-        <aside className={`z-0 hidden md:block sticky dark:bg-gray-800 top-0 bottom-0 h-screen transition-all duration-500 ${template.dynamicNavState?" w-72 p-2":" w-0 overflow-hidden"}`} >
+        <aside className={`z-0 hidden md:block sticky dark:bg-gray-800 top-0 bottom-0 h-screen transition-all duration-500 ${template.dynamicNavState?" 2xl:w-96 w-72 p-2":" w-0 overflow-hidden"}`} >
             <div className="relative " >
                 {getFormatRoute(pathname)==="licitaciones" || getFormatRoute(pathname)==="crearLicitacion" || getFormatRoute(pathname)==="actualizarLicitacion" ?
                 <LicitacionNav/>:
@@ -29,11 +29,11 @@ function LicitacionNav(){
         if(pathname.split("/").pop()==="licitaciones" ) setShow({...show,licitaciones:true});
     },[]);
     return(
-        <div className="right-2 absolute " >
+        <div className="right-2 2xl:right-8 2xl:text-2xl absolute " >
             <div className="flex justify-center" >
-                <h1 className="text-2xl text-gray-400" >Licitaciones</h1>
+                <h1 className="text-2xl 2xl:text-3xl text-gray-400" >Licitaciones</h1>
             </div>
-            <ul className="flex flex-col mt-8 w-60">
+            <ul className="flex flex-col mt-8 w-60 2xl:w-80">
                 <li className="mb-2  ">
                     <div onClick={()=>push("/userAccount/licitaciones")} className="flex justify-between  cursor-pointer py-2 group">
                         <h2 className={`text-gray-400 dark:group-hover:text-gray-200 group-hover:text-gray-900 ${getFormatRoute(pathname)==="licitaciones" && "text-yellow-500 font-bold"}`} >Ver licitaciones actuales</h2>
@@ -83,11 +83,11 @@ function DashboardNav():JSX.Element{
     },[]);
     console.log(show);
     return(
-        <div className="right-2 absolute " >
+        <div className="right-2 2xl:right-8 2xl:text-2xl absolute " >
             <div className="flex justify-center" >
-                <h1 className="text-2xl text-gray-400" >Dashboards</h1>
+                <h1 className="text-2xl 2xl:text-3xl text-gray-400" >Dashboards</h1>
             </div>
-            <ul className="flex flex-col mt-8 w-60">
+            <ul className="flex flex-col mt-8 w-60 2xl:w-80 ">
                 <li className="mb-2  ">
                     <div onClick={()=>show.licitaciones?setShow({...show,licitaciones:false}):setShow({...show,licitaciones:true})} className="flex justify-between  cursor-pointer py-2 group">
                         <h2 className={`text-gray-400 dark:group-hover:text-gray-200 group-hover:text-gray-900 ${show.licitaciones && "text-gray-900 dark:text-white font-bold"}`} >Licitaciones</h2>
