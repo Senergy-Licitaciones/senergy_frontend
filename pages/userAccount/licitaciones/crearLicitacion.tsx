@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { AiFillCheckCircle, AiOutlineQuestionCircle } from "react-icons/ai";
 import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 
 export default function CrearLicitacion():JSX.Element{
@@ -39,7 +39,7 @@ export default function CrearLicitacion():JSX.Element{
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
+                            <textarea name="descripcionLicitacion" className="rounded dark:bg-gray-800 placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>
@@ -49,40 +49,45 @@ export default function CrearLicitacion():JSX.Element{
                             <button onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white">Continuar</button>
                         </article>
                     </div>
-                    <div className={`bg-white p-4 ${step===3 ?"block":"hidden"}`}>
-                        <p className="font-semibold">Invitación a participantes</p>
+                    <div className={`bg-white dark:bg-gray-900 p-4 ${step===3 ?"block":"hidden"}`}>
+                        <p className="font-semibold dark:text-gray-400 ">Invitación a participantes</p>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="title">Título de licitación</label>
-                            <input name="title" className="rounded placeholder:text-sm " placeholder="Agregar título de licitación" type="text" />
+                            <label className="text-gray-500 text-sm" htmlFor="title">Correos:</label>
+                            <input name="title" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Invitar correos para la licitación" type="text" />
                         </article>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
+                            <label className="text-gray-500 text-sm" htmlFor="descripcionLicitacion">Mensaje de la invitación</label>
+                            <textarea name="descripcionLicitacion" className=" dark:bg-gray-800 rounded placeholder:text-sm" placeholder="Escriba la invitación que recibirán los correos ingresados" id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>
+                            <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de envío</label>
                             <input name="fechaInicio" type="date" />
                         </article>
                         <article className="flex justify-end pt-4">
                             <button onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white">Continuar</button>
                         </article>
                     </div>
-                    <div className={`bg-white p-4 ${step===4 ?"block":"hidden"}`}>
-                        <p className="font-semibold">Validación</p>
+                    <div className={`bg-white dark:bg-gray-900 p-4 ${step===4 ?"block":"hidden"}`}>
+                        <p className="font-semibold dark:text-gray-400">Validación</p>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="title">Título de licitación</label>
-                            <input name="title" className="rounded placeholder:text-sm " placeholder="Agregar título de licitación" type="text" />
+                            <label className="text-gray-500 text-sm" htmlFor="title">Coloque un correo para validar</label>
+                            <input name="title" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Agregar correo de verificación" type="text" />
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea name="descripcionLicitacion" className="rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
+                            <textarea name="descripcionLicitacion" className="dark:bg-gray-800 rounded placeholder:text-sm" placeholder="Agregar descripción de licitación" id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de inicio</label>
                             <input name="fechaInicio" type="date" />
                         </article>
                         <article className="flex justify-end pt-4">
-                            <button  className="bg-green-600 py-2 px-4 text-white">Crear licitación</button>
+                            <button  className="bg-green-600 flex items-center group py-2 px-4 text-white">
+                                <span className="flex items-center transition-all duration-300 text-2xl mr-4 group-hover:animate-bounce justify-center" >
+                                    <AiFillCheckCircle/>
+                                </span>
+                                <p>Crear licitación</p>
+                                </button>
                         </article>
                     </div>
                 </div>

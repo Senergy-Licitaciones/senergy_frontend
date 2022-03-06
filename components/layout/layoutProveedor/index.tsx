@@ -7,7 +7,7 @@ type Props={
 }
 export default function LayoutProveedor({children}:Props):JSX.Element{
     return(
-        <section className="flex">
+        <section className="flex  ">
             <StaticNavProveedor/>
             <DynamicNavProveedor/>
             <HeaderProveedor>

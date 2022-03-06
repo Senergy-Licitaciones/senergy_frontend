@@ -4,7 +4,7 @@ export default function HistorialLicitaciones(){
     return(
         <LayoutProveedor>
             <section>
-                <h1>Historial de licitaciones del proveedor</h1>
+                <h1 className="text-center dark:text-white text-2xl" >Sección de tu historial de licitaciones</h1>
             </section>
         </LayoutProveedor>
     )

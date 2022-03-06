@@ -18,7 +18,7 @@ export default function HeaderProveedor({children}:Props):JSX.Element{
     const [navResponsive,setNavResponsive]=useState(false);
     const {template,toggleDynamicNav,toggleTheme}:ValueTemplateProvider=useTemplate();
     return(
-        <section className="bg-gray-200 flex-1 " >
+        <section className="bg-gray-200 flex-1 dark:bg-gray-700 " >
             <div className="sticky p-4 flex justify-between bg-gray-900 top-0 z-30 md:hidden" >
             <button onClick={()=>navResponsive?setNavResponsive(false):setNavResponsive(true)} className="text-gray-200" >
               <RiMenu4Line/>
@@ -73,7 +73,7 @@ export default function HeaderProveedor({children}:Props):JSX.Element{
                 <span onClick={toggleDynamicNav} className={`transition-all duration-500 cursor-pointer flex items-center mr-4 text-3xl text-yellow-500 ${!template.dynamicNavState && "rotate-180"}`} >
                     <IoIosArrowBack/>
                 </span>
-            <h1 className="font-semibold flex items-center" >{getRouteTitleProveedor(getFormatRoute(pathname))}</h1>
+            <h1 className="font-semibold flex items-center dark:text-gray-300" >{getRouteTitleProveedor(getFormatRoute(pathname))}</h1>
 
             </div>
             <nav>

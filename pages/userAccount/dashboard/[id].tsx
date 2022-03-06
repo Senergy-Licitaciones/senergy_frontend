@@ -4,7 +4,7 @@ export default function LicitacionDetail({id}:{id:string}):JSX.Element{
     return(
         <LayoutUser>
             <section>
-                <h1 className="text-center text-2xl font-semibold">Detalle de Licitacion {id} </h1>
+                <h1 className="text-center dark:text-gray-200 text-2xl font-semibold">Detalle de Licitacion {id} </h1>
                 <div className="flex flex-col">
                     <article className="flex justify-center my-4">
                 <button className="bg-yellow-500 text-white py-2 px-4 rounded">Ver diagrama 01</button>

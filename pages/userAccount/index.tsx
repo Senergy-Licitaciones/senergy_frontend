@@ -2,11 +2,14 @@ import LayoutUser from "../../components/layout/layoutUser/LayoutUser";
 import {BiTrendingUp,BiTrendingDown} from "react-icons/bi";
 import Link from "next/link";
 var Highcharts = require('highcharts');  
-import {BsTelephone} from "react-icons/bs";
+import {BsFillCalendarCheckFill, BsTelephone} from "react-icons/bs";
+import {AiOutlineDashboard, AiOutlineFileAdd, AiOutlineFolderView, AiOutlineMail} from "react-icons/ai";
 import { HiOutlineDocumentAdd,HiOutlineLocationMarker } from "react-icons/hi";
 import {FaUserAlt} from  "react-icons/fa";
 import { useEffect } from "react";
-export default function UserAccount(){    
+export default function UserAccount(){
+    const fecha:Date=new Date();
+    const format=fecha.toLocaleDateString();
     const ids:{
         [index:string]:number
     }={
@@ -138,14 +141,36 @@ export default function UserAccount(){
 
                     </div>
                 </div>
-                <div className="bg-white md:row-span-5">
-                    <h2>Dashboard 05</h2>
+                <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex flex-col p-4 md:row-span-5">
+                    <h2>Licitación destacada de la semana</h2>
+                    <article className="  flex flex-col items-center" >
+                    <p>Número de participantes: </p>
+                    <p className="text-2xl" > 95</p>
+                    </article>
+                    <article className="flex flex-col items-center">
+                        <p>Empresa: </p>
+                        <p className="text-xl" >AgroNorte</p>
+                    </article>
+                    <article className="flex flex-col items-center">
+                        <p>RUC: </p>
+                        <p className="text-xl" >20151025447</p>
+                    </article>
+                    <button className="bg-green-500 flex py-2 rounded  items-center justify-center text-gray-200 " >
+                        <span className="flex justify-center text-2xl mr-6 animate-bounce text-gray-200 items-center" >
+                            <AiOutlineFolderView/>
+                        </span>
+                        <p>Ver licitación</p>
+                    </button>
                 </div>
-                <div className="bg-white md:row-span-3">
-                    <h2>Calendar</h2>
+                <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-3">
+                    <h2>Calendario</h2>
+                    <p className="text-center text-2xl" >{format}</p>
+                    <span className="flex w-24 h-24 rounded-full bg-gray-400 justify-center items-center text-3xl text-white" >
+                        <BsFillCalendarCheckFill/>
+                    </span>
                 </div>
-                <div className="bg-white md:row-span-2 p-4">
-                    <h2 className="font-semibold">Licitaciones detalles</h2>
+                <div className="bg-white md:row-span-2 flex flex-col p-4 dark:bg-gray-800">
+                    <h2 className="font-semibold dark:text-gray-400">Licitaciones detalles</h2>
                     <ul>
                         <li>
                             <Link href={`/userAccount/dashboard/${ids.id1}`} >
@@ -185,11 +210,25 @@ export default function UserAccount(){
                         </li>
                     </ul>
                 </div>
-                <div className="bg-white md:row-span-4">
-                    <h2>Dashboard 06</h2>
+                <div className=" rounded-lg bg-gradient-to-br  dark:text-white from-sky-400 to-yellow-400 md:row-span-4 flex flex-col items-center justify-center p-3 ">
+                    <h2 className="text-center text-lg text-white font-bold" >Prueba el plan corporativo y disfruta sin restricciones</h2>
+                    <button className="bg-gray-800 mt-3 text-white py-2 px-4 font-semibold rounded-lg" >
+                        Iniciar ahora
+                    </button>
                 </div>
-                <div className="bg-white md:col-span-2 md:row-span-4">
-                    <h2>Dashboard 07</h2>
+                <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-4 md:col-span-2 ">
+                    <h2>Funciones disponibles</h2>
+                    <article className="flex justify-around w-full" >
+                        <span className="w-16 animate-bounce flex text-2xl justify-center items-center h-16 rounded-full bg-gray-200 text-gray-600" >
+                            <AiOutlineFileAdd/>
+                        </span>
+                        <span className="w-16 animate-bounce flex text-2xl justify-center items-center h-16 rounded-full bg-gray-200 text-gray-600" >
+                            <AiOutlineMail/>
+                        </span>
+                        <span className="w-16 animate-bounce flex text-2xl justify-center items-center h-16 rounded-full bg-gray-200 text-gray-600" >
+                            <AiOutlineDashboard/>
+                        </span>
+                    </article>
                 </div>
             </section>
             

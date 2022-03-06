@@ -44,7 +44,7 @@ export default function HistorialLicitacioens():JSX.Element{
                     <h2 className="font-semibold text-gray-500">Información adicional</h2>
                     <p className="font-bold text-2xl">161</p>
                 </div>
-                <div className="bg-white rounded">detalles</div>
+                
             </section>
         </LayoutUser>
     )

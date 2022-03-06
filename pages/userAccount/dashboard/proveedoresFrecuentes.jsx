@@ -4,7 +4,7 @@ export default function ProveedoresFrecuentes(){
     return(
         <LayoutUser>
             <section>
-                <h1>Proveedores frecuentes dashboard</h1>
+                <h1 className="text-center dark:text-white text-2xl" >Sección de proveedores frecuentes</h1>
             </section>
         </LayoutUser>
     )

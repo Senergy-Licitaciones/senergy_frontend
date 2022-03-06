@@ -15,16 +15,16 @@ export default function LoginEmpresa():JSX.Element{
             </span>
             <form onSubmit={login} className=" p-8 2xl:p-16 2xl:text-2xl flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]" >
                 <h1 className="font-bold text-3xl 2xl:text-4xl">Inicio de sesión de proveedores</h1>
-                <hr/>
+                <hr className="my-4" />
                 <article className="flex flex-col 2xl:my-6 ">
                 <label className="font-bold" htmlFor="email">Correo</label>
                 <input name="email" type="email"/>
                 </article>
-                <article className="flex 2xl:my-6 flex-col">
+                <article className="flex my-3 2xl:my-6 flex-col">
                 <label className="font-bold" htmlFor="password">Contraseña</label>
                 <input name="password" type="password"/>
                 </article>
-                <button className="bg-blue-500 text-white 2xl:my-4 font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
+                <button className="bg-blue-500 text-white 2xl:my-4 my-3 font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
                 <article className="flex justify-center">
 
                 <Link href="/login">
@@ -33,7 +33,7 @@ export default function LoginEmpresa():JSX.Element{
                 </a>
                 </Link>
                 </article>
-                <hr className="bg-gray-300 2xl:my-4 "/>
+                <hr className="bg-gray-300 my-3 2xl:my-4 "/>
                 <article className="flex justify-center">
                 <Link href="/register/empresa">
                     <a className="text-blue-400">

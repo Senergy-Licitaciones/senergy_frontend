@@ -34,8 +34,8 @@ function LicitacionNav():JSX.Element{
             </div>
             <ul className="flex flex-col mt-8 w-60">
                 <li className="mb-2  ">
-                    <div onClick={()=>push("/empresaAccount/licitaciones")} className="flex justify-between bg-white cursor-pointer py-2 group">
-                        <h2 className={`text-gray-400 group-hover:text-gray-900 ${getFormatRoute(pathname)==="licitaciones" && "text-yellow-500 font-bold"}`} >Ver licitaciones disponibles</h2>
+                    <div onClick={()=>push("/empresaAccount/licitaciones")} className="flex justify-between cursor-pointer py-2 group">
+                        <h2 className={`text-gray-400 dark:group-hover:text-white group-hover:text-gray-900 ${getFormatRoute(pathname)==="licitaciones" && "text-yellow-500 font-bold"}`} >Ver licitaciones disponibles</h2>
                         <span className={`transition-all duration-500 flex justify-center items-center text-gray-400 ${getFormatRoute(pathname)==="licitaciones" && "rotate-90 text-yellow-500 "}`}>
                             
                             <IoIosArrowForward/>
@@ -46,7 +46,7 @@ function LicitacionNav():JSX.Element{
                 </li>
                 <li className="mb-2">
                     <div onClick={()=>push("/empresaAccount/licitaciones/licitacionesGuardadas")} className="flex justify-between cursor-pointer py-2 group">
-                        <h2 className={` ${getFormatRoute(pathname)==="licitacionesGuardadas" ? "text-yellow-500 font-bold":"text-gray-400 group-hover:text-gray-900"}`} >
+                        <h2 className={` ${getFormatRoute(pathname)==="licitacionesGuardadas" ? "text-yellow-500 font-bold":"text-gray-400 dark:group-hover:text-white group-hover:text-gray-900"}`} >
                             Licitaciones guardadas
                         </h2>
                         <span className={`transition-all duration-500 flex justify-center items-center text-gray-400 ${getFormatRoute(pathname)==="licitacionesGuardadas" && " text-yellow-500 rotate-90"}`}>
@@ -57,7 +57,7 @@ function LicitacionNav():JSX.Element{
                 </li>
                 <li className="mb-2">
                     <div onClick={()=>push("/empresaAccount/licitaciones/licitacionesGuardadas")} className="flex justify-between cursor-pointer py-2 group">
-                        <h2 className={`text-gray-400 group-hover:text-gray-900 ${getFormatRoute(pathname)==="actualizarLicitacion" && "text-yellow-500 font-bold"}`} >
+                        <h2 className={`text-gray-400 dark:group-hover:text-white group-hover:text-gray-900 ${getFormatRoute(pathname)==="actualizarLicitacion" && "text-yellow-500 font-bold"}`} >
                             Feature 03
                         </h2>
                         <span className={`transition-all duration-500 flex justify-center items-center text-gray-400 ${getFormatRoute(pathname)==="actualizarLicitacion" && " text-yellow-500 rotate-90"}`}>
@@ -87,8 +87,8 @@ function DashboardNav():JSX.Element{
             </div>
             <ul className="flex flex-col mt-8 w-60">
                 <li className="mb-2  ">
-                    <div onClick={()=>show.licitaciones?setShow({...show,licitaciones:false}):setShow({...show,licitaciones:true})} className="flex justify-between bg-white cursor-pointer py-2 group">
-                        <h2 className={`text-gray-400 group-hover:text-gray-900 ${show.licitaciones && "text-gray-900 font-bold"}`} >Licitaciones</h2>
+                    <div onClick={()=>show.licitaciones?setShow({...show,licitaciones:false}):setShow({...show,licitaciones:true})} className="flex justify-between  cursor-pointer py-2 group">
+                        <h2 className={`text-gray-400 dark:group-hover:text-white group-hover:text-gray-900 ${show.licitaciones && "text-gray-900 dark:text-white font-bold"}`} >Licitaciones</h2>
                         <span className={`transition-all duration-500 flex justify-center items-center text-gray-400 ${show.licitaciones && "rotate-90"}`}>
                             
                             <IoIosArrowForward/>
@@ -98,7 +98,7 @@ function DashboardNav():JSX.Element{
                     <ul className={`overflow-hidden transition-all duration-500 ${show.licitaciones  ? "my-4 h-auto":"h-0"}`}>
                         <li >
                             <Link href="/empresaAccount/dashboard">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname)==="dashboard"?"text-yellow-500":"text-gray-400  hover:text-gray-900"} `} >
+                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname)==="dashboard"?"text-yellow-500":"text-gray-400 dark:hover:text-white hover:text-gray-900"} `} >
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
@@ -108,7 +108,7 @@ function DashboardNav():JSX.Element{
                         </li>
                         <li >
                             <Link href="/empresaAccount/dashboard/historialLicitaciones">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname)==="historialLicitaciones"?"text-yellow-500":"text-gray-400  hover:text-gray-900"} `} >
+                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname)==="historialLicitaciones"?"text-yellow-500":"text-gray-400 dark:hover:text-white  hover:text-gray-900"} `} >
                             <span className="flex justify-center items-center mr-2">
                                 <RiFileHistoryLine/>
                             </span>
@@ -122,7 +122,7 @@ function DashboardNav():JSX.Element{
                 
                 <li className="mb-2">
                     <div className="flex justify-between cursor-pointer py-2 group">
-                        <h2 className="text-gray-400 group-hover:text-gray-900" >
+                        <h2 className="text-gray-400 dark:group-hover:text-white group-hover:text-gray-900" >
                             Personal
                         </h2>
                         <span className="flex justify-center items-center text-gray-400">
@@ -132,7 +132,7 @@ function DashboardNav():JSX.Element{
                 </li>
                 <li className="mb-2">
                     <div className="flex justify-between cursor-pointer py-2 group" >
-                        <h2 className="text-gray-400 group-hover:text-gray-900">Global</h2>
+                        <h2 className="text-gray-400 dark:group-hover:text-white group-hover:text-gray-900">Global</h2>
                         <span className="flex justify-center items-center text-gray-400">
                             <IoIosArrowForward/>
                         </span>
