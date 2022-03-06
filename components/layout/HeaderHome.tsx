@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import {RiMenu4Line} from "react-icons/ri";
 import {MdClose} from "react-icons/md";
+import { getFormatRoute } from "../../utils";
 export default function HeaderHome():JSX.Element{
-    const {push}=useRouter();
+    const {push,pathname}=useRouter();
     const [burger,setBurger]=useState(false);
     return(
         <header className="sticky 2xl:text-2xl bg-gray-100 top-0 left-0 right-0 p-4 grid grid-cols-4" >
@@ -48,23 +49,23 @@ export default function HeaderHome():JSX.Element{
             </div>
             <nav className="col-span-2 hidden md:flex justify-around items-center" >
                 <Link href="/">
-                <a className="font-bold text-gray-400">
+                <a className={`font-bold text-gray-400  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname)==="" ? "text-yellow-500 after:block ":"after:hidden"}`}>
                     Inicio
                 </a>
                 </Link>
                 <Link href="/about">
-                <a className="font-bold text-gray-400">
+                <a className={`font-bold text-gray-400  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname)==="about" ? "text-yellow-500 after:block ":"after:hidden"}`}>
                     Acerca de nosotros
                 </a>
                 </Link>
                 <Link href="/pricing">
-                <a className="font-bold text-gray-400">
+                <a className={`font-bold text-gray-400  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname)==="pricing" ? "text-yellow-500 after:block ":"after:hidden"}`}>
                     Precios
                 </a>
                 </Link>
             </nav>
             <article className="md:flex hidden  justify-around items-center">
-                <button onClick={()=>push("/login")} className="font-bold text-gray-400" >Iniciar sesión</button>
+                <button onClick={()=>push("/login")} className="font-bold text-gray-500 rounded-xl border-2 border-gray-500 py-2 px-4" >Iniciar sesión</button>
                 <button onClick={()=>push("/register")} className="bg-yellow-500 rounded-full 2xl:py-3 2xl:px-6 py-2 px-4 font-bold text-white" >Registrarse</button>
             </article>
         </header>
