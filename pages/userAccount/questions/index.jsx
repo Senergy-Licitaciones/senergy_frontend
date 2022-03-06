@@ -1,4 +1,4 @@
-import LayoutUser from "../../../components/layout/layoutUser";
+import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 
 export default function UserQuestions(){
     return(
