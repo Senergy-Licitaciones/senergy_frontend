@@ -44,7 +44,7 @@ export default function AsideSteper({step,setStep}:Props){
                             </article>
                             <div className="ml-4">
                                 <p className="font-semibold dark:text-gray-400 text-sm text-gray-500">Paso 04</p>
-                                <p className={`text-sm dark:text-gray-400 ${step===4?"text-black font-bold ":"text-gray-500"}`}>Validación</p>
+                                <p className={`text-sm dark:text-gray-400 ${step===4?"text-black font-bold ":"text-gray-500"}`}>Especificación por Mes</p>
                             </div>
                         </li>
                     </ul>

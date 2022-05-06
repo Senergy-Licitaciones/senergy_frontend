@@ -162,21 +162,22 @@ export default function FormCrearLicitacion({step,setStep}:Props){
                     </div>
                     <div className={`bg-white dark:bg-gray-900 p-4 ${step===4 ?"block":"hidden"}`}>
                         <p className="font-semibold dark:text-gray-400">Especificación por Mes</p>
-                        <table className="bg-white dark:bg-gray-800 w-full dark:divide-gray-600 divide-y mt-4">
+                        <div className="max-h-96 overflow-y-auto" >
+                        <table className=" bg-gray-100 dark:bg-gray-800 w-full dark:divide-gray-600 divide-y mt-4">
                             <thead>
                                 <tr className="text-sm font-semibold dark:divide-gray-500 dark:text-gray-400 divide-x">
 
-                                <th>MES</th>
-                                <th>HP</th>
-                                <th>HFP</th>
+                                <th className="p-4" >MES</th>
+                                <th className="p-4" >HP</th>
+                                <th className="p-4" >HFP</th>
                                 </tr>
                             </thead>
                             <tbody className=" dark:divide-gray-500 divide-y" >
                                 {form.meses.map((mes,index)=>(
                                     <tr className="text-sm dark:divide-gray-500 dark:text-gray-400 divide-x" key={index} >
-                                        <td>{mes.mes}</td>
-                                        <td>
-                                            <input onChange={(e)=>setForm({...form,meses:form.meses.filter((mes,i)=>{
+                                        <td className="p-4 text-center" >{mes.mes}</td>
+                                        <td className="p-4 text-center ">
+                                            <input className="bg-transparent dark:text-gray-400" onChange={(e)=>setForm({...form,meses:form.meses.map((mes,i)=>{
                                                 if(i===index){
                                                     const newValue:NumMes={
                                                         ...mes,
@@ -185,12 +186,12 @@ export default function FormCrearLicitacion({step,setStep}:Props){
                                                     return newValue;
                                                 }
                                                 return mes
-                                            })})} value={mes.hp} type="number" />
+                                            })})} value={form.meses[index].hp} type="number" />
                                         </td>
-                                        <td>
-                                            <input onChange={(e)=>setForm({
+                                        <td className="p-4 text-center " >
+                                            <input className="bg-transparent dark:text-gray-400"  onChange={(e)=>setForm({
                                                 ...form,
-                                                meses:form.meses.filter((mes,i)=>{
+                                                meses:form.meses.map((mes,i)=>{
                                                     if(i===index){
                                                         const newValue:NumMes={
                                                             ...mes,
@@ -200,12 +201,13 @@ export default function FormCrearLicitacion({step,setStep}:Props){
                                                     }
                                                     return mes;
                                                 })
-                                            })} value={mes.hfp} type="number" />
+                                            })} value={form.meses[index].hfp} type="number" />
                                         </td>
                                     </tr>
                                         ))}
                             </tbody>
                         </table>
+                        </div>
                         
                         <article className="flex justify-end pt-4">
                             <button type="submit" className="bg-green-600 flex items-center group py-2 px-4 text-white">
