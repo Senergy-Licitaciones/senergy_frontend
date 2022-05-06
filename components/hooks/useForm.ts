@@ -1,17 +1,20 @@
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
+import { HandleChange, HookForm } from "../../types/form";
 
-export const useForm=(initForm)=>{
+export const useForm:HookForm=(initForm)=>{
 
     const [form,setForm]=useState(initForm);
-    const handleChange=(e:ChangeEvent<HTMLInputElement>)=>{
+    const handleChange:HandleChange=(e)=>{
         const {name,value}=e.target;
-        setForm({
-            ...form,
-            [name]:value
-        });
+        
+            setForm({
+                ...form,
+                [name]:value
+            })
     }
     return{
         form,
-        handleChange
+        handleChange,
+        setForm
     }
 }
