@@ -42,6 +42,9 @@ export const getRouteTitleProveedor=(route:string):string=>{
         case "licitacionesGuardadas":{
             return "Mis licitaciones guardadas"
         }
+        case "oferta":{
+            return "Generar Oferta"
+        }
         default:{
             return "ruta no asignada"
         }

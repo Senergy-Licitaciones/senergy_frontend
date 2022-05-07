@@ -1,13 +1,15 @@
 import LayoutProveedor from "../../../components/layout/layoutProveedor";
 import {BsSearch} from "react-icons/bs";
 import {AiOutlineFileAdd,AiOutlineFileSearch} from "react-icons/ai";
+import Link from "next/link";
+const id=1;
 export default function BuscadorLicitaciones(){
     return(
         <LayoutProveedor>
             <section>
                 <div className="flex justify-between">
                     <article className="flex flex-col 2xl:w-44 w-32">
-                        <select className="rounded 2xl:text-2xl dark:bg-gray-800 dark:text-zinc-200" value={5} name="" id="">
+                        <select className="rounded 2xl:text-2xl dark:bg-gray-800 dark:text-zinc-200" defaultValue={5} name="" id="">
                             <option value={5}>5</option>
                             <option value={10}>10</option>
                         </select>
@@ -56,9 +58,12 @@ export default function BuscadorLicitaciones(){
                                 Servicio 03
                             </td>
                             <td className="p-4 flex justify-around " >
-                                <button className="bg-green-500 text-white p-2 text-xl rounded" >
+                                <Link href={`/empresaAccount/licitaciones/${id}/oferta`} >
+                                
+                                <a className="bg-green-500 text-white p-2 text-xl rounded" >
                                     <AiOutlineFileAdd/>
-                                </button>
+                                </a>
+                                </Link>
                                 <button className="bg-yellow-500 text-white p-2 text-xl rounded" >
                                     <AiOutlineFileSearch/>
                                 </button>
