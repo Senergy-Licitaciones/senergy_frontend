@@ -3,6 +3,7 @@ import LayoutHome from "../components/layout";
 
 export default function Home():JSX.Element{
     const {push}=useRouter();
+    
     return(
        <LayoutHome>
            <section className=" min-h-screen flex justify-center items-start py-20 snap-center">

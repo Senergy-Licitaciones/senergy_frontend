@@ -6,7 +6,7 @@ export const useForm:HookForm=(initForm)=>{
     const [form,setForm]=useState(initForm);
     const handleChange:HandleChange=(e)=>{
         const {name,value}=e.target;
-        
+
             setForm({
                 ...form,
                 [name]:value
