@@ -4,6 +4,7 @@ import { FormRegisterUser, HandleSubmit, HookRegistrarUsuario } from "../../type
 import { ErrorResponse, ResponseRegisterUser } from "../../types/methods";
 import { methodPost } from "../../utils/fetch";
 import { useForm } from "../hooks/useForm";
+import Loader from "./Loader";
 const initForm:FormRegisterUser={
     correo:"",
     password:"",
@@ -15,10 +16,11 @@ const initForm:FormRegisterUser={
     terms:true
 }
 export default function FormUserRegister(){
-    const {form,handleChange,setForm}=useForm(initForm) as HookRegistrarUsuario ;
+    const {form,handleChange,setForm,loading,setLoading}=useForm(initForm) as HookRegistrarUsuario ;
     const {push}=useRouter();
     const register:HandleSubmit=async(e)=>{
         e.preventDefault();
+        setLoading(true);
         const response=await methodPost("auth/registerUsuario",
         {correo:form.correo,
         password:form.password,
@@ -30,8 +32,10 @@ export default function FormUserRegister(){
         console.log("response ",response);
         if("error" in response){
             console.log("Error encontrado ", response.message);
+            setLoading(false);
         }else{
             localStorage.setItem("idUserToConfirm",response.idUser);
+            setLoading(false);
             push("/register/confirmAccount");
         }
     }
@@ -71,7 +75,14 @@ export default function FormUserRegister(){
                             <input onChange={(e)=>setForm({...form,terms:e.target.checked})} checked={form.terms} className="focus:outline-purple-500 text-purple-600" type="checkbox" name="terms"  />
                             <label className="ml-2" htmlFor="terminos">Acepto los <a className="text-blue-500" href="">Términos y condiciones</a></label>
                         </article>
+                        {
+                            loading?
+                            <article className="flex flex-col justify-center items-center" >
+                                <Loader/>
+                            </article>
+                            :
                         <button type="submit" className="my-4 2xl:py-3 rounded-md py-2 font-bold bg-blue-500 text-white">Registrarse</button>
+                        }
                         <article className="flex justify-center">
 
                         <Link href="/login">

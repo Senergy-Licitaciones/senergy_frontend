@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next";
 import { BsSearch } from "react-icons/bs";
 import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 
@@ -110,4 +111,24 @@ export default function UserLicitaciones():JSX.Element{
             </section>
         </LayoutUser>
     )
+}
+export const getStaticProps:GetStaticProps=async(context)=>{
+    const data=context.previewData as {token:string};
+    if(data){
+        console.log("token ",data);
+        return{
+            props:{
+                token:data.token
+            },
+            revalidate:120
+        }
+    }else{
+        return{
+            props:{},
+            redirect:{
+                destination:"/login"
+            },
+            revalidate:300
+        }
+    }
 }

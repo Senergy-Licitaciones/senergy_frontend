@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react"
+import { DataSelect } from "../data"
 
 export enum Estado{
     Abierto="abierto",
@@ -56,10 +57,12 @@ export type FormRegisterUser={
 }
 export type HandleChange=(e:ChangeEvent<HTMLInputElement>|ChangeEvent<HTMLTextAreaElement>|ChangeEvent<HTMLSelectElement>)=>void
 export type HandleSubmit=(e:FormEvent<HTMLFormElement>)=>void
-export type HookConfirmAccount={form:FormConfirmAccount,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormConfirmAccount>>}
-export type HookCrearLicitacion={form:FormCrearLicitacionUser,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>}
-export type HookCrearOferta={form:FormCrearOfertaProveedor,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>}
-export type HookForm=(initForm:Form)=>{form:Form,handleChange:HandleChange,setForm:Dispatch<SetStateAction<Form>>}
-export type HookLogin={form:FormLoginUser,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormLoginUser>>};
-export type HookRegistrarUsuario={form:FormRegisterUser,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormRegisterUser>>}
+export type HookConfirmAccount={form:FormConfirmAccount,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormConfirmAccount>>,loading:boolean,setLoading:Dispatch<SetStateAction<boolean>>}
+export type HookCrearLicitacion={form:FormCrearLicitacionUser,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>,loading:boolean,setLoading:Dispatch<SetStateAction<boolean>>}
+export type HookCrearOferta={form:FormCrearOfertaProveedor,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>,loading:boolean,setLoading:Dispatch<SetStateAction<boolean>>}
+export type HookData=()=>{brgs:DataSelect[],puntoSums:DataSelect[],servicios:DataSelect[]}
+export type HookForm=(initForm:Form)=>{form:Form,handleChange:HandleChange,setForm:Dispatch<SetStateAction<Form>>,loading:boolean,setLoading:Dispatch<SetStateAction<boolean>>}
+export type HookLogin={form:FormLoginUser,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormLoginUser>>,loading:boolean,setLoading:Dispatch<SetStateAction<boolean>>};
+export type HookParamsData={brgs:DataSelect[],puntoSums:DataSelect[],servicios:DataSelect[]}
+export type HookRegistrarUsuario={form:FormRegisterUser,handleChange:HandleChange,setForm:Dispatch<SetStateAction<FormRegisterUser>>,loading:boolean,setLoading:Dispatch<SetStateAction<boolean>>}
 export type NumMes={mes:string,hp:number,hfp:number}

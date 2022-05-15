@@ -1,29 +1,35 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {useState } from "react";
 import { FormLoginUser, HandleSubmit, HookLogin } from "../../types/form";
 import { ErrorResponse, LoginUserResponse } from "../../types/methods";
-import { methodPut } from "../../utils/fetch";
+import { methodPut, saveToken } from "../../utils/fetch";
 import { useForm } from "../hooks/useForm";
+import Loader from "./Loader";
 const initForm:FormLoginUser={
     correo:"",
     password:""
 }
 export default function FormUserLogin(){
     const {push}=useRouter();
-    const {form,handleChange,setForm}=useForm(initForm) as HookLogin ;
+    
+    const {form,handleChange,loading,setLoading}=useForm(initForm) as HookLogin ;
     const loginUser:HandleSubmit=async(e)=>{
         e.preventDefault();
+        setLoading(true);
         const response=await methodPut("auth/loginUsuario",form) as LoginUserResponse|ErrorResponse ;
         if("error" in response){
-            console.log("error ",response.message);
+            console.log("error ",response.message," obj error ",response.error);
+            setLoading(false);
         }else{
             localStorage.setItem("tokenLogin",response.token);
-        
+            await saveToken({token:response.token});
+            setLoading(false);
             push("/userAccount");
         }
     }
     return(
-        <form onSubmit={loginUser} className=" 2xl:p-12 2xl:text-2xl p-8 flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]" >
+        <form onSubmit={loginUser} className={` transition-all duration-500 2xl:p-12 2xl:text-2xl p-8 flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]`} >
                 <h1 className="font-bold text-3xl 2xl:text-4xl">Inicio de sesión de usuarios</h1>
                 <hr/>
                 <article className="flex my-4 flex-col">
@@ -34,7 +40,14 @@ export default function FormUserLogin(){
                 <label className="font-bold" htmlFor="password">Contraseña</label>
                 <input onChange={handleChange} value={form.password} name="password" type="password"/>
                 </article>
-                <button className="bg-blue-500 mb-4 text-white font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
+                {
+                    loading?
+                    <article className="flex justify-center" >
+                        <Loader/>
+                    </article>
+                    :
+                    <button className="bg-blue-500 mb-4 text-white font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
+                }
                 <article className="flex justify-center ">
 
                 <Link href="/login/empresa">

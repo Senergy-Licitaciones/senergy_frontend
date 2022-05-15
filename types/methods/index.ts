@@ -8,7 +8,7 @@ export interface LoginUserResponse extends Response{
 export interface Response{
     message:string
 }
-export type ResponseMethod=ResponseRegisterUser|ErrorResponse
+export type ResponseMethodPost=ResponseRegisterUser|ErrorResponse
 export type ResponseMethodPut=Response|LoginUserResponse|ErrorResponse
 export interface ResponseRegisterUser extends Response{
     idUser:string

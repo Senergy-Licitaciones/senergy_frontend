@@ -5,9 +5,25 @@ import { AiOutlineQuestionCircle, AiOutlineUser } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { getFormatRoute } from "../../../utils";
 import { useState } from "react";
+import { clearToken, methodPutAuth } from "../../../utils/fetch";
+import { ErrorResponse } from "../../../types/methods";
 export default function StaticNav():JSX.Element{
     const {pathname,push}=useRouter();
     const [show,setShow]=useState(false);
+    const logout=async()=>{
+        try{
+            const response=await methodPutAuth("auth/logoutUsuario",localStorage.getItem("tokenLogin"),{}) as Response|ErrorResponse ;
+            if("error" in response){
+                console.log("error al cerrar sesión ",response.message," ",response.error);
+            }else{
+                localStorage.removeItem("tokenLogin");
+                await clearToken();
+                push("/login");
+            }
+        }catch(err){
+            console.log("error ",err);
+        }
+    }
     return(
         <aside className="hidden md:flex  sticky top-0 bottom-0 z-20 flex-col 2xl:py-6 2xl:px-10 py-4 px-4 lg:px-8 h-screen bg-gray-100 dark:bg-gray-900">
             <div className=" " >
@@ -79,7 +95,7 @@ export default function StaticNav():JSX.Element{
                         </ul>
                     </div>
                     <article className="flex justify-center py-4">
-                        <button onClick={()=>push("/")} className="py-2 transition-all 2xl:text-xl duration-300 rounded px-4 bg-yellow-500 text-white hover:opacity-80">Cerrar sesión</button>
+                        <button onClick={logout} className="py-2 transition-all 2xl:text-xl duration-300 rounded px-4 bg-yellow-500 text-white hover:opacity-80">Cerrar sesión</button>
                     </article>
                 </div>
                 <img onClick={()=>show?setShow(false):setShow(true)} className="cursor-pointer w-8 2xl:w-12 2xl:h-12 h-8 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />

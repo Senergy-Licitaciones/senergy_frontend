@@ -1,6 +1,6 @@
 import axios from "axios";
 import {API} from "../consts/config";
-import { ResponseMethod, ResponseMethodPut } from "../types/methods";
+import { ErrorResponse, ResponseMethodPost, ResponseMethodPut } from "../types/methods";
 
 export const methodGetAuth=async(url:string,token:string)=>{
     try{
@@ -28,7 +28,7 @@ export const methodPostAuth=async(url:string,token:string,body:Object)=>{
         }
     }
 }
-export const methodPutAuth=async(url:string,token:string,body:Object)=>{
+export const methodPutAuth=async(url:string,token:string,body:Object):Promise<ResponseMethodPut>=>{
     try{
         const {data}=await axios.put(`${API}/${url}`,body,{headers:{
             "Authorization":`Bearer ${token}`
@@ -41,7 +41,7 @@ export const methodPutAuth=async(url:string,token:string,body:Object)=>{
         }
     }
 }
-export const methodPost=async(url:string,body:Object):Promise<ResponseMethod>=>{
+export const methodPost=async(url:string,body:Object):Promise<ResponseMethodPost>=>{
     try{
         const {data}=await axios.post(`${API}/${url}`,body);
         return data;
@@ -62,4 +62,24 @@ export const methodPut=async(url:string,body:Object):Promise<ResponseMethodPut>=
             error:err
         }
     }
+}
+export const saveToken=async(form:{token:string}):Promise<void|ErrorResponse>=>{
+    try{
+        await axios.post("/api/login",form);
+    }catch(err){
+        return{
+            message:"Ha ocurrido un error al iniciar sesión",
+            error:err
+        }
+    }
+}
+export const clearToken=async():Promise<void|ErrorResponse>=>{
+    try{
+        await axios.put("/api/logout");
+    }catch(err){
+        return{
+            message:"Ha ocurrido un error al cerrar el token ",
+            error:err
+        }
+    } 
 }
