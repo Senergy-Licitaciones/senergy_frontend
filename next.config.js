@@ -6,8 +6,8 @@ module.exports={
                 permanent:false,
                 has:[
                     {
-                        type:"context",
-                        key:"previewData",
+                        type:"cookie",
+                        key:"token",
                         value:undefined
                     }
                 ],
@@ -18,8 +18,8 @@ module.exports={
                 permanent:false,
                 has:[
                     {
-                        type:"context",
-                        key:"previewData",
+                        type:"cookie",
+                        key:"token",
                         value:undefined
                     }
                 ],
@@ -30,8 +30,8 @@ module.exports={
                 permanent:false,
                 has:[
                     {
-                        type:"context",
-                        key:"previewData",
+                        type:"cookie",
+                        key:"token",
                         value:undefined
                     }
                 ],
