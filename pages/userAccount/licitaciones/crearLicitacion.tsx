@@ -25,7 +25,7 @@ export const getStaticProps:GetStaticProps=async(context)=>{
         }
     }else{
         return{
-            props:{},
+            props:null,
             redirect:{
                 destination:"/login"
             },
