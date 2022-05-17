@@ -124,7 +124,7 @@ export const getStaticProps:GetStaticProps=async(context)=>{
         }
     }else{
         return{
-            props:null
+            props:{}
         }
     }
 }
