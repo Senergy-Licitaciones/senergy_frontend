@@ -1,3 +1,4 @@
+import { Licitacion } from "../data"
 
 export interface ErrorResponse extends Response{
     error:Object
@@ -10,6 +11,7 @@ export interface Response{
 }
 export type ResponseMethodPost=ResponseRegisterUser|ErrorResponse
 export type ResponseMethodPut=Response|LoginUserResponse|ErrorResponse
+export type ResponseMethodGet= Licitacion[]|ErrorResponse
 export interface ResponseRegisterUser extends Response{
     idUser:string
 }

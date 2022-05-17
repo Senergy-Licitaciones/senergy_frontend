@@ -9,6 +9,7 @@ import InfoGeneral from "./componentsCrearLicitacion/InfoGeneral";
 import {HandleSubmit} from "../../types/form";
 import {methodPostAuth} from "../../utils/fetch";
 import {Response,ErrorResponse} from "../../types/methods";
+import { decode } from "../../utils/handleJwt";
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>
@@ -37,12 +38,32 @@ export default function FormCrearLicitacion({step,setStep}:Props){
     const {servicios,brgs,puntoSums}=useData();
     
     const sendForm:HandleSubmit=async(e)=>{
+        console.log("ejecutando form");
         e.preventDefault();
-        const data=await methodPostAuth("licitacion/crearLicitacion",localStorage.getItem("tokenLogin"),form) as Response | ErrorResponse;
+        setLoading(true);
+        const data=await methodPostAuth("licitacion/crearLicitacion",localStorage.getItem("tokenLogin"),{
+            title:form.title,
+    description:form.description,
+    tipoServicio:form.tipoServicio,
+    fechaInicioApertura:form.fechaInicioApertura,
+    fechaFinApertura:form.fechaFinApertura,
+    numLicitacion:form.numLicitacion,
+    requisitos:form.requisitos,
+    estado:form.estado,
+    empresa:form.empresa,
+    fechaInicio:form.fechaInicio,
+    fechaFin:form.fechaFin,
+    puntoSum:form.puntoSum,
+    brg:form.brg,
+    factorPlanta:form.factorPlanta,
+    meses:form.meses,
+    user:decode(localStorage.getItem("tokenLogin"))._id}) as Response | ErrorResponse;
         if("error" in data){
             console.log("error ",data.error," message ",data.message);
+            setLoading(false);
         }else{
             console.log("mensaje ",data.message);
+            setLoading(false);
         }
     }
     return(

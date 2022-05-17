@@ -1,6 +1,7 @@
 import axios from "axios";
 import {API} from "../consts/config";
-import { ErrorResponse, ResponseMethodPost, ResponseMethodPut } from "../types/methods";
+import { Licitacion } from "../types/data";
+import { ErrorResponse, ResponseMethodGet, ResponseMethodPost, ResponseMethodPut } from "../types/methods";
 
 export const methodGetAuth=async(url:string,token:string)=>{
     try{
@@ -55,6 +56,17 @@ export const methodPost=async(url:string,body:Object):Promise<ResponseMethodPost
 export const methodPut=async(url:string,body:Object):Promise<ResponseMethodPut>=>{
     try{
         const {data}=await axios.put(`${API}/${url}`,body);
+        return data;
+    }catch(err){
+        return{
+            message:"Ha ocurrido un error al realizar la petición",
+            error:err
+        }
+    }
+}
+export const methodGet=async(url:string):Promise<ResponseMethodGet>=>{
+    try{
+        const {data}=await axios.get(`${API}/${url}`);
         return data;
     }catch(err){
         return{

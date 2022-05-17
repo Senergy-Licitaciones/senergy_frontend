@@ -73,7 +73,7 @@ export default function EspecificacionesTecnicas({step,setStep,handleChange,form
                             <input onChange={handleChange} value={form.factorPlanta} name="factorPlanta" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Factor de Planta" type="number" />
                         </article>
                         <article className="flex justify-end pt-4">
-                            <button onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white">Continuar</button>
+                            <span onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white block cursor-pointer">Continuar</span>
                         </article>
                     </div>
     )

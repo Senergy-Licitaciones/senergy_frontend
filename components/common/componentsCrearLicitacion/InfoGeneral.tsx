@@ -23,8 +23,8 @@ export default function InfoGeneral({step,setStep,handleChange,form,servicios}:P
                             <input onChange={handleChange} value={form.title} name="title" className="rounded dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar título de licitación" type="text" />
                         </article>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 2xl:text-lg text-sm dark:text-gray-400" htmlFor="descripcionLicitacion">Descripción de licitación</label>
-                            <textarea onChange={handleChange} value={form.description} name="descripcionLicitacion" className="dark:bg-gray-800 dark:text-gray-400 rounded 2xl:placeholder:text-lg placeholder:text-sm" placeholder="Agregar descripción de licitación"  id="" cols={30} rows={5}></textarea>
+                            <label className="text-gray-500 2xl:text-lg text-sm dark:text-gray-400" htmlFor="description">Descripción de licitación</label>
+                            <textarea onChange={handleChange} value={form.description} name="description" className="dark:bg-gray-800 dark:text-gray-400 rounded 2xl:placeholder:text-lg placeholder:text-sm" placeholder="Agregar descripción de licitación"  id="" cols={30} rows={5}></textarea>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="fechaInicioApertura">Fecha de inicio de Apertura</label>
@@ -51,7 +51,7 @@ export default function InfoGeneral({step,setStep,handleChange,form,servicios}:P
                             </select>
                         </article>
                         <article className="flex justify-end pt-4">
-                            <button onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white">Continuar</button>
+                            <span onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white block cursor-pointer">Continuar</span>
                         </article>
                     </div>
     )

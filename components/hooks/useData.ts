@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { HookData, HookParamsData } from "../../types/form";
 import { methodGetAuth } from "../../utils/fetch";
+import { decode } from "../../utils/handleJwt";
 
 export const useData:HookData=()=>{
     const [data,setData]=useState<HookParamsData>({
