@@ -7,8 +7,7 @@ module.exports={
                 has:[
                     {
                         type:"cookie",
-                        key:"__next_preview_data",
-                        value:undefined
+                        key:"__next_preview_data"
                     }
                 ],
                 destination:"/login"
@@ -19,8 +18,7 @@ module.exports={
                 has:[
                     {
                         type:"cookie",
-                        key:"__next_preview_data",
-                        value:undefined
+                        key:"__next_preview_data"
                     }
                 ],
                 destination:"/login"
@@ -31,8 +29,7 @@ module.exports={
                 has:[
                     {
                         type:"cookie",
-                        key:"__next_preview_data",
-                        value:undefined
+                        key:"__next_preview_data"
                     }
                 ],
                 destination:"/login"
