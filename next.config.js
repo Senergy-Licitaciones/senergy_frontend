@@ -4,16 +4,37 @@ module.exports={
             {
                 source:"/userAccount",
                 permanent:false,
+                has:[
+                    {
+                        type:"context",
+                        key:"previewData",
+                        value:undefined
+                    }
+                ],
                 destination:"/login"
             },
             {
                 source:"/userAccount/licitaciones",
                 permanent:false,
+                has:[
+                    {
+                        type:"context",
+                        key:"previewData",
+                        value:undefined
+                    }
+                ],
                 destination:"/login"
             },
             {
                 source:"/userAccount/licitaciones/crearLicitacion",
                 permanent:false,
+                has:[
+                    {
+                        type:"context",
+                        key:"previewData",
+                        value:undefined
+                    }
+                ],
                 destination:"/login"
             }
         ]
