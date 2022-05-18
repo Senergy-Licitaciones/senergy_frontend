@@ -7,7 +7,7 @@ import {AiOutlineDashboard, AiOutlineFileAdd, AiOutlineFolderView, AiOutlineMail
 import { HiOutlineDocumentAdd,HiOutlineLocationMarker } from "react-icons/hi";
 import {FaUserAlt} from  "react-icons/fa";
 import { useEffect } from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 export default function UserAccount(){
     const fecha:Date=new Date();
     const format=fecha.toLocaleDateString();
@@ -239,19 +239,21 @@ export default function UserAccount(){
         </LayoutUser>
     )
 }
-export const getStaticProps:GetStaticProps=async(context)=>{
+export const getServerSideProps:GetServerSideProps=async(context)=>{
     const data=context.previewData as undefined|{token?:string} ;
     console.log("data ",data);
     if(data){
         return{
             props:{
                 token:data.token
-            },
-            revalidate:3600
+            }
         }
     }else{
         return{
-            props:{}
+            props:{},
+            redirect:{
+                destination:"/login"
+            }
         }
     }
 }

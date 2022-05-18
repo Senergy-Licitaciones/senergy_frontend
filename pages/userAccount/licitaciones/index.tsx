@@ -119,12 +119,14 @@ export const getStaticProps:GetStaticProps=async(context)=>{
         return{
             props:{
                 token:data.token
-            },
-            revalidate:120
+            }
         }
     }else{
         return{
-            props:{}
+            props:{},
+            redirect:{
+                destination:"/login"
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 module.exports={
-    async redirects(){
+    /*async redirects(){
         return [
             {
                 source:"/userAccount",
@@ -38,7 +38,7 @@ module.exports={
                 destination:"/login"
             }
         ]
-    },
+    },*/
     env:{
         API_REST:process.env.API_REST
     }
