@@ -8,7 +8,7 @@ module.exports={
                     {
                         type:"cookie",
                         key:"__next_preview_data",
-                        value:undefined
+                        value:"hola"
                     }
                 ],
                 destination:"/login"
@@ -20,13 +20,20 @@ module.exports={
                     {
                         type:"cookie",
                         key:"__next_preview_data",
-                        value:"hola"
+                        value:""
                     }
                 ],
                 destination:"/login"
             },
             {
                 source:"/userAccount/licitaciones/crearLicitacion",
+                has:[
+                    {
+                        type:"cookie",
+                        key:"__next_preview_data",
+                        value:undefined
+                    }
+                ],
                 permanent:false,
                 destination:"/login"
             }
