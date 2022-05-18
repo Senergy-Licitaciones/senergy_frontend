@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import SteperCrearLicitacion from "../../../components/common/SteperCrearLicitacion";
 import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 type Props={
@@ -13,7 +13,7 @@ export default function CrearLicitacion({token}:Props):JSX.Element{
         </LayoutUser>
     )
 }
-export const getStaticProps:GetStaticProps=async(context)=>{
+export const getServerSideProps:GetServerSideProps=async(context)=>{
     const data=context.previewData as {token:string};
     if(data){
         console.log("token ",data);

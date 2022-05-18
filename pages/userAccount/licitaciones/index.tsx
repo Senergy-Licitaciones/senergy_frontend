@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { BsSearch } from "react-icons/bs";
 import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
 
@@ -112,7 +112,7 @@ export default function UserLicitaciones():JSX.Element{
         </LayoutUser>
     )
 }
-export const getStaticProps:GetStaticProps=async(context)=>{
+export const getServerSideProps:GetServerSideProps=async(context)=>{
     const data=context.previewData as {token:string};
     if(data){
         console.log("token ",data);
