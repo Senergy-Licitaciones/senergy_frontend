@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { HandleSubmit, HookConfirmAccount } from "../../types/form";
+import { FormConfirmAccount, HandleSubmit, HookConfirmAccount } from "../../types/form";
 import { ErrorResponse } from "../../types/methods";
 import { methodPut } from "../../utils/fetch";
 import { useForm } from "../hooks/useForm"
-
-const initForm={
+import swal from "sweetalert";
+const initForm:FormConfirmAccount={
     code:"",
     idUser:""
 }

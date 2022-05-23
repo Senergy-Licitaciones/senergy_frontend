@@ -77,8 +77,10 @@ export const methodGet=async(url:string):Promise<ResponseMethodGet>=>{
 }
 export const saveToken=async(form:{token:string}):Promise<void|ErrorResponse>=>{
     try{
-        await axios.post("/api/login",form);
+        const {data}=await axios.post("/api/login",form);
+        console.log("data ",data);
     }catch(err){
+        console.log("error save token ",err)
         return{
             message:"Ha ocurrido un error al iniciar sesión",
             error:err

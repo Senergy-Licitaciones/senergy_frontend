@@ -1,12 +1,14 @@
 import LayoutProveedor from "../../../components/layout/layoutProveedor";
 import TableLicitaciones from "../../../components/common/TableLicitaciones";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { methodGet } from "../../../utils/fetch";
 import { Licitacion } from "../../../types/data";
+import {verifyToken} from "../../../utils/handleJwt";
 type Props={
-    licitaciones:Licitacion[]
+    licitaciones:Licitacion[],
+    token:string
 }
-export default function BuscadorLicitaciones({licitaciones}:Props){
+export default function BuscadorLicitaciones({licitaciones,token}:Props){
     return(
         <LayoutProveedor>
             <section>
@@ -15,11 +17,32 @@ export default function BuscadorLicitaciones({licitaciones}:Props){
         </LayoutProveedor>
     )
 }
-export const getStaticProps:GetStaticProps=async()=>{
+export const getServerSideProps: GetServerSideProps =async(ctx)=>{
+    const data=ctx.previewData as undefined|{token?:string};
+    if(!data)return{
+        props:{},
+        redirect:{
+            destination:"/login/empresa"
+        }
+    }
+    const result=await verifyToken(data.token);
+    if(!result)return{
+        props:{},
+        redirect:{
+            destination:"/login/empresa"
+        }
+    }
+    if(result.type!=="proveedor")return{
+        props:{},
+        redirect:{
+            destination:"/userAccount"
+        }
+    }   
     const licitaciones=await methodGet("licitacion/licitaciones");
     return{
         props:{
-            licitaciones
+            licitaciones,
+            token:data.token
         },
         revalidate:10
     }

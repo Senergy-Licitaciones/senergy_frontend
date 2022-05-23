@@ -6,20 +6,30 @@ import { useRouter } from "next/router";
 import { getFormatRoute } from "../../../utils";
 import { useState } from "react";
 import { clearToken, methodPutAuth } from "../../../utils/fetch";
-import { ErrorResponse } from "../../../types/methods";
+import { ErrorResponse,Response} from "../../../types/methods";
+import swal from "sweetalert";
 export default function StaticNav():JSX.Element{
     const {pathname,push}=useRouter();
     const [show,setShow]=useState(false);
     const logout=async()=>{
         try{
-            const response=await methodPutAuth("auth/logoutUsuario",localStorage.getItem("tokenLogin"),{}) as Response|ErrorResponse ;
-            if("error" in response){
-                console.log("error al cerrar sesión ",response.message," ",response.error);
-            }else{
-                localStorage.removeItem("tokenLogin");
-                await clearToken();
-                push("/login");
+            swal({title:"Cerrar Sesión",text:"¿Está seguro de que desea cerrar la sesión?",
+            icon:"warning",
+        buttons:["Cancelar",true],dangerMode:true}).then(async(willLogout)=>{
+            if(willLogout){
+                const response=await methodPutAuth("auth/logoutUsuario",localStorage.getItem("tokenLogin"),{}) as Response|ErrorResponse ;
+                if("error" in response){
+                    console.log("error al cerrar sesión ",response.message," ",response.error);
+                    swal(response.message,response.error.toString(),"error");
+                }else{
+                    localStorage.removeItem("tokenLogin");
+                    await clearToken();
+                    swal("Sesión cerrada exitosamente ",response.message,"success").then((val)=>{
+                        push("/login");
+                    })
+                }
             }
+        });
         }catch(err){
             console.log("error ",err);
         }

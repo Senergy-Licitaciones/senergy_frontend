@@ -6,9 +6,34 @@ import { useRouter } from "next/router";
 import { getFormatRoute } from "../../../utils";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import swal from "sweetalert";
+import {ErrorResponse,Response} from "../../../types/methods";
+import {methodPutAuth,clearToken} from "../../../utils/fetch";
 export default function StaticNavProveedor():JSX.Element{
     const {pathname,push}=useRouter();
     const [show,setShow]=useState(false);
+    const logout=async()=>{
+        swal({
+            title:"Cerrar Sesión",
+            text:"¿Estás seguro que deseas cerrar la sesión?",
+            buttons:["Cancelar",true],
+            icon:"warning"
+        }).then(async(willLogout)=>{
+            if(willLogout){
+
+                const data=await methodPutAuth("suth/logoutProveedor",localStorage.getItem("tokenLoginProveedor"),{}) as ErrorResponse|Response ;
+                if("error" in data){
+                    swal(data.message,data.error.toString(),"error");
+                }else{
+                    localStorage.removeItem("tokenLoginProveedor");
+                    await clearToken();
+                    swal("Sesión cerrada exitosamente",data.message,"success").then((val)=>{
+                        push("/login/empresa");
+                    });
+                }
+            }
+        })
+    }
     return(
         <aside className="hidden md:flex sticky top-0 bottom-0 z-20 flex-col py-4 px-4 lg:px-8 h-screen bg-gray-100 dark:bg-gray-900">
             <div className=" " >
@@ -81,7 +106,7 @@ export default function StaticNavProveedor():JSX.Element{
                         </ul>
                     </div>
                     <article className="flex justify-center py-4">
-                        <button onClick={()=>push("/")} className="py-2 transition-all duration-300 rounded px-4 bg-yellow-500 text-white hover:opacity-80">Cerrar sesión</button>
+                        <button onClick={logout} className="py-2 transition-all duration-300 rounded px-4 bg-yellow-500 text-white hover:opacity-80">Cerrar sesión</button>
                     </article>
                 </div>
                 <img onClick={()=>show?setShow(false):setShow(true)} className="cursor-pointer w-8 h-8 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />

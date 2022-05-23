@@ -1,8 +1,7 @@
-import { useRouter } from "next/router";
+import Link from "next/link";
 import LayoutHome from "../components/layout";
 
 export default function Home():JSX.Element{
-    const {push}=useRouter();
     
     return(
        <LayoutHome>
@@ -13,8 +12,17 @@ export default function Home():JSX.Element{
                  
                    <p className=" text-md sm:text-xl 2xl:text-2xl text-center my-4 text-gray-400 font-semibold">Genera licitaciones para suministros de energía eléctrica de más de 2000 proveedores, de forma rápida y segura </p>
                     <article className="flex p-4 flex-col sm:flex-row justify-center">
-                        <button onClick={()=>push("/login")} className=" mb-4 sm:mb-0 py-4 mr-2 px-8 bg-yellow-400 text-white rounded-lg text-xl 2xl:text-2xl font-bold">Iniciar como usuario</button>
-                        <button onClick={()=>push("/login/empresa")} className="py-4 ml-2 px-8 shadow-2xl text-yellow-400 rounded-lg font-bold text-xl 2xl:text-2xl border-2 border-yellow-500 ">¿Eres un proveedor?</button>
+                        <Link href="/login">
+                            <a className=" mb-4 sm:mb-0 py-4 mr-2 px-8 bg-yellow-400 text-white rounded-lg text-xl 2xl:text-2xl font-bold">
+                                Iniciar como usuario
+                            </a>
+                        </Link>
+                        <Link href="/login/empresa">
+                            <a className="py-4 ml-2 px-8 shadow-2xl text-yellow-400 rounded-lg font-bold text-xl 2xl:text-2xl border-2 border-yellow-500 " >
+                                ¿Eres un proveedor?
+                            </a>
+                        </Link>
+                        
                     </article>
                </div>
            </section>

@@ -13,7 +13,7 @@ export default (req:NextApiRequest,res:NextApiResponse)=>{
         })
     }catch(err){
         console.log("error api ",err);
-        res.send({
+        res.status(500).send({
             message:"Ha ocurrido un error",
             error:err
         })
