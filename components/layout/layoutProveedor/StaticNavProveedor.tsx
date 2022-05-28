@@ -21,7 +21,7 @@ export default function StaticNavProveedor():JSX.Element{
         }).then(async(willLogout)=>{
             if(willLogout){
 
-                const data=await methodPutAuth("suth/logoutProveedor",localStorage.getItem("tokenLoginProveedor"),{}) as ErrorResponse|Response ;
+                const data=await methodPutAuth("auth/logoutProveedor",localStorage.getItem("tokenLoginProveedor"),{}) as ErrorResponse|Response ;
                 if("error" in data){
                     swal(data.message,data.error.toString(),"error");
                 }else{
