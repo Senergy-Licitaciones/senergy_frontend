@@ -20,7 +20,7 @@ export default function FormEmpresaLogin(){
         if("error" in data){
             console.log("error ",data.error,data.message);
             setLoading(false);
-            swal(data.message,data.error,"error");
+            swal(data.message,data.error.toString(),"error");
         }else{
             console.log("data ",data);
             localStorage.setItem("tokenLoginProveedor",data.token);

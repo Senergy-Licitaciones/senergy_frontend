@@ -12,7 +12,7 @@ export default function LicitacionOferta({id,token}:Props){
         <LayoutProveedor>
             <section>
             <h1>Realizar oferta para Licitación {id} </h1>
-            <FormCrearOferta/>
+            <FormCrearOferta idLicitacion={id} />
             </section>
         </LayoutProveedor>
     )

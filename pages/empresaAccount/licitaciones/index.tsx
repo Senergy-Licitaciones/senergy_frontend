@@ -43,7 +43,6 @@ export const getServerSideProps: GetServerSideProps =async(ctx)=>{
         props:{
             licitaciones,
             token:data.token
-        },
-        revalidate:10
+        }
     }
 }

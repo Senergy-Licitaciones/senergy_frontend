@@ -31,8 +31,8 @@ export default function TableLicitaciones({licitaciones}:Props){
                     <thead>
                         <tr className="text-sm 2xl:text-lg dark:text-gray-400 dark:divide-gray-600 font-semibold divide-x">
                             <th className="p-4">TÍTULO</th>
-                            <th className="p-4">FECHA INICIO APERTURA</th>
-                            <th className="p-4">FECHA FIN APERTURA</th>
+                            <th className="p-4 text-xs 2xl:text-base ">FECHA INICIO APERTURA</th>
+                            <th className="p-4 text-xs 2xl:text-base ">FECHA FIN APERTURA</th>
                             <th className="p-4">ESTADO</th>
                             <th className="p-4">#LICITACIÓN</th>
                             <th className="p-4">SERVICIO</th>
