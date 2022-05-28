@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { getFormatRoute, getRouteTitle, getRouteTitleProveedor } from "../../utils";
-describe("utils index",()=>{
+describe("utils ",()=>{
     test("getFormatRoute",()=>{
         const mockGetFormatRoute=jest.fn(getFormatRoute);
         expect(mockGetFormatRoute("/")).toBe("");
