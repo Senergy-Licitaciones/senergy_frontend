@@ -1,7 +1,7 @@
 import LayoutProveedor from "../../../components/layout/layoutProveedor";
 import TableLicitaciones from "../../../components/common/TableLicitaciones";
 import { GetServerSideProps } from "next";
-import { methodGet } from "../../../utils/fetch";
+import { methodGet,methodGetAuth } from "../../../utils/fetch";
 import { Licitacion } from "../../../types/data";
 import {verifyToken} from "../../../utils/handleJwt";
 type Props={
@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps =async(ctx)=>{
             destination:"/userAccount"
         }
     }   
-    const licitaciones=await methodGet("licitacion/licitaciones");
+    const licitaciones=await methodGetAuth("licitacion/licitacionesLibre",data.token);
     return{
         props:{
             licitaciones,
