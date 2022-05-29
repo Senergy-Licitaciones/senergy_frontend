@@ -23,6 +23,7 @@ export default function StaticNavProveedor():JSX.Element{
 
                 const data=await methodPutAuth("auth/logoutProveedor",localStorage.getItem("tokenLoginProveedor"),{}) as ErrorResponse|Response ;
                 if("error" in data){
+                    console.log("error ",data);
                     swal(data.message,data.error.toString(),"error");
                 }else{
                     localStorage.removeItem("tokenLoginProveedor");
