@@ -38,7 +38,9 @@ export default function InfoGeneral({step,setStep,handleChange,form,servicios}:P
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="tipoLicitacion">Tipo de Licitación</label>
                             <select onChange={handleChange} value={form.tipoLicitacion} className="dark:bg-gray-800 dark:text-gray-400" name="tipoLicitacion" id="">
                                 <option value="">-Seleccionar un tipo de Licitación</option>
-                                
+                                <option value="Tipo01">Licitación Tipo 01</option>
+                                <option value="Tipo02">Licitación Tipo 02</option>
+                                <option value="Tipo03">Licitación Tipo 03</option>
                             </select>
                         </article>
                         <article className="flex flex-col my-4">

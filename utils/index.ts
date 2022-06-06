@@ -45,8 +45,11 @@ export const getRouteTitleProveedor=(route:string):string=>{
         case "oferta":{
             return "Generar Oferta"
         }
+        case "historialOfertas":{
+            return "Historial de Ofertas"
+        }
         default:{
-            return "ruta no asignada"
+            return "Detalles"
         }
     }
 }

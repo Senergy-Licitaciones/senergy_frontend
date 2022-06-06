@@ -41,7 +41,8 @@ export type FormCrearOfertaProveedor={
     energiaHp:number,
     energiaHfp:number,
     potenciaFacturar:string,
-    formulaIndex:FactorIndex[],
+    formulaIndexPotencia:FactorIndex[],
+    formulaIndexEnergia:FactorIndex[],
     potMinFacturable:number,
     excesoPotencia:number
 }

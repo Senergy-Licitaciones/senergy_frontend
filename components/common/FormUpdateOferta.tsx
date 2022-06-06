@@ -1,29 +1,29 @@
 import { useState } from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { FormCrearOfertaProveedor, HandleChange, HandleSubmit, HookCrearOferta } from "../../types/form";
+import { HandleChange, HandleSubmit, HookCrearOferta } from "../../types/form";
 import { useForm } from "../hooks/useForm";
 import swal from "sweetalert";
-import { methodPostAuth } from "../../utils/fetch";
+import {  methodPutAuth } from "../../utils/fetch";
 import { ErrorResponse, Response } from "../../types/methods";
 import Loader from "./Loader";
 import { useRouter } from "next/router";
-const initForm:FormCrearOfertaProveedor={
-    potencia:0,
-    energiaHp:0,
-    energiaHfp:0,
-    potenciaFacturar:"",
-    formulaIndexPotencia:[],
-    formulaIndexEnergia:[],
-    potMinFacturable:0,
-    excesoPotencia:100
-
-}
+import { Oferta } from "../../types/data";
 type Props={
-    idLicitacion:string,
+    oferta:Oferta
 }
-export default function FormCrearOferta({idLicitacion}:Props){
-    const {form,handleChange,setForm,setLoading,loading}=useForm(initForm) as HookCrearOferta ;
-    console.log("form ",form);
+export default function FormUpdateOferta({oferta}:Props){
+    console.log("oferta ",oferta );
+    const {form,handleChange,setForm,setLoading,loading}=useForm({
+        potencia:oferta.potencia,
+        energiaHp:oferta.energiaHp,
+    energiaHfp:oferta.energiaHfp,
+    potenciaFacturar:oferta.potenciaFacturar,
+    formulaIndexPotencia:oferta.formulaIndexPotencia,
+    formulaIndexEnergia:oferta.formulaIndexEnergia,
+    potMinFacturable:oferta.potMinFacturable,
+    excesoPotencia:oferta.excesoPotencia
+
+    }) as HookCrearOferta ;
     const [index,setIndex]=useState({
         potencia:"",
         energia:""
@@ -46,13 +46,13 @@ export default function FormCrearOferta({idLicitacion}:Props){
         e.preventDefault();
         try{
             setLoading(true);
-            const data=await methodPostAuth("proveedor/crearOferta",localStorage.getItem("tokenLoginProveedor"),{...form,idLicitacion}) as Response|ErrorResponse ;
+            const data=await methodPutAuth(`oferta/editOferta/${oferta._id}`,localStorage.getItem("tokenLoginProveedor"),form) as Response|ErrorResponse ;
             setLoading(false);
             if("error" in data){
                 console.log("data ",data);
                 swal(data.message,data.error.toString(),"error");
             }else{
-                swal("Operación exitosa",data.message,"success").then(()=>push("/empresaAccount/licitaciones"));
+                swal("Operación exitosa",data.message,"success").then(()=>push("/empresaAccount/licitaciones/historialOfertas"));
             }
         }catch(err){
             console.log("error ",err);
@@ -77,7 +77,7 @@ export default function FormCrearOferta({idLicitacion}:Props){
 
         <div className={`bg-white p-4 dark:bg-gray-900 block`}>
                         <article className="flex items-center">
-                        <p className="font-semibold dark:text-gray-400">Generar oferta</p>
+                        <p className="font-semibold dark:text-gray-400">Editar oferta</p>
                         <span className="flex ml-2 items-center cursor-pointer dark:text-gray-400 2xl:text-2xl text-xl" >
                             <AiOutlineQuestionCircle/>
                         </span>
@@ -196,7 +196,7 @@ export default function FormCrearOferta({idLicitacion}:Props){
                                 loading?
                                 <Loader/>
                                 :
-                            <button type="submit" className="bg-green-600 py-2 px-4 text-white">Enviar</button>
+                            <button type="submit" className="bg-green-600 py-2 px-4 text-white">Actualizar</button>
                             }
                         </article>
                     </div>

@@ -12,7 +12,7 @@ export default function DynamicNavProveedor():JSX.Element{
     return(
         <aside className={`z-0 hidden md:block sticky dark:bg-gray-800 top-0 bottom-0 h-screen transition-all duration-500 ${template.dynamicNavState?" w-72 p-2":" w-0 overflow-hidden"}`} >
             <div className="relative " >
-                {getFormatRoute(pathname)==="licitaciones" || getFormatRoute(pathname)==="licitacionesGuardadas" ?
+                {getFormatRoute(pathname)==="licitaciones" || getFormatRoute(pathname)==="historialOfertas" || getFormatRoute(pathname)==="licitacionesGuardadas" ?
                 <LicitacionNav/>:
                 <DashboardNav/>
             }
@@ -56,11 +56,11 @@ function LicitacionNav():JSX.Element{
                    
                 </li>
                 <li className="mb-2">
-                    <div onClick={()=>push("/empresaAccount/licitaciones/licitacionesGuardadas")} className="flex justify-between cursor-pointer py-2 group">
-                        <h2 className={`text-gray-400 dark:group-hover:text-white group-hover:text-gray-900 ${getFormatRoute(pathname)==="actualizarLicitacion" && "text-yellow-500 font-bold"}`} >
-                            Feature 03
+                    <div onClick={()=>push("/empresaAccount/licitaciones/historialOfertas")} className="flex justify-between cursor-pointer py-2 group">
+                        <h2 className={`text-gray-400 dark:group-hover:text-white group-hover:text-gray-900 ${getFormatRoute(pathname)==="historialOfertas" && "text-yellow-500 font-bold"}`} >
+                            Historial de Ofertas
                         </h2>
-                        <span className={`transition-all duration-500 flex justify-center items-center text-gray-400 ${getFormatRoute(pathname)==="actualizarLicitacion" && " text-yellow-500 rotate-90"}`}>
+                        <span className={`transition-all duration-500 flex justify-center items-center text-gray-400 ${getFormatRoute(pathname)==="historialOfertas" && " text-yellow-500 rotate-90"}`}>
                             <IoIosArrowForward/>
                         </span>
                     </div>

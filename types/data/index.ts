@@ -1,10 +1,15 @@
-import { Estado, NumMes } from "../form"
+import { Estado, FormCrearOfertaProveedor, NumMes } from "../form"
 
 export type DataSelect={
     _id:string,
     name:string,
     createdAt:Date,
     updatedAt:Date
+}
+export interface Oferta extends FormCrearOfertaProveedor{
+    _id:string,
+    proveedor:string,
+    licitacion:Partial<Licitacion>
 }
 export type Licitacion={
     _id:string,
@@ -22,8 +27,14 @@ export type Licitacion={
     empresa:string,
     fechaInicio:string,
     fechaFin:string,
-    puntoSum:string,
-    brg:string,
+    puntoSum:{
+        _id:string,
+        name:string
+    },
+    brg:{
+        _id:string,
+        name:string
+    },
     factorPlanta:number,
     meses:NumMes[],
     usuario:string,
