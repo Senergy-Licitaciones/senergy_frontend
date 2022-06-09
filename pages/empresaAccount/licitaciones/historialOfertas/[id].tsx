@@ -10,7 +10,7 @@ type Props={
     token:string,
     oferta:Oferta
 }
-export default function EditOferta({id,token,oferta}:Props){
+export default function EditOferta({oferta}:Props){
     return(
         <LayoutProveedor>
             <section>
@@ -22,10 +22,10 @@ export default function EditOferta({id,token,oferta}:Props){
 }
 export const getServerSideProps:GetServerSideProps=async(context)=>{
     try{
-        const {params}=context,
-        data=context.previewData as undefined|{token?:string};
+        const params=context.params as {id:string},
+        data=context.previewData as undefined|{token:string};
         if(!data) throw new Error("Debe iniciar sesión primero");
-        const result=await verifyToken(data.token);
+        const result=verifyToken(data.token);
         if(!result)throw new Error("Sesión expirada, vuelva a iniciar sesión");
         if(result.type!=="proveedor")throw new Error("No tiene permisos para acceder a este recurso");
         const oferta=await methodGetAuth(`oferta/ofertaById/${params.id}`,data.token) as Oferta|ErrorResponse ;

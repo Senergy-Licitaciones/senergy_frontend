@@ -11,7 +11,7 @@ const initForm:FormConfirmProveedor={
     correo:""
 }
 export default function ConfirmProveedorForm(){
-    const {form,setForm,handleChange,loading,setLoading}=useForm(initForm) as HookConfirmProveedor ;
+    const {form,handleChange,loading,setLoading}=useForm(initForm) as HookConfirmProveedor ;
     const {push}=useRouter();
     const confirmAccount:HandleSubmit=async(e)=>{
         try{
@@ -26,14 +26,15 @@ export default function ConfirmProveedorForm(){
                 console.log("mensaje ",data.message);
                 localStorage.removeItem("correoProveedorConfirm");
                 setLoading(false);
-                swal("Proceso exitoso",data.message,"success").then((val)=>{
+                swal("Proceso exitoso",data.message,"success").then(()=>{
                     push("/login/empresa");
                 });
             }
         }catch(err){
             console.log("error confirm ",err);
+            let error=err as Error;
             setLoading(false);
-            swal("Ha ocurrido un error",err.toString(),"error");
+            swal("Ha ocurrido un error",error.message,"error");
         }
     }
     return(

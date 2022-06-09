@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineFileSearch } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { Licitacion } from "../../types/data";
 type Props={
@@ -57,9 +57,14 @@ export default function TableLicitacionesUser({licitaciones}:Props){
                                 {el.author}
                             </td>
                             <td className="p-4 flex justify-around" >
-                                <Link href={`/userAccount/licitaciones`} >
+                                <Link href={`/userAccount/licitaciones/${el._id}/edit`} >
                                 <a className="bg-green-500 text-white p-2 text-xl rounded" >
                                     <AiOutlineEdit/>
+                                </a>
+                                </Link>
+                                 <Link href={`/userAccount/licitaciones/${el._id}`} >
+                                <a className="bg-yellow-500 text-white p-2 text-xl rounded" >
+                                    <AiOutlineFileSearch/>
                                 </a>
                                 </Link>
                             </td>

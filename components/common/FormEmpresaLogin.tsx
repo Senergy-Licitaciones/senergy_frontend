@@ -26,7 +26,7 @@ export default function FormEmpresaLogin(){
             localStorage.setItem("tokenLoginProveedor",data.token);
             await saveToken({token:data.token});
             setLoading(false);
-            swal("Sesión iniciada exitosamente",data.message,"success").then((val)=>{
+            swal("Sesión iniciada exitosamente",data.message,"success").then(()=>{
                 push("/empresaAccount");
             })
         }

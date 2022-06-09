@@ -43,7 +43,7 @@ export default function FormCrearLicitacion({step,setStep}:Props){
         console.log("ejecutando form");
         e.preventDefault();
         setLoading(true);
-        const data=await methodPostAuth("licitacion/crearLicitacion",localStorage.getItem("tokenLogin"),{
+        const data=await methodPostAuth("licitacion/crearLicitacion",localStorage.getItem("tokenLogin") as string,{
             title:form.title,
     description:form.description,
     tipoServicio:form.tipoServicio,
@@ -60,7 +60,7 @@ export default function FormCrearLicitacion({step,setStep}:Props){
     factorPlanta:form.factorPlanta,
     meses:form.meses,
     author:form.author,
-    user:decode(localStorage.getItem("tokenLogin"))._id}) as Response | ErrorResponse;
+    user:decode(localStorage.getItem("tokenLogin") as string)._id}) as Response | ErrorResponse;
         if("error" in data){
             console.log("error ",data.error," message ",data.message);
             setLoading(false);

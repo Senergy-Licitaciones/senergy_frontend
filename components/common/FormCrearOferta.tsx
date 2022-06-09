@@ -46,7 +46,7 @@ export default function FormCrearOferta({idLicitacion}:Props){
         e.preventDefault();
         try{
             setLoading(true);
-            const data=await methodPostAuth("proveedor/crearOferta",localStorage.getItem("tokenLoginProveedor"),{...form,idLicitacion}) as Response|ErrorResponse ;
+            const data=await methodPostAuth("proveedor/crearOferta",localStorage.getItem("tokenLoginProveedor") as string,{...form,idLicitacion}) as Response|ErrorResponse ;
             setLoading(false);
             if("error" in data){
                 console.log("data ",data);

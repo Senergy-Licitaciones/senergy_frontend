@@ -46,7 +46,7 @@ export default function FormUpdateOferta({oferta}:Props){
         e.preventDefault();
         try{
             setLoading(true);
-            const data=await methodPutAuth(`oferta/editOferta/${oferta._id}`,localStorage.getItem("tokenLoginProveedor"),form) as Response|ErrorResponse ;
+            const data=await methodPutAuth(`oferta/editOferta/${oferta._id}`,localStorage.getItem("tokenLoginProveedor") as string,form) as Response|ErrorResponse ;
             setLoading(false);
             if("error" in data){
                 console.log("data ",data);

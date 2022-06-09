@@ -9,7 +9,7 @@ type Props={
     loading:boolean,
     setLoading:Dispatch<SetStateAction<boolean>>
 }
-export default function EspecificacionMes({step,form,setForm,loading,setLoading}:Props){
+export default function EspecificacionMes({step,form,setForm,loading}:Props){
     return(
         <div className={`bg-white dark:bg-gray-900 p-4 ${step===4 ?"block":"hidden"}`}>
                         <p className="font-semibold dark:text-gray-400">Especificación por Mes</p>

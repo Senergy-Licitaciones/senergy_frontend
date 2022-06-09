@@ -1,12 +1,13 @@
 import { GetServerSideProps } from "next";
 import FormCrearOferta from "../../../../components/common/FormCrearOferta";
 import LayoutProveedor from "../../../../components/layout/layoutProveedor";
+import { TypeToken } from "../../../../types/data/enums";
 import { verifyToken } from "../../../../utils/handleJwt";
 type Props={
     id:string,
     token:string
 }
-export default function LicitacionOferta({id,token}:Props){
+export default function LicitacionOferta({id}:Props){
   
     return(
         <LayoutProveedor>
@@ -18,31 +19,29 @@ export default function LicitacionOferta({id,token}:Props){
     )
 }
 export const getServerSideProps:GetServerSideProps=async(context)=>{
-    const {params}=context,
-    data=context.previewData as undefined|{token?:string};
-    if(!data)return{
-        props:{},
-        redirect:{
-            destination:"/login/empresa"
+    try{
+        const {id}=context.params as {id:string},
+        data=context.previewData as undefined|{token?:string};
+        if(!data)throw new Error("Debe iniciar sesión primero para acceder a este recurso");
+        if(!data.token)throw new Error("Token no encontrado, debe iniciar sesión por la plataforma");
+        const result=verifyToken(data.token);
+        if(!result)throw new Error("Token inválido");
+        if(result.type!==TypeToken.Proveedor)throw new Error("Debe iniciar sesión como proveedor para acceder a este recurso");
+        return{
+            props:{
+                id,
+                token:data.token
+            }
         }
-    };
-    const result=await verifyToken(data.token);
-    if(!result)return{
-        props:{},
-        redirect:{
-            destination:"/login/empresa"
-        }
-    };
-    if(result.type!=="proveedor")return{
-        props:{},
-        redirect:{
-            destination:"/userAccount"
-        }
-    }
-    return{
-        props:{
-            id:params.id,
-            token:data.token
+    }catch(err){
+        let error=err as Error;
+        return{
+            props:{
+                error:error.message
+            },
+            redirect:{
+                destination:"/login/empresa"
+            }
         }
     }
 }

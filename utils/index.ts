@@ -1,4 +1,4 @@
-export const getFormatRoute=(pathname:string):string=>pathname.split("/").pop();
+export const getFormatRoute=(pathname:string):string=>pathname.split("/").pop() as string;
 export const getRouteTitle=(route:string):string=>{
     switch (route) {
         case "userAccount":{

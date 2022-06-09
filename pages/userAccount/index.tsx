@@ -7,7 +7,7 @@ import {AiOutlineDashboard, AiOutlineFileAdd, AiOutlineFolderView, AiOutlineMail
 import { HiOutlineDocumentAdd,HiOutlineLocationMarker } from "react-icons/hi";
 import {FaUserAlt} from  "react-icons/fa";
 import { useEffect } from "react";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 export default function UserAccount(){
     const fecha:Date=new Date();
     const format=fecha.toLocaleDateString();

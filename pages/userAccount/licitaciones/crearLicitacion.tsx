@@ -1,10 +1,8 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import SteperCrearLicitacion from "../../../components/common/SteperCrearLicitacion";
 import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
-type Props={
-    token:string
-}
-export default function CrearLicitacion({token}:Props):JSX.Element{
+
+export default function CrearLicitacion():JSX.Element{
     return(
         <LayoutUser>
             <section className="flex 2xl:text-2xl md:flex-row flex-col">

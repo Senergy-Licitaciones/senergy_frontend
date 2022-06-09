@@ -1,6 +1,5 @@
 import axios from "axios";
 import {API} from "../consts/config";
-import { Licitacion } from "../types/data";
 import { ErrorResponse, ResponseMethodGet, ResponseMethodPost, ResponseMethodPut } from "../types/methods";
 
 export const methodGetAuth=async(url:string,token:string)=>{
@@ -36,9 +35,10 @@ export const methodPutAuth=async(url:string,token:string,body:Object):Promise<Re
         }});
         return data;
     }catch(err){
+        let error=err as Error;
         return{
             message:"Ha ocurrido un error al realizar la petición",
-            error:err
+            error
         }
     }
 }
@@ -47,9 +47,10 @@ export const methodPost=async(url:string,body:Object):Promise<ResponseMethodPost
         const {data}=await axios.post(`${API}/${url}`,body);
         return data;
     }catch(err){
+        let error=err as Error;
         return{
             message:"Ha ocurrido un error al realizar la petición",
-            error:err
+            error
         }
     }
 }
@@ -58,9 +59,10 @@ export const methodPut=async(url:string,body:Object):Promise<ResponseMethodPut>=
         const {data}=await axios.put(`${API}/${url}`,body);
         return data;
     }catch(err){
+        let error=err as Error;
         return{
             message:"Ha ocurrido un error al realizar la petición",
-            error:err
+            error
         }
     }
 }
@@ -69,9 +71,10 @@ export const methodGet=async(url:string):Promise<ResponseMethodGet>=>{
         const {data}=await axios.get(`${API}/${url}`);
         return data;
     }catch(err){
+        let error=err as Error;
         return{
             message:"Ha ocurrido un error al realizar la petición",
-            error:err
+            error
         }
     }
 }
@@ -80,10 +83,11 @@ export const saveToken=async(form:{token:string}):Promise<void|ErrorResponse>=>{
         const {data}=await axios.post("/api/login",form);
         console.log("data ",data);
     }catch(err){
-        console.log("error save token ",err)
+        console.log("error save token ",err);
+        let error=err as Error;
         return{
             message:"Ha ocurrido un error al iniciar sesión",
-            error:err
+            error
         }
     }
 }
@@ -91,9 +95,10 @@ export const clearToken=async():Promise<void|ErrorResponse>=>{
     try{
         await axios.put("/api/logout");
     }catch(err){
+        let error=err as Error;
         return{
             message:"Ha ocurrido un error al cerrar el token ",
-            error:err
+            error
         }
     } 
 }

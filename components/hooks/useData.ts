@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { HookData, HookParamsData } from "../../types/form";
 import { methodGetAuth } from "../../utils/fetch";
-import { decode } from "../../utils/handleJwt";
 
 export const useData:HookData=()=>{
     const [data,setData]=useState<HookParamsData>({
@@ -11,9 +10,9 @@ export const useData:HookData=()=>{
     });
     useEffect(()=>{
         const runPromises=async()=>{
-            const [brgs,puntoSums,servicios]=await Promise.all([methodGetAuth("brg/getBrgs",localStorage.getItem("tokenLogin")),
-            methodGetAuth("puntoSum/getPuntoSums",localStorage.getItem("tokenLogin")),
-            methodGetAuth("servicio/getServicios",localStorage.getItem("tokenLogin"))]);
+            const [brgs,puntoSums,servicios]=await Promise.all([methodGetAuth("brg/getBrgs",localStorage.getItem("tokenLogin") as string),
+            methodGetAuth("puntoSum/getPuntoSums",localStorage.getItem("tokenLogin") as string),
+            methodGetAuth("servicio/getServicios",localStorage.getItem("tokenLogin") as string)]);
             setData({
                 brgs,
                 puntoSums,

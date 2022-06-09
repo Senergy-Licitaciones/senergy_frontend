@@ -10,7 +10,7 @@ type Props={
     token:string,
     licitaciones:Array<Licitacion>
 }
-export default function UserLicitaciones({token,licitaciones}:Props):JSX.Element{
+export default function UserLicitaciones({licitaciones}:Props):JSX.Element{
     return(
         <LayoutUser>
             <section>

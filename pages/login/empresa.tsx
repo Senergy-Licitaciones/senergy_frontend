@@ -1,4 +1,3 @@
-import Link from "next/link";
 import FormEmpresaLogin from "../../components/common/FormEmpresaLogin";
 import LayoutHome from "../../components/layout";
 export default function LoginEmpresa():JSX.Element{

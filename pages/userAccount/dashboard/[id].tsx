@@ -28,10 +28,10 @@ export default function LicitacionDetail({id}:{id:string}):JSX.Element{
     )
 }
 export const getServerSideProps:GetServerSideProps=async(context)=>{
-    const {params}=context;
+    const {id}=context.params as {id:string};
     return{
         props:{
-            id:params.id
+            id
         }
     }
 }

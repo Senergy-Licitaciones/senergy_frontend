@@ -10,11 +10,11 @@ const initForm:FormRegisterProveedor={
     correo:"",
     password:"",
     razSocial:"",
-    ruc:undefined,
+    ruc:0,
     web:"",
     pais:"Perú",
     address:"",
-    phone:undefined,
+    phone:0,
     terms:true
 }
 export default function FormEmpresaRegister(){
@@ -42,13 +42,14 @@ export default function FormEmpresaRegister(){
                 console.log("data ",data);
                 localStorage.setItem("correoProveedorConfirm",data.correo);
                 setLoading(false);
-                swal("Proveedor registrado",data.message,"success").then((val)=>{
+                swal("Proveedor registrado",data.message,"success").then(()=>{
                     push("/register/confirmProveedor");
                 });
             }
         }catch(err){
             console.log("error register ",err);
-            swal("Ha ocurrido un error",err.toString(),"error");
+            let error=err as Error;
+            swal("Ha ocurrido un error",error.message,"error");
         }
     }
     return(

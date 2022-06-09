@@ -17,14 +17,14 @@ export default function StaticNav():JSX.Element{
             icon:"warning",
         buttons:["Cancelar",true],dangerMode:true}).then(async(willLogout)=>{
             if(willLogout){
-                const response=await methodPutAuth("auth/logoutUsuario",localStorage.getItem("tokenLogin"),{}) as Response|ErrorResponse ;
+                const response=await methodPutAuth("auth/logoutUsuario",localStorage.getItem("tokenLogin") as string,{}) as Response|ErrorResponse ;
                 if("error" in response){
                     console.log("error al cerrar sesión ",response.message," ",response.error);
                     swal(response.message,response.error.toString(),"error");
                 }else{
                     localStorage.removeItem("tokenLogin");
                     await clearToken();
-                    swal("Sesión cerrada exitosamente ",response.message,"success").then((val)=>{
+                    swal("Sesión cerrada exitosamente ",response.message,"success").then(()=>{
                         push("/login");
                     })
                 }

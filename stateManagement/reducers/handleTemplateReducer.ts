@@ -10,6 +10,6 @@ export const handleTemplateReducer=(state:StateTemplate,action:{type:string}):St
             return state.dynamicNavState?{dynamicNavState:false}:{dynamicNavState:true}
         }
         default:
-            break;
+            return state;
     }
 }

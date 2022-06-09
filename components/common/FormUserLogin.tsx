@@ -26,7 +26,7 @@ export default function FormUserLogin(){
             localStorage.setItem("tokenLogin",response.token);
             await saveToken({token:response.token});
             setLoading(false);
-            swal("Inicio de Sesión exitosa",response.message,"success").then((val)=>{
+            swal("Inicio de Sesión exitosa",response.message,"success").then(()=>{
                 push("/userAccount");
             });
         }

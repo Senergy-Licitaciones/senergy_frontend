@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { AiOutlineFileAdd, AiOutlineFileSearch } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { Licitacion } from "../../types/data";
-import { ErrorResponse } from "../../types/methods";
-import { methodGet } from "../../utils/fetch";
 type Props={
     licitaciones:Licitacion[]
 }
