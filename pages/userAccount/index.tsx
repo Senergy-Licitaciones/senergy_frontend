@@ -92,7 +92,7 @@ export default function UserAccount(){
                 </div>
                 <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
                     <article className="flex justify-between items-center" >
-                    <h2 className="font-semibold dark:text-gray-400 ">Detalles</h2>
+                    <h2 className="font-semibold dark:text-gray-400 ">Último Proveedor</h2>
                     <span className="flex items-center rounded-full p-1  bg-green-100 text-2xl 2xl:text-3xl dark:bg-green-500 dark:text-white text-green-600" >
                         <HiOutlineDocumentAdd/>
                     </span>
@@ -164,7 +164,7 @@ export default function UserAccount(){
                     </button>
                 </div>
                 <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-3">
-                    <h2>Calendario</h2>
+                    <h2>Calendario de Fecha de apertura</h2>
                     <p className="text-center text-2xl" >{format}</p>
                     <span className="flex w-24 h-24 rounded-full bg-gray-400 justify-center items-center text-3xl text-white" >
                         <BsFillCalendarCheckFill/>

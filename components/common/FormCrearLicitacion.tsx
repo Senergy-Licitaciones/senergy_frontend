@@ -1,5 +1,5 @@
-import { Dispatch, FormEvent, SetStateAction } from "react";
-import { Estado, FormCrearLicitacionUser, HookCrearLicitacion } from "../../types/form";
+import { Dispatch, SetStateAction } from "react";
+import { FormCrearLicitacionUser, HookCrearLicitacion } from "../../types/form";
 import { useData } from "../hooks/useData";
 import { useForm } from "../hooks/useForm";
 import EspecificacionesTecnicas from "./componentsCrearLicitacion/EspecificacionesTecnicas";
@@ -10,6 +10,7 @@ import {HandleSubmit} from "../../types/form";
 import {methodPostAuth} from "../../utils/fetch";
 import {Response,ErrorResponse} from "../../types/methods";
 import { decode } from "../../utils/handleJwt";
+import { Estado } from "../../types/form/enums";
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>
@@ -29,6 +30,7 @@ const formInit:FormCrearLicitacionUser={
     fechaInicio:"",
     fechaFin:"",
     puntoSum:"",
+    author:"",
     brg:"",
     factorPlanta:0,
     meses:[]
@@ -57,6 +59,7 @@ export default function FormCrearLicitacion({step,setStep}:Props){
     brg:form.brg,
     factorPlanta:form.factorPlanta,
     meses:form.meses,
+    author:form.author,
     user:decode(localStorage.getItem("tokenLogin"))._id}) as Response | ErrorResponse;
         if("error" in data){
             console.log("error ",data.error," message ",data.message);

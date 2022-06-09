@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
-import { Estado, FormCrearLicitacionUser, HandleChange } from "../../../types/form"
+import { FormCrearLicitacionUser, HandleChange } from "../../../types/form"
+import { Estado } from "../../../types/form/enums"
 
 type Props={
     handleChange:HandleChange,
@@ -26,6 +27,10 @@ export default function InfoDetallada({handleChange,step,setStep,form}:Props){
                                 <option value={Estado.Cerrado}>Cerrado</option>
                                 <option value={Estado.Abierto}>Abierto</option>
                             </select>
+                        </article>
+                        <article className="flex flex-col my-4">
+                            <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="author">Autor</label>
+                            <input onChange={handleChange} value={form.author} name="author" className="rounded dark:bg-gray-800 dark:text-gray-400 placeholder:text-sm " placeholder="Nombre completo" type="text" />
                         </article>
                         <article className="flex justify-end pt-4">
                             <span onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white block cursor-pointer">Continuar</span>

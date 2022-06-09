@@ -26,6 +26,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/react": "^17.0.39",
     "autoprefixer": "^10.4.2",
     "jest": "^28.1.0",

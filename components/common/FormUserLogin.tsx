@@ -21,7 +21,7 @@ export default function FormUserLogin(){
         if("error" in response){
             console.log("error ",response.message," obj error ",response.error);
             setLoading(false);
-            swal(response.message,response.error,"error");
+            swal(response.message,response.error.toString(),"error");
         }else{
             localStorage.setItem("tokenLogin",response.token);
             await saveToken({token:response.token});

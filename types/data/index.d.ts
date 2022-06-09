@@ -1,4 +1,5 @@
 import { Estado, FormCrearOfertaProveedor, NumMes } from "../form"
+import { Role, TypeToken } from "./enums"
 
 export type DataSelect={
     _id:string,
@@ -39,16 +40,20 @@ export type Licitacion={
     meses:NumMes[],
     usuario:string,
     participantes:string[],
+    author:string,
     createdAt:Date,
     updatedAt:Date
 }
-export type TokenUser={
+export interface TokenData{
     _id:string,
-    correo:string,
-    type:TypeToken.User
+    correo:string
 }
-enum TypeToken{
-    User="user",
-    Proveedor="proveedor"
-
+export interface TokenUser extends TokenData{
+    type:TypeToken.User,
+    role:Role
+}
+export interface TokenProveedor extends TokenData{
+    type:TypeToken.Proveedor,
+    ruc:number,
+    razSocial:string
 }

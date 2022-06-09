@@ -1,10 +1,8 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react"
 import { DataSelect } from "../data"
+import { Estado } from "./enums"
 
-export enum Estado{
-    Abierto="abierto",
-    Cerrado="cerrado"
-}
+
 export type FactorIndex={
     factor:number,
     index:string
@@ -33,6 +31,7 @@ export type FormCrearLicitacionUser={
     fechaFin:string,
     puntoSum:string,
     brg:string,
+    author:string,
     factorPlanta:number,
     meses:NumMes[]
 }
