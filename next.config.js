@@ -42,5 +42,8 @@ module.exports={
     env:{
         API_REST:process.env.API_REST,
         JWT_SECRET:process.env.JWT_SECRET
+    },
+    images:{
+        domains:["cdn.pixabay.com"]
     }
 }

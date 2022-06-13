@@ -1,5 +1,5 @@
 import type {NextApiRequest,NextApiResponse} from "next"
-export default async(req:NextApiRequest,res:NextApiResponse)=>{
+const login=async(req:NextApiRequest,res:NextApiResponse)=>{
     try{
         const {token}:{token:string}=req.body;
         res.setPreviewData({
@@ -18,3 +18,4 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
         })
     }
 }
+export default login;

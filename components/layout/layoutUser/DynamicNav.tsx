@@ -27,6 +27,7 @@ function LicitacionNav(){
     const {pathname,push}=useRouter();
     useEffect(()=>{
         if(pathname.split("/").pop()==="licitaciones" ) setShow({...show,licitaciones:true});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
     return(
         <div className="right-2 2xl:right-8 2xl:text-2xl absolute " >
@@ -80,6 +81,7 @@ function DashboardNav():JSX.Element{
     const {pathname}=useRouter();
     useEffect(()=>{
         if(pathname.split("/").pop()==="userAccount" || pathname.split("/").pop()==="dashboard") setShow({...show,licitaciones:true});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
     console.log(show);
     return(

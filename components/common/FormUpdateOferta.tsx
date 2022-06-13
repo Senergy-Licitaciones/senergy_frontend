@@ -123,7 +123,7 @@ export default function FormUpdateOferta({oferta}:Props){
                             </select>
                             <span onClick={generarFormulaPotencia} className="bg-sky-600 block cursor-pointer py-2 px-4 text-white" >Agregar índice</span>
                             {form.formulaIndexPotencia.map((el,i)=>(
-                                <article className="flex flex-col my-4" >
+                                <article key={`formula-index-potencia-update-${i}`} className="flex flex-col my-4" >
                                    <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor={el.index}>{el.index}</label>
                                    
 
@@ -155,7 +155,7 @@ export default function FormUpdateOferta({oferta}:Props){
                             </select>
                             <span onClick={generarFormulaEnergia} className="bg-sky-600 block cursor-pointer py-2 px-4 text-white" >Agregar índice</span>
                             {form.formulaIndexEnergia.map((el,i)=>(
-                                <article className="flex flex-col my-4" >
+                                <article key={`formula-index-energia-update-${i}`} className="flex flex-col my-4" >
                                    <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor={el.index}>{el.index}</label>
                                    
 

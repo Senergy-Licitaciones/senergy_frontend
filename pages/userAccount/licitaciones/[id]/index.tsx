@@ -28,7 +28,7 @@ export const getServerSideProps:GetServerSideProps=async(ctx)=>{
         const payload=verifyToken(data.token) as TokenUser|null;
         if(!payload)throw new Error("Token inválido");
         if(payload.type!==TypeToken.User)throw new Error("Debe iniciar sesión como usuario para acceder a este recurso");
-        const licitacion=await methodGetAuth(`user/getLicitacionById/${id}`,data.token) as ErrorResponse|Omit<Licitacion,"usuario"|"participantes"> //falta implementar en el backend
+        const licitacion=await methodGetAuth(`licitacion/licitacionId/${id}`,data.token) as ErrorResponse|Omit<Licitacion,"usuario"|"participantes"> 
         if("error" in licitacion)throw new Error(licitacion.message);
         return{
             props:{
@@ -38,6 +38,7 @@ export const getServerSideProps:GetServerSideProps=async(ctx)=>{
         }
     }catch(err){
         let error=err as Error;
+        console.log("error ",err);
         return{
             props:{
                 error:error.message

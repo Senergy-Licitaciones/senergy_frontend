@@ -1,57 +1,66 @@
-import LayoutUser from "../../components/layout/layoutUser/LayoutUser";
-import {BiTrendingUp,BiTrendingDown} from "react-icons/bi";
-import Link from "next/link";
-var Highcharts = require('highcharts');  
-import {BsFillCalendarCheckFill, BsTelephone} from "react-icons/bs";
-import {AiOutlineDashboard, AiOutlineFileAdd, AiOutlineFolderView, AiOutlineMail} from "react-icons/ai";
-import { HiOutlineDocumentAdd,HiOutlineLocationMarker } from "react-icons/hi";
-import {FaUserAlt} from  "react-icons/fa";
-import { useEffect } from "react";
-import { GetServerSideProps } from "next";
-export default function UserAccount(){
-    const fecha:Date=new Date();
-    const format=fecha.toLocaleDateString();
-    const ids:{
+import LayoutUser from '../../components/layout/layoutUser/LayoutUser'
+import { BiTrendingUp, BiTrendingDown } from 'react-icons/bi'
+import Link from 'next/link'
+import { BsTelephone } from 'react-icons/bs'
+import { AiOutlineDashboard, AiOutlineFileAdd, AiOutlineFolderView, AiOutlineMail } from 'react-icons/ai'
+import { HiOutlineDocumentAdd, HiOutlineLocationMarker } from 'react-icons/hi'
+import { FaUserAlt } from 'react-icons/fa'
+import { useEffect } from 'react'
+import { GetServerSideProps } from 'next'
+import { verifyToken } from '../../utils/handleJwt'
+import { TypeToken } from '../../types/data/enums'
+import { methodGetAuth } from '../../utils/fetch'
+import { ErrorResponse } from '../../types/methods'
+import { Info } from '../../types/data'
+import CalendarioFechaApertura from '../../components/common/CalendarioFechaApertura'
+const Highcharts = require('highcharts')
+type Props={
+    info:Info,
+    token:string
+}
+export default function UserAccount ({ info }:Props) {
+  const fecha:Date = new Date()
+  const format = fecha.toLocaleDateString()
+  const ids:{
         [index:string]:number
-    }={
-        id1:1,
-        id2:2,
-        id3:3,
-        id4:5
+    } = {
+      id1: 1,
+      id2: 2,
+      id3: 3,
+      id4: 5
     }
-    useEffect(()=>{
-
-        Highcharts.chart("container",{
-             chart:{
-                 type:"spline"
-             },
-             title:{
-                 text:"Licitaciones en progreso"
-             },
-             xAxis:{
-                 categories:["hace 3 meses","hace 2 meses","hace 1 mes","Actualmente"]
-             },
-             yAxis:{
-                 title:{
-                     text:"Número de participantes"
-                 }
-             },
-             series:[{
-                 name:"Licitacion 01",
-                 data:[70,65,45,5]
-             },{
-                 name:"Licitacion 02",
-                 data:[null,null,64,35]
-             },{
-                 name:"Licitacion 03",
-                 data:[49,45,26,3]
-             },{
-                 name:"Licitacion 04",
-                 data:[null,26,14,5]
-             }]
-         })
-    },[]);
-    return(
+  useEffect(() => {
+    Highcharts.chart('container', {
+      chart: {
+        type: 'spline'
+      },
+      title: {
+        text: 'Licitaciones en progreso'
+      },
+      xAxis: {
+        categories: ['hace 3 meses', 'hace 2 meses', 'hace 1 mes', 'Actualmente']
+      },
+      yAxis: {
+        title: {
+          text: 'Número de participantes'
+        }
+      },
+      series: [{
+        name: 'Licitacion 01',
+        data: [70, 65, 45, 5]
+      }, {
+        name: 'Licitacion 02',
+        data: [null, null, 64, 35]
+      }, {
+        name: 'Licitacion 03',
+        data: [49, 45, 26, 3]
+      }, {
+        name: 'Licitacion 04',
+        data: [null, 26, 14, 5]
+      }]
+    })
+  }, [])
+  return (
         <LayoutUser>
             <section className="grid 2xl:text-2xl grid-cols-1 md:grid-cols-4 gap-4 grid-flow-row" >
                 <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
@@ -61,7 +70,7 @@ export default function UserAccount(){
                         <HiOutlineDocumentAdd/>
                     </span>
                     </article>
-                    <p className="text-3xl 2xl:text-4xl font-bold dark:text-gray-400 " >4</p>
+                    <p className="text-3xl 2xl:text-4xl font-bold dark:text-gray-400 " >{info.numLicitaciones}</p>
                     <div className="flex justify-between items-center">
                     <article className="text-green-400 flex 2xl:text-base text-sm">
                     <p>+25%</p>
@@ -79,7 +88,7 @@ export default function UserAccount(){
                         <FaUserAlt/>
                     </span>
                     </article>
-                    <p className="text-3xl 2xl:text-4xl font-bold dark:text-gray-400 " >145</p>
+                    <p className="text-3xl 2xl:text-4xl font-bold dark:text-gray-400 " >{info.numParticipantes}</p>
                     <div className="flex justify-between items-center">
                     <article className="text-red-400 flex 2xl:text-base text-sm">
                     <p>-10%</p>
@@ -111,30 +120,30 @@ export default function UserAccount(){
                 <div className="bg-white md:row-span-3 flex flex-col p-4 dark:bg-gray-800">
                     <div className="flex justify-between">
                         <article className="flex flex-col">
-                            <p className="font-semibold dark:text-gray-400">Jhon D.</p>
+                            <p className="font-semibold dark:text-gray-400">{info.empresa}</p>
                             <p className="text-yellow-500 2xl:text-base text-xs">Empresa</p>
                             <p className="text-gray-500 text-sm 2xl:text-lg dark:text-gray-400">Cargo</p>
                         </article>
-                        
+
                             <img className="w-12 2xl:w-16 2xl:h-16 h-12 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
                     </div>
                     <article className="flex text-gray-500 2xl:text-lg text-sm dark:text-gray-400">
                         <span className="flex items-center">
                             <HiOutlineLocationMarker/>
                         </span>
-                        <p className="text-gray-700 dark:text-gray-400">Ubicacion</p>
+                        <p className="text-gray-700 dark:text-gray-400">{info.address}</p>
                     </article>
                     <article className="flex text-gray-500 2xl:text-lg text-sm dark:text-gray-400">
                         <span className="flex items-center">
                             <BsTelephone/>
                         </span>
-                        <p className="text-gray-700 dark:text-gray-400">+51 999884949</p>
+                        <p className="text-gray-700 dark:text-gray-400">+51 {info.phone}</p>
                     </article>
                     <hr className="mt-4 border-gray-700 "/>
-                    
+
                     <div className="flex flex-1 items-center justify-center">
 
-                    <p className="text-gray-500 text-center 2xl:text-base text-xs dark:text-gray-400">jhon.doe@empresa.com</p>
+                    <p className="text-gray-500 text-center 2xl:text-base text-xs dark:text-gray-400">{info.correo}</p>
                     </div>
                 </div>
                 <div className="bg-white md:col-span-2 md:row-span-5 " >
@@ -143,18 +152,18 @@ export default function UserAccount(){
                     </div>
                 </div>
                 <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex flex-col p-4 md:row-span-5">
-                    <h2>Licitación destacada de la semana</h2>
+                    <h2>Licitación más reciente</h2>
                     <article className="  flex flex-col items-center" >
                     <p>Número de participantes: </p>
-                    <p className="text-2xl" > 95</p>
+                    <p className="text-2xl" > {info.lastLicitacion.participantes}</p>
                     </article>
                     <article className="flex flex-col items-center">
                         <p>Empresa: </p>
-                        <p className="text-xl" >AgroNorte</p>
+                        <p className="text-xl" >{info.empresa}</p>
                     </article>
                     <article className="flex flex-col items-center">
                         <p>RUC: </p>
-                        <p className="text-xl" >20151025447</p>
+                        <p className="text-xl" >{info.lastLicitacion.ruc}</p>
                     </article>
                     <button className="bg-green-500 flex py-2 rounded  items-center justify-center text-gray-200 " >
                         <span className="flex justify-center text-2xl mr-6 animate-bounce text-gray-200 items-center" >
@@ -165,10 +174,8 @@ export default function UserAccount(){
                 </div>
                 <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-3">
                     <h2>Calendario de Fecha de apertura</h2>
-                    <p className="text-center text-2xl" >{format}</p>
-                    <span className="flex w-24 h-24 rounded-full bg-gray-400 justify-center items-center text-3xl text-white" >
-                        <BsFillCalendarCheckFill/>
-                    </span>
+                    <CalendarioFechaApertura fechaInicioApertura={info.lastLicitacion.fechaInicioapertura} fechaFinApertura={info.lastLicitacion.fechaFinApertura} />
+
                 </div>
                 <div className="bg-white md:row-span-2 flex flex-col p-4 dark:bg-gray-800">
                     <h2 className="font-semibold dark:text-gray-400">Licitaciones detalles</h2>
@@ -178,7 +185,7 @@ export default function UserAccount(){
                             <a className="flex justify-between text-sm items-center py-1 my-1" >
                             <p className="text-gray-500">Licitación 01</p>
 
-                            <p className="bg-red-500 text-white text-xs rounded px-2 py-1 shadow" >Cierre</p> 
+                            <p className="bg-red-500 text-white text-xs rounded px-2 py-1 shadow" >Cierre</p>
                             </a>
                             </Link>
                         </li>
@@ -187,7 +194,7 @@ export default function UserAccount(){
                             <a className="flex justify-between text-sm items-center py-1 my-1" >
                             <p className="text-gray-500">Licitación 02</p>
 
-                            <p className="bg-yellow-500 text-white text-xs py-1 rounded px-2 shadow" >Evaluación</p> 
+                            <p className="bg-yellow-500 text-white text-xs py-1 rounded px-2 shadow" >Evaluación</p>
                             </a>
                             </Link>
                         </li>
@@ -196,7 +203,7 @@ export default function UserAccount(){
                             <a className="flex justify-between text-sm items-center py-1 my-1" >
                             <p className="text-gray-500">Licitación 03</p>
 
-                            <p className="bg-red-500 text-white text-xs py-1 rounded px-2 shadow" >Cierre</p> 
+                            <p className="bg-red-500 text-white text-xs py-1 rounded px-2 shadow" >Cierre</p>
                             </a>
                             </Link>
                         </li>
@@ -205,7 +212,7 @@ export default function UserAccount(){
                             <a className="flex justify-between text-sm items-center py-1 my-1" >
                             <p className="text-gray-500">Licitación 04</p>
 
-                            <p className="bg-yellow-500 text-white text-xs rounded py-1 px-2 shadow ">Evaluación</p> 
+                            <p className="bg-yellow-500 text-white text-xs rounded py-1 px-2 shadow ">Evaluación</p>
                             </a>
                             </Link>
                         </li>
@@ -232,28 +239,35 @@ export default function UserAccount(){
                     </article>
                 </div>
             </section>
-            
-            
-            
-            
+
         </LayoutUser>
-    )
+  )
 }
-export const getServerSideProps:GetServerSideProps=async(context)=>{
-    const data=context.previewData as undefined|{token?:string} ;
-    console.log("data ",data);
-    if(data){
-        return{
-            props:{
-                token:data.token
-            }
-        }
-    }else{
-        return{
-            props:{},
-            redirect:{
-                destination:"/login"
-            }
-        }
+export const getServerSideProps:GetServerSideProps = async (context) => {
+  try {
+    const data = context.previewData as undefined|{token?:string}
+    if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
+    if (!data.token) throw new Error('Token no encontrado, vuelva a iniciar sesión desde la plataforma')
+    const payload = verifyToken(data.token)
+    if (!payload) throw new Error('Token inválido')
+    if (payload.type !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario para acceder a este recurso')
+    const info = await methodGetAuth('user/getInfoDashboard', data.token) as ErrorResponse|Info
+    if ('error' in info) throw new Error(info.message)
+    return {
+      props: {
+        info,
+        token: data.token
+      }
     }
+  } catch (err) {
+    const error = err as Error
+    return {
+      props: {
+        error: error.message
+      },
+      redirect: {
+        destination: '/login'
+      }
+    }
+  }
 }

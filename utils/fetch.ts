@@ -9,6 +9,7 @@ export const methodGetAuth=async(url:string,token:string)=>{
         }});
         return data;
     }catch(err){
+        console.log("error ",err);
         return{
             message:"Ha ocurrido un error al realizar la petición",
             error:err
