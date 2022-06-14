@@ -1,8 +1,7 @@
-import FormEmpresaLogin from "../../components/common/FormEmpresaLogin";
-import LayoutHome from "../../components/layout";
-export default function LoginEmpresa():JSX.Element{
-    
-    return(
+import FormEmpresaLogin from '../../components/common/FormEmpresaLogin'
+import LayoutHome from '../../components/layout'
+export default function LoginEmpresa () {
+  return (
         <LayoutHome>
             <section className="flex min-h-screen p-4 justify-around items-center ">
             <span className="hidden md:flex">
@@ -11,6 +10,6 @@ export default function LoginEmpresa():JSX.Element{
             <FormEmpresaLogin/>
         </section>
         </LayoutHome>
-       
-    )
+
+  )
 }

@@ -19,8 +19,6 @@ type Props={
     token:string
 }
 export default function UserAccount ({ info }:Props) {
-  const fecha:Date = new Date()
-  const format = fecha.toLocaleDateString()
   const ids:{
         [index:string]:number
     } = {
@@ -106,7 +104,7 @@ export default function UserAccount ({ info }:Props) {
                         <HiOutlineDocumentAdd/>
                     </span>
                     </article>
-                    <p className="text-3xl 2xl:text-4xl font-bold dark:text-gray-400 " >4</p>
+                    <p className="text-lg 2xl:text-xl text-center font-bold dark:text-gray-400 " >{info.lastProvider}</p>
                     <div className="flex justify-between items-center">
                     <article className="text-green-400 flex 2xl:text-base text-sm">
                     <p>+25%</p>
@@ -152,7 +150,7 @@ export default function UserAccount ({ info }:Props) {
                     </div>
                 </div>
                 <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex flex-col p-4 md:row-span-5">
-                    <h2>Licitación más reciente</h2>
+                    <h2 className="text-xl text-center" >Licitación más reciente</h2>
                     <article className="  flex flex-col items-center" >
                     <p>Número de participantes: </p>
                     <p className="text-2xl" > {info.lastLicitacion.participantes}</p>
@@ -173,9 +171,7 @@ export default function UserAccount ({ info }:Props) {
                     </button>
                 </div>
                 <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-3">
-                    <h2>Calendario de Fecha de apertura</h2>
                     <CalendarioFechaApertura fechaInicioApertura={info.lastLicitacion.fechaInicioapertura} fechaFinApertura={info.lastLicitacion.fechaFinApertura} />
-
                 </div>
                 <div className="bg-white md:row-span-2 flex flex-col p-4 dark:bg-gray-800">
                     <h2 className="font-semibold dark:text-gray-400">Licitaciones detalles</h2>

@@ -54,13 +54,14 @@ export default function CalendarioFechaApertura ({ fechaInicioApertura, fechaFin
   }, [])
   return (
         <div>
+          <h1 className='text-center'>Calendario de Fecha de Apertura</h1>
           {both
             ? <div>
               <h1>Fechas de Meses diferentes</h1>
             </div>
             : <div>
-            <h1 className='text-center' >{formatMes(convertToDate(fechaInicioApertura).getMonth())}</h1>
-            <ul className='grid grid-cols-7 gap-4 px-2' >
+            <h2 className='text-center font-bold text-yellow-500 ' >{formatMes(convertToDate(fechaInicioApertura).getMonth())}</h2>
+            <ul className='grid font-bold grid-cols-7 gap-4 px-2' >
               <li className='text-center' >D</li>
               <li className='text-center'>L</li>
               <li className='text-center'>M</li>
@@ -69,10 +70,10 @@ export default function CalendarioFechaApertura ({ fechaInicioApertura, fechaFin
               <li className='text-center'>V</li>
               <li className='text-center'>S</li>
             </ul>
-            <ul className=' px-2 bg-gray-200 grid grid-cols-7 gap-4' >
+            <ul className=' px-2  grid grid-cols-7 gap-4' >
             {
               days.map((_day, i) => (
-                <li className={` ${convertToDate(fechaFinApertura).getDate() >= i - cal.fechaInicio.day && convertToDate(fechaInicioApertura).getDate() <= i - cal.fechaInicio.dayWeek + 1 ? 'bg-red-200  rounded-full' : ''}  flex justify-center`} key={`calendar-${i}`}>
+                <li className={` ${convertToDate(fechaFinApertura).getDate() >= i - cal.fechaInicio.day && convertToDate(fechaInicioApertura).getDate() <= i - cal.fechaInicio.dayWeek + 1 ? 'bg-green-200 ' : ''} text-sm items-center rounded-full flex justify-center`} key={`calendar-${i}`}>
                   {(cal.fechaFin.day > i - cal.fechaInicio.dayWeek && i - cal.fechaInicio.dayWeek >= 0)
                     ? i - cal.fechaInicio.dayWeek + 1
                     : ''}
