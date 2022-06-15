@@ -5,11 +5,13 @@ import { AiOutlineQuestionCircle, AiOutlineUser } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import { getFormatRoute } from '../../../utils'
 import { useState } from 'react'
-import { clearToken, methodPutAuth } from '../../../utils/fetch'
+import { methodPutAuth } from '../../../utils/fetch'
 import { ErrorResponse, Response } from '../../../types/methods'
 import swal from 'sweetalert'
+import { signOut, useSession } from 'next-auth/react'
 export default function StaticNav () {
-  const { pathname, push } = useRouter()
+  const { pathname } = useRouter()
+  const { data: session } = useSession()
   const [show, setShow] = useState(false)
   const logout = async () => {
     try {
@@ -20,18 +22,16 @@ export default function StaticNav () {
         buttons: ['Cancelar', true],
         dangerMode: true
       }).then(async (willLogout) => {
-        if (willLogout) {
-          const response = await methodPutAuth('auth/logoutUsuario', localStorage.getItem('tokenLogin') as string, {}) as Response|ErrorResponse
+        if (willLogout && session) {
+          const response = await methodPutAuth('auth/logoutUsuario', session.accessToken, {}) as Response|ErrorResponse
           if ('error' in response) {
             console.log('error al cerrar sesión ', response.message, ' ', response.error)
             swal(response.message, response.error.toString(), 'error')
           } else {
-            localStorage.removeItem('tokenLogin')
-            await clearToken()
-            swal('Sesión cerrada exitosamente ', response.message, 'success').then(() => {
-              push('/login')
-            })
+            await signOut()
           }
+        } else {
+          await signOut()
         }
       })
     } catch (err) {
@@ -83,7 +83,7 @@ export default function StaticNav () {
                         <img className="w-16 h-16 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
 
                         <div className="flex flex-col p-2 justify-center">
-                            <p className=" 2xl:text-2xl font-semibold" >John Doe</p>
+                            <p className=" 2xl:text-2xl font-semibold" >{session ? session.user.name : 'Tiempo Agotado'}</p>
                             <p className="text-xs 2xl:text-sm font-semibold text-gray-400 uppercase" >Usuario</p>
                         </div>
                     </article>

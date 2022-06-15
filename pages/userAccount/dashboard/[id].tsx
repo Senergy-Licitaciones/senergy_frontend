@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
-import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
-export default function LicitacionDetail({id}:{id:string}):JSX.Element{
-    return(
+import { GetServerSideProps } from 'next'
+import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
+export default function LicitacionDetail ({ id }:{id:string}) {
+  return (
         <LayoutUser>
             <section>
                 <h1 className="text-center dark:text-gray-200 text-2xl font-semibold">Detalle de Licitacion {id} </h1>
@@ -25,13 +25,13 @@ export default function LicitacionDetail({id}:{id:string}):JSX.Element{
                 </div>
             </section>
         </LayoutUser>
-    )
+  )
 }
-export const getServerSideProps:GetServerSideProps=async(context)=>{
-    const {id}=context.params as {id:string};
-    return{
-        props:{
-            id
-        }
+export const getServerSideProps:GetServerSideProps = async (context) => {
+  const { id } = context.params as {id:string}
+  return {
+    props: {
+      id
     }
+  }
 }

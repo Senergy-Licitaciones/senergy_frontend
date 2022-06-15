@@ -1,10 +1,8 @@
-import Image from "next/image";
-import FormUserLogin from "../../components/common/FormUserLogin";
-import LayoutHome from "../../components/layout";
+import FormUserLogin from '../../components/common/FormUserLogin'
+import LayoutHome from '../../components/layout'
 
-export default function LoginUser():JSX.Element{
-    
-    return(
+export default function LoginUser () {
+  return (
         <LayoutHome>
 
         <section className="flex min-h-screen p-4 justify-center items-center md:justify-around ">
@@ -14,5 +12,5 @@ export default function LoginUser():JSX.Element{
             <FormUserLogin/>
         </section>
         </LayoutHome>
-    )
+  )
 }

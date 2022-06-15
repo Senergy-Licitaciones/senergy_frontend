@@ -1,38 +1,39 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { FormLogin, HandleSubmit, HookLogin } from "../../types/form";
-import { ErrorResponse, LoginResponse } from "../../types/methods";
-import { methodPut, saveToken } from "../../utils/fetch";
-import { useForm } from "../hooks/useForm";
-import swal from "sweetalert";
-import Loader from "./Loader";
-const initForm:FormLogin={
-    correo:"",
-    password:""
+import Link from 'next/link'
+import { FormLogin, HandleSubmit, HookLogin } from '../../types/form'
+import { useForm } from '../hooks/useForm'
+import Loader from './Loader'
+import { signIn, useSession } from 'next-auth/react'
+import { TypeToken } from '../../types/data/enums'
+const initForm:FormLogin = {
+  correo: '',
+  password: ''
 }
-export default function FormUserLogin(){
-    const {push}=useRouter();
-    
-    const {form,handleChange,loading,setLoading}=useForm(initForm) as HookLogin ;
-    const loginUser:HandleSubmit=async(e)=>{
-        e.preventDefault();
-        setLoading(true);
-        const response=await methodPut("auth/loginUsuario",form) as LoginResponse|ErrorResponse ;
-        if("error" in response){
-            console.log("error ",response.message," obj error ",response.error);
-            setLoading(false);
-            swal(response.message,response.error.toString(),"error");
-        }else{
-            localStorage.setItem("tokenLogin",response.token);
-            await saveToken({token:response.token});
-            setLoading(false);
-            swal("Inicio de Sesión exitosa",response.message,"success").then(()=>{
-                push("/userAccount");
-            });
-        }
-    }
-    return(
-        <form onSubmit={loginUser} className={` transition-all duration-500 2xl:p-12 2xl:text-2xl p-8 flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]`} >
+export default function FormUserLogin () {
+  const { form, handleChange, loading, setLoading } = useForm(initForm) as HookLogin
+  const { status } = useSession()
+  console.log('status ', status)
+  const loginUser:HandleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, callbackUrl: 'http://localhost:3000/userAccount' })
+    setLoading(false)
+    /* const response = await methodPut('auth/loginUsuario', form) as LoginResponse|ErrorResponse
+    if ('error' in response) {
+      console.log('error ', response.message, ' obj error ', response.error)
+      setLoading(false)
+      swal(response.message, response.error.toString(), 'error')
+    } else {
+      localStorage.setItem('tokenLogin', response.token)
+      await saveToken({ token: response.token })
+      setLoading(false)
+      swal('Inicio de Sesión exitosa', response.message, 'success').then(() => {
+        push('/userAccount')
+      })
+    } */
+  }
+
+  return (
+        <form onSubmit={loginUser} className={' transition-all duration-500 2xl:p-12 2xl:text-2xl p-8 flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]'} >
                 <h1 className="font-bold text-3xl 2xl:text-4xl">Inicio de sesión de usuarios</h1>
                 <hr/>
                 <article className="flex my-4 flex-col">
@@ -44,12 +45,11 @@ export default function FormUserLogin(){
                 <input onChange={handleChange} value={form.password} name="password" type="password"/>
                 </article>
                 {
-                    loading?
-                    <article className="flex justify-center" >
+                    loading
+                      ? <article className="flex justify-center" >
                         <Loader/>
                     </article>
-                    :
-                    <button className="bg-blue-500 mb-4 text-white font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
+                      : <button className="bg-blue-500 mb-4 text-white font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
                 }
                 <article className="flex justify-center ">
 
@@ -68,5 +68,5 @@ export default function FormUserLogin(){
                 </Link>
                 </article>
             </form>
-    )
+  )
 }

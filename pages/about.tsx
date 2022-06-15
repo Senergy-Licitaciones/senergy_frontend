@@ -1,12 +1,10 @@
-import Link from "next/link";
-import React from "react";
-import { FaBook, FaHeart } from "react-icons/fa";
-import { IoBusinessSharp } from "react-icons/io5";
-import LayoutHome from "../components/layout";
+import Link from 'next/link'
+import { FaBook, FaHeart } from 'react-icons/fa'
+import { IoBusinessSharp } from 'react-icons/io5'
+import LayoutHome from '../components/layout'
 
-export default function About():JSX.Element{
-    return(
-
+export default function About () {
+  return (
     <LayoutHome>
         <section className="flex p-4 flex-col items-center justify-around min-h-screen" >
             <h1 className="font-bold 2xl:text-4xl xl:text-3xl text-2xl text-center" >¿Quiénes somos?</h1>
@@ -39,5 +37,5 @@ export default function About():JSX.Element{
             </a></Link>
         </section>
     </LayoutHome>
-    )
+  )
 }

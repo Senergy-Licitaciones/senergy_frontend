@@ -1,1 +1,1 @@
-export const API=process.env.API_REST;
+export const API = process.env.API_REST

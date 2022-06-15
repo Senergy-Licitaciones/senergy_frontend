@@ -1,22 +1,21 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { FormLogin, HandleSubmit, HookLogin } from '../../types/form'
-import { ErrorResponse, LoginResponse } from '../../types/methods'
-import { methodPut, saveToken } from '../../utils/fetch'
 import { useForm } from '../hooks/useForm'
 import Loader from './Loader'
-import swal from 'sweetalert'
+import { signIn } from 'next-auth/react'
+import { TypeToken } from '../../types/data/enums'
 const initForm:FormLogin = {
   correo: '',
   password: ''
 }
 export default function FormEmpresaLogin () {
   const { form, handleChange, loading, setLoading } = useForm(initForm) as HookLogin
-  const { push } = useRouter()
   const login:HandleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    const data = await methodPut('auth/loginProveedor', form) as LoginResponse|ErrorResponse
+    await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.Proveedor, callbackUrl: 'http://localhost:3000/empresaAccount/dashboard' })
+    setLoading(false)
+    /* const data = await methodPut('auth/loginProveedor', form) as LoginResponse|ErrorResponse
     if ('error' in data) {
       console.log('error ', data.error, data.message)
       setLoading(false)
@@ -29,7 +28,7 @@ export default function FormEmpresaLogin () {
       swal('Sesión iniciada exitosamente', data.message, 'success').then(() => {
         push('/empresaAccount/dashboard')
       })
-    }
+    } */
   }
   return (
         <form onSubmit={login} className=" p-8 2xl:p-16 2xl:text-2xl flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]" >

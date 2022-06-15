@@ -1,5 +1,6 @@
-import { Estado, FormCrearOfertaProveedor, NumMes } from "../form"
-import { Role, TypeToken } from "./enums"
+import { Estado, FormCrearOfertaProveedor, NumMes } from '../form'
+import { Response } from '../methods'
+import { Role, TypeToken } from './enums'
 
 export type DataSelect={
     _id:string,
@@ -21,12 +22,7 @@ export type Info={
         participantes:number
         fechaInicioapertura:string,
         fechaFinApertura:string
-    }
-}
-export interface Oferta extends FormCrearOfertaProveedor{
-    _id:string,
-    proveedor:string,
-    licitacion:Partial<Licitacion>
+    }|Response
 }
 export type Licitacion={
     _id:string,
@@ -60,16 +56,20 @@ export type Licitacion={
     createdAt:Date,
     updatedAt:Date
 }
-export interface TokenData{
+export interface Oferta extends FormCrearOfertaProveedor{
     _id:string,
-    correo:string
+    proveedor:string,
+    licitacion:Partial<Licitacion>
+}
+export interface TokenData{
+    _id:string
 }
 export interface TokenUser extends TokenData{
     type:TypeToken.User,
+    empresa:string
     role:Role
 }
 export interface TokenProveedor extends TokenData{
     type:TypeToken.Proveedor,
-    ruc:number,
     razSocial:string
 }

@@ -1,13 +1,12 @@
-import Link from "next/link";
-import { AiOutlineFileAdd, AiOutlineFileSearch } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
-import { Licitacion } from "../../types/data";
+import Link from 'next/link'
+import { AiOutlineFileAdd, AiOutlineFileSearch } from 'react-icons/ai'
+import { BsSearch } from 'react-icons/bs'
+import { Licitacion } from '../../types/data'
 type Props={
     licitaciones:Licitacion[]
 }
-export default function TableLicitaciones({licitaciones}:Props){
-    
-    return(
+export default function TableLicitaciones ({ licitaciones }:Props) {
+  return (
             <>
         <div className="flex justify-between">
                     <article className="flex flex-col 2xl:w-44 w-32">
@@ -40,10 +39,10 @@ export default function TableLicitaciones({licitaciones}:Props){
                     </thead>
                     <tbody className=" dark:divide-gray-600 divide-y">
                         {
-                            licitaciones.map((el)=>(
+                            licitaciones.map((el) => (
 
                         <tr key={el._id} className="text-sm 2xl:text-lg dark:divide-gray-600 dark:text-gray-400 divide-x">
-                            
+
                             <td className="p-4 ">
                                 {el.empresa}
                             </td>
@@ -64,7 +63,7 @@ export default function TableLicitaciones({licitaciones}:Props){
                             </td>
                             <td className="p-4 flex justify-around " >
                                 <Link href={`/empresaAccount/licitaciones/${el._id}/oferta`} >
-                                
+
                                 <a className="bg-green-500 text-white p-2 text-xl rounded" >
                                     <AiOutlineFileAdd/>
                                 </a>
@@ -78,12 +77,12 @@ export default function TableLicitaciones({licitaciones}:Props){
                         </tr>
                             ))
                         }
-                        
+
                     </tbody>
                 </table>
                 <article className="flex justify-between items-center py-4" >
                     <div className="dark:text-gray-400 2xl:text-lg text-sm">
-                        Mostrando de 1 a 5 de 17 items 
+                        Mostrando de 1 a 5 de 17 items
                     </div>
                     <div className="flex 2xl:text-xl">
                         <span className="bg-yellow-500 flex shadow-xl cursor-pointer rounded-full 2xl:w-12 2xl:h-12 w-8 h-8 justify-center items-center text-white">
@@ -95,5 +94,5 @@ export default function TableLicitaciones({licitaciones}:Props){
                     </div>
                 </article>
             </>
-    )
+  )
 }

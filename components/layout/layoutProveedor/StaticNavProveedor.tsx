@@ -8,10 +8,12 @@ import { useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import swal from 'sweetalert'
 import { ErrorResponse, Response } from '../../../types/methods'
-import { methodPutAuth, clearToken } from '../../../utils/fetch'
+import { methodPutAuth } from '../../../utils/fetch'
+import { signOut, useSession } from 'next-auth/react'
 export default function StaticNavProveedor () {
-  const { pathname, push } = useRouter()
+  const { pathname } = useRouter()
   const [show, setShow] = useState(false)
+  const { data: session } = useSession()
   const logout = async () => {
     swal({
       title: 'Cerrar Sesión',
@@ -19,18 +21,16 @@ export default function StaticNavProveedor () {
       buttons: ['Cancelar', true],
       icon: 'warning'
     }).then(async (willLogout) => {
-      if (willLogout) {
-        const data = await methodPutAuth('auth/logoutProveedor', localStorage.getItem('tokenLoginProveedor') as string, {}) as ErrorResponse|Response
+      if (willLogout && session) {
+        const data = await methodPutAuth('auth/logoutProveedor', session.accessToken, {}) as ErrorResponse|Response
         if ('error' in data) {
           console.log('error ', data)
           swal(data.message, data.error.toString(), 'error')
         } else {
-          localStorage.removeItem('tokenLoginProveedor')
-          await clearToken()
-          swal('Sesión cerrada exitosamente', data.message, 'success').then(() => {
-            push('/login/empresa')
-          })
+          await signOut()
         }
+      } else {
+        await signOut()
       }
     })
   }
@@ -79,8 +79,7 @@ export default function StaticNavProveedor () {
                         <img className="w-16 h-16 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
 
                         <div className="flex flex-col p-2 justify-center">
-                            <p className="font-semibold" >Robert Kalinsky</p>
-                            <p className="text-xs font-semibold text-gray-400 uppercase" >EnergySur</p>
+                            <p className="font-semibold" >{session ? session.user.name : 'Sesión cerrada'}</p>
                             <p className="text-xs font-semibold text-gray-400 uppercase" >Proveedor</p>
                         </div>
                     </article>

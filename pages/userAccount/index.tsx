@@ -7,12 +7,11 @@ import { HiOutlineDocumentAdd, HiOutlineLocationMarker } from 'react-icons/hi'
 import { FaUserAlt } from 'react-icons/fa'
 import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
-import { verifyToken } from '../../utils/handleJwt'
-import { TypeToken } from '../../types/data/enums'
 import { methodGetAuth } from '../../utils/fetch'
 import { ErrorResponse } from '../../types/methods'
 import { Info } from '../../types/data'
 import CalendarioFechaApertura from '../../components/common/CalendarioFechaApertura'
+import { getSession } from 'next-auth/react'
 const Highcharts = require('highcharts')
 type Props={
     info:Info,
@@ -151,6 +150,9 @@ export default function UserAccount ({ info }:Props) {
                 </div>
                 <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex flex-col p-4 md:row-span-5">
                     <h2 className="text-xl text-center" >Licitación más reciente</h2>
+                    {'message' in info.lastLicitacion
+                      ? <h2>{info.lastLicitacion.message}</h2>
+                      : <>
                     <article className="  flex flex-col items-center" >
                     <p>Número de participantes: </p>
                     <p className="text-2xl" > {info.lastLicitacion.participantes}</p>
@@ -169,9 +171,14 @@ export default function UserAccount ({ info }:Props) {
                         </span>
                         <p>Ver licitación</p>
                     </button>
+                    </>
+                    }
                 </div>
                 <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-3">
-                    <CalendarioFechaApertura fechaInicioApertura={info.lastLicitacion.fechaInicioapertura} fechaFinApertura={info.lastLicitacion.fechaFinApertura} />
+                    {'message' in info.lastLicitacion
+                      ? <h2>{info.lastLicitacion.message}</h2>
+                      : <CalendarioFechaApertura fechaInicioApertura={info.lastLicitacion.fechaInicioapertura} fechaFinApertura={info.lastLicitacion.fechaFinApertura} />
+                    }
                 </div>
                 <div className="bg-white md:row-span-2 flex flex-col p-4 dark:bg-gray-800">
                     <h2 className="font-semibold dark:text-gray-400">Licitaciones detalles</h2>
@@ -239,20 +246,17 @@ export default function UserAccount ({ info }:Props) {
         </LayoutUser>
   )
 }
-export const getServerSideProps:GetServerSideProps = async (context) => {
+export const getServerSideProps:GetServerSideProps = async (ctx) => {
   try {
-    const data = context.previewData as undefined|{token?:string}
+    const data = await getSession({ req: ctx.req })
     if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
-    if (!data.token) throw new Error('Token no encontrado, vuelva a iniciar sesión desde la plataforma')
-    const payload = verifyToken(data.token)
-    if (!payload) throw new Error('Token inválido')
-    if (payload.type !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario para acceder a este recurso')
-    const info = await methodGetAuth('user/getInfoDashboard', data.token) as ErrorResponse|Info
+    console.log('data session ', data)
+    const info = await methodGetAuth('user/getInfoDashboard', data.accessToken) as ErrorResponse|Info
     if ('error' in info) throw new Error(info.message)
     return {
       props: {
         info,
-        token: data.token
+        token: data.accessToken
       }
     }
   } catch (err) {
