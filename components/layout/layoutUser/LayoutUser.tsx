@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
-import DynamicNav from "./DynamicNav";
-import HeaderUser from "./HeaderUser";
-import StaticNav from "./StaticNav";
+import { ReactNode } from 'react'
+import DynamicNav from './DynamicNav'
+import HeaderUser from './HeaderUser'
+import StaticNav from './StaticNav'
 type Props = {
   children?: ReactNode
 }
-export default function LayoutUser({children}:Props):JSX.Element{
-    return(
+export default function LayoutUser ({ children }:Props) {
+  return (
         <section className="flex" >
             <StaticNav/>
             <DynamicNav/>
@@ -14,5 +14,5 @@ export default function LayoutUser({children}:Props):JSX.Element{
                 {children}
             </HeaderUser>
         </section>
-    )
+  )
 }

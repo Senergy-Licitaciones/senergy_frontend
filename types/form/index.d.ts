@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { Session } from 'next-auth'
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react'
 import { DataSelect } from '../data'

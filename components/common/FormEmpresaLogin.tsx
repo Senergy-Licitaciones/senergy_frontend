@@ -15,20 +15,6 @@ export default function FormEmpresaLogin () {
     setLoading(true)
     await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.Proveedor, callbackUrl: 'http://localhost:3000/empresaAccount/dashboard' })
     setLoading(false)
-    /* const data = await methodPut('auth/loginProveedor', form) as LoginResponse|ErrorResponse
-    if ('error' in data) {
-      console.log('error ', data.error, data.message)
-      setLoading(false)
-      swal(data.message, data.error.toString(), 'error')
-    } else {
-      console.log('data ', data)
-      localStorage.setItem('tokenLoginProveedor', data.token)
-      await saveToken({ token: data.token })
-      setLoading(false)
-      swal('Sesión iniciada exitosamente', data.message, 'success').then(() => {
-        push('/empresaAccount/dashboard')
-      })
-    } */
   }
   return (
         <form onSubmit={login} className=" p-8 2xl:p-16 2xl:text-2xl flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]" >
