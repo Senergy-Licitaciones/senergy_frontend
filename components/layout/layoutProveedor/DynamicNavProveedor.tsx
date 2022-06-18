@@ -1,4 +1,4 @@
-import {IoIosArrowDown, IoIosArrowForward} from "react-icons/io";
+import { IoIosArrowForward} from "react-icons/io";
 import {HiOutlineDocumentText} from "react-icons/hi";
 import {RiFileHistoryLine} from "react-icons/ri";
 import React, { useEffect, useState } from "react";
@@ -25,6 +25,7 @@ function LicitacionNav():JSX.Element{
     const {pathname,push}:NextRouter=useRouter();
     useEffect(()=>{
         if(getFormatRoute(pathname)==="licitaciones" ) setShow({...show,licitaciones:true});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
     console.log(show);
     return(
@@ -78,6 +79,7 @@ function DashboardNav():JSX.Element{
     const {pathname}:NextRouter=useRouter();
     useEffect(()=>{
         if(pathname.split("/").pop()==="userAccount" || pathname.split("/").pop()==="dashboard") setShow({...show,licitaciones:true});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
     console.log(show);
     return(

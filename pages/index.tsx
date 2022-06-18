@@ -1,15 +1,20 @@
-import Link from "next/link";
-import LayoutHome from "../components/layout";
+import Link from 'next/link'
+import LayoutHome from '../components/layout'
 
-export default function Home():JSX.Element{
-    
-    return(
+export default function Home () {
+  return (
        <LayoutHome>
-           <section className=" min-h-screen flex justify-center items-start py-20 snap-center">
+           <HomePage/>
+       </LayoutHome>
+  )
+}
+export function HomePage () {
+  return (
+        <section className=" min-h-screen flex justify-center items-start py-20 snap-center">
                <div className="flex flex-col max-w-4xl">
-                   <h1 className=" text-5xl sm:text-6xl 2xl:text-8xl font-extrabold text-center">Encuentra el <p className="text-yellow-400">suministro de energía 
+                   <h1 className=" text-5xl sm:text-6xl 2xl:text-8xl font-extrabold text-center">Encuentra el <p className="text-yellow-400">suministro de energía
                        </p> adecuado para ti</h1>
-                 
+
                    <p className=" text-md sm:text-xl 2xl:text-2xl text-center my-4 text-gray-400 font-semibold">Genera licitaciones para suministros de energía eléctrica de más de 2000 proveedores, de forma rápida y segura </p>
                     <article className="flex p-4 flex-col sm:flex-row justify-center">
                         <Link href="/login">
@@ -22,10 +27,9 @@ export default function Home():JSX.Element{
                                 ¿Eres un proveedor?
                             </a>
                         </Link>
-                        
+
                     </article>
                </div>
            </section>
-       </LayoutHome>
-    )
+  )
 }

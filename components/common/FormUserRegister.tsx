@@ -9,8 +9,8 @@ const initForm:FormRegisterUser={
     correo:"",
     password:"",
     empresa:"",
-    phone:null,
-    ruc:null,
+    phone:0,
+    ruc:0,
     web:"",
     address:"",
     terms:true

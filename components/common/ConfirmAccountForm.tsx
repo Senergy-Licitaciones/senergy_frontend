@@ -3,13 +3,12 @@ import { FormConfirmAccount, HandleSubmit, HookConfirmAccount } from "../../type
 import { ErrorResponse } from "../../types/methods";
 import { methodPut } from "../../utils/fetch";
 import { useForm } from "../hooks/useForm"
-import swal from "sweetalert";
 const initForm:FormConfirmAccount={
     code:"",
     idUser:""
 }
 export default function ConfirmAccountForm(){
-    const {form,handleChange,setForm}=useForm(initForm) as HookConfirmAccount;
+    const {form,handleChange}=useForm(initForm) as HookConfirmAccount;
     const {push}=useRouter();
     const confirmAccount:HandleSubmit=async(e)=>{
         e.preventDefault();

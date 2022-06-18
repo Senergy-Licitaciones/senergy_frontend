@@ -1,5 +1,5 @@
-module.exports={
-    /*async redirects(){
+module.exports = {
+  /* async redirects(){
         return [
             {
                 source:"/userAccount",
@@ -38,9 +38,14 @@ module.exports={
                 destination:"/login"
             }
         ]
-    },*/
-    env:{
-        API_REST:process.env.API_REST,
-        JWT_SECRET:process.env.JWT_SECRET
-    }
+    }, */
+  env: {
+    API_REST: process.env.API_REST,
+    JWT_SECRET: process.env.JWT_SECRET,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL
+  },
+  images: {
+    domains: ['cdn.pixabay.com']
+  }
 }

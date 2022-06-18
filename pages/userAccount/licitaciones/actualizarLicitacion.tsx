@@ -1,7 +1,7 @@
-import LayoutUser from "../../../components/layout/layoutUser/LayoutUser";
+import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
 
-export default function ActualizarLicitacion():JSX.Element{
-    return(
+export default function ActualizarLicitacion () {
+  return (
         <LayoutUser>
             <section>
                 <div className="flex justify-between">
@@ -39,7 +39,7 @@ export default function ActualizarLicitacion():JSX.Element{
                                 23/12/2021
                             </td>
                             <td className="p-4">
-                                <select className="dark:bg-gray-800" value={"2"} name="" id="">
+                                <select className="dark:bg-gray-800" value={'2'} name="" id="">
                                     <option value="0">Creado</option>
                                     <option value="1">Apertura</option>
                                     <option value="2">Evaluación</option>
@@ -64,7 +64,7 @@ export default function ActualizarLicitacion():JSX.Element{
                                 23/11/2021
                             </td>
                             <td className="p-4">
-                                <select className="dark:bg-gray-800" value={"1"} name="" id="">
+                                <select className="dark:bg-gray-800" value={'1'} name="" id="">
                                     <option value="0">Creado</option>
                                     <option value="1">Apertura</option>
                                     <option value="2">Evaluación</option>
@@ -89,7 +89,7 @@ export default function ActualizarLicitacion():JSX.Element{
                                 15/12/2021
                             </td>
                             <td className="p-4">
-                                <select className="dark:bg-gray-800" value={"3"} name="" id="">
+                                <select className="dark:bg-gray-800" value={'3'} name="" id="">
                                     <option value="0">Creado</option>
                                     <option value="1">Apertura</option>
                                     <option value="2">Evaluación</option>
@@ -113,5 +113,5 @@ export default function ActualizarLicitacion():JSX.Element{
                 </article>
             </section>
         </LayoutUser>
-    )
+  )
 }
