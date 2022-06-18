@@ -7,6 +7,7 @@ import { methodPostAuth } from '../../utils/fetch'
 import { ErrorResponse, Response } from '../../types/methods'
 import Loader from './Loader'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 const initForm:FormCrearOfertaProveedor = {
   potencia: 0,
   energiaHp: 0,
@@ -24,11 +25,12 @@ type Props={
 export default function FormCrearOferta ({ idLicitacion }:Props) {
   const { form, handleChange, setForm, setLoading, loading } = useForm(initForm) as HookCrearOferta
   console.log('form ', form)
+  const { push } = useRouter()
+  const { data: session } = useSession()
   const [index, setIndex] = useState({
     potencia: '',
     energia: ''
   })
-  const { push } = useRouter()
   const handleChangeIndex:HandleChange = (e) => {
     const { value, name } = e.target
     name === 'formulaIndexPotencia'
@@ -44,14 +46,18 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
   const handleSubmit:HandleSubmit = async (e) => {
     e.preventDefault()
     try {
-      setLoading(true)
-      const data = await methodPostAuth('proveedor/crearOferta', localStorage.getItem('tokenLoginProveedor') as string, { ...form, idLicitacion }) as Response|ErrorResponse
-      setLoading(false)
-      if ('error' in data) {
-        console.log('data ', data)
-        swal(data.message, data.error.toString(), 'error')
+      if (session) {
+        setLoading(true)
+        const data = await methodPostAuth('proveedor/crearOferta', session.accessToken, { ...form, idLicitacion }) as Response|ErrorResponse
+        setLoading(false)
+        if ('error' in data) {
+          console.log('data ', data)
+          swal(data.message, data.error.toString(), 'error')
+        } else {
+          swal('Operación exitosa', data.message, 'success').then(() => push('/empresaAccount/licitaciones'))
+        }
       } else {
-        swal('Operación exitosa', data.message, 'success').then(() => push('/empresaAccount/licitaciones'))
+        push('/login/empresa')
       }
     } catch (err) {
       console.log('error ', err)
@@ -92,14 +98,14 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHp">Energía Horas Punta</label>
                             <div className="flex">
                             <input onChange={handleChange} value={form.energiaHp} name="energiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Punta" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/MWH</span>
+                            <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
                             </div>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHfp">Energía Horas Fuera de Punta</label>
                             <div className="flex">
                             <input onChange={handleChange} value={form.energiaHfp} name="energiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Fuera de Punta" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/MWH</span>
+                            <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
                             </div>
                         </article>
 

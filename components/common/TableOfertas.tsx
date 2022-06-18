@@ -1,12 +1,12 @@
-import {Oferta} from "../../types/data";
-import Link from "next/link";
-import {BsSearch} from "react-icons/bs";
-import {AiOutlineEdit} from "react-icons/ai";
+import { Oferta } from '../../types/data'
+import Link from 'next/link'
+import { BsSearch } from 'react-icons/bs'
+import { AiOutlineEdit } from 'react-icons/ai'
 type Props={
     ofertas:Oferta[]
 }
-export default function TableOfertas({ofertas}:Props){
-    return(
+export default function TableOfertas ({ ofertas }:Props) {
+  return (
         <>
         <div className="flex justify-between">
                     <article className="flex flex-col 2xl:w-44 w-32">
@@ -39,10 +39,10 @@ export default function TableOfertas({ofertas}:Props){
                     </thead>
                     <tbody className=" dark:divide-gray-600 divide-y">
                         {
-                            ofertas.map((el)=>(
+                            ofertas.map((el) => (
 
                         <tr key={el._id} className="text-sm 2xl:text-lg dark:divide-gray-600 dark:text-gray-400 divide-x">
-                            
+
                             <td className="p-4 ">
                                 {el.licitacion.empresa}
                             </td>
@@ -71,12 +71,12 @@ export default function TableOfertas({ofertas}:Props){
                         </tr>
                             ))
                         }
-                        
+
                     </tbody>
                 </table>
                 <article className="flex justify-between items-center py-4" >
                     <div className="dark:text-gray-400 2xl:text-lg text-sm">
-                        Mostrando de 1 a 5 de 17 items 
+                        Mostrando de 1 a 5 de 17 items
                     </div>
                     <div className="flex 2xl:text-xl">
                         <span className="bg-yellow-500 flex shadow-xl cursor-pointer rounded-full 2xl:w-12 2xl:h-12 w-8 h-8 justify-center items-center text-white">
@@ -88,5 +88,5 @@ export default function TableOfertas({ofertas}:Props){
                     </div>
                 </article>
             </>
-    )
+  )
 }

@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from "react"
-import { FormCrearLicitacionUser, HandleChange } from "../../../types/form"
-import { Estado } from "../../../types/form/enums"
+import { Dispatch, SetStateAction } from 'react'
+import { FormCrearLicitacionUser, HandleChange } from '../../../types/form'
+import { Estado } from '../../../types/form/enums'
 
 type Props={
     handleChange:HandleChange,
@@ -8,9 +8,9 @@ type Props={
     setStep:Dispatch<SetStateAction<number>>,
     form:FormCrearLicitacionUser
 }
-export default function InfoDetallada({handleChange,step,setStep,form}:Props){
-    return(
-        <div className={`dark:bg-gray-900 bg-white p-4 ${step===2 ?"block":"hidden"}`}>
+export default function InfoDetallada ({ handleChange, step, setStep, form }:Props) {
+  return (
+        <div className={`dark:bg-gray-900 bg-white p-4 ${step === 2 ? 'block' : 'hidden'}`}>
                         <p className="font-semibold dark:text-gray-400">Información detallada</p>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="numLicitacion">Número de Licitación</label>
@@ -33,8 +33,8 @@ export default function InfoDetallada({handleChange,step,setStep,form}:Props){
                             <input onChange={handleChange} value={form.author} name="author" className="rounded dark:bg-gray-800 dark:text-gray-400 placeholder:text-sm " placeholder="Nombre completo" type="text" />
                         </article>
                         <article className="flex justify-end pt-4">
-                            <span onClick={()=>setStep(step+1)} className="bg-green-600 py-2 px-4 text-white block cursor-pointer">Continuar</span>
+                            <span onClick={() => setStep(step + 1)} className="bg-green-600 py-2 px-4 text-white block cursor-pointer">Continuar</span>
                         </article>
                     </div>
-    )
+  )
 }

@@ -73,7 +73,7 @@ export default function CalendarioFechaApertura ({ fechaInicioApertura, fechaFin
             <ul className=' px-2  grid grid-cols-7 gap-4' >
             {
               days.map((_day, i) => (
-                <li className={` ${convertToDate(fechaFinApertura).getDate() >= i - cal.fechaInicio.day && convertToDate(fechaInicioApertura).getDate() <= i - cal.fechaInicio.dayWeek + 1 ? 'bg-green-200 ' : ''} text-sm items-center rounded-full flex justify-center`} key={`calendar-${i}`}>
+                <li className={` ${((convertToDate(fechaFinApertura).getDate() >= i - cal.fechaInicio.dayWeek + 1) && (convertToDate(fechaInicioApertura).getDate() <= i - cal.fechaInicio.dayWeek + 1)) ? 'bg-green-200 ' : ''} text-sm items-center rounded-full flex justify-center`} key={`calendar-${i}`}>
                   {(cal.fechaFin.day > i - cal.fechaInicio.dayWeek && i - cal.fechaInicio.dayWeek >= 0)
                     ? i - cal.fechaInicio.dayWeek + 1
                     : ''}

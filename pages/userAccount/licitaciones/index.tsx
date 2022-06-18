@@ -29,7 +29,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     if ('error' in licitaciones) throw new Error(licitaciones.message)
     return {
       props: {
-        token: data.token,
+        data,
         licitaciones
       }
     }

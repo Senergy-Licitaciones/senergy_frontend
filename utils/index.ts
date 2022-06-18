@@ -20,7 +20,9 @@ export const getRouteTitle = (route:string):string => {
     case 'actualizarLicitacion':{
       return 'Actualizar licitación'
     }
-
+    case 'edit':{
+      return 'Editar Licitación'
+    }
     default:{
       return 'Detalles' }
   }
@@ -54,10 +56,11 @@ export const getRouteTitleProveedor = (route:string):string => {
   }
 }
 export const convertToDate = (date:string) => {
-  const array = date.split('/')
-  const fecha = new Date(`${array[1]}/${array[0]}/${array[2]}`)
+  const array = date.split('-')
+  const fecha = new Date(`${array[1]}/${array[2]}/${array[0]}`)
   return fecha
 }
+
 export const formatMes = (mes:number):string => {
   switch (mes) {
     case 0:{

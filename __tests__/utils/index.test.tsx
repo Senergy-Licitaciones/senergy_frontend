@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import '@testing-library/jest-dom'
-import { getFormatRoute, getRouteTitle, getRouteTitleProveedor } from '../../utils'
+import { convertToDate, getFormatRoute, getRouteTitle, getRouteTitleProveedor } from '../../utils'
 describe('utils ', () => {
   test('getFormatRoute', () => {
     const mockGetFormatRoute = jest.fn(getFormatRoute)
@@ -18,5 +18,10 @@ describe('utils ', () => {
     expect(mockGetRouteTitleProveedor('dashboard')).toBe('Dashboard de proveedor')
     expect(mockGetRouteTitleProveedor('licitaciones')).toBe('Buscador de licitaciones')
     expect(mockGetRouteTitleProveedor('otro texto')).toBe('Detalles')
+  })
+  test('convertToDate', () => {
+    const mockConvertToDate = jest.fn(convertToDate)
+    expect(mockConvertToDate('2022-07-01')).toEqual(new Date('07/01/2022'))
+    expect(mockConvertToDate('2022-07-16')).toEqual(new Date('07/16/2022'))
   })
 })

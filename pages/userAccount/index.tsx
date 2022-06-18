@@ -119,19 +119,18 @@ export default function UserAccount ({ info }:Props) {
                         <article className="flex flex-col">
                             <p className="font-semibold dark:text-gray-400">{info.empresa}</p>
                             <p className="text-yellow-500 2xl:text-base text-xs">Empresa</p>
-                            <p className="text-gray-500 text-sm 2xl:text-lg dark:text-gray-400">Cargo</p>
                         </article>
 
                             <img className="w-12 2xl:w-16 2xl:h-16 h-12 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
                     </div>
                     <article className="flex text-gray-500 2xl:text-lg text-sm dark:text-gray-400">
-                        <span className="flex items-center">
+                        <span className="flex items-center mr-2">
                             <HiOutlineLocationMarker/>
                         </span>
                         <p className="text-gray-700 dark:text-gray-400">{info.address}</p>
                     </article>
                     <article className="flex text-gray-500 2xl:text-lg text-sm dark:text-gray-400">
-                        <span className="flex items-center">
+                        <span className="flex items-center mr-2">
                             <BsTelephone/>
                         </span>
                         <p className="text-gray-700 dark:text-gray-400">+51 {info.phone}</p>

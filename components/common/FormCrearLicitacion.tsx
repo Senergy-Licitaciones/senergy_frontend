@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { FormCrearLicitacionUser, HookCrearLicitacion, HandleSubmit } from '../../types/form'
 import { useData } from '../hooks/useData'
 import { useForm } from '../hooks/useForm'
@@ -9,8 +9,10 @@ import InfoGeneral from './componentsCrearLicitacion/InfoGeneral'
 
 import { methodPostAuth } from '../../utils/fetch'
 import { Response, ErrorResponse } from '../../types/methods'
-import { decode } from '../../utils/handleJwt'
 import { Estado } from '../../types/form/enums'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import swal from 'sweetalert'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>
@@ -37,37 +39,50 @@ const formInit:FormCrearLicitacionUser = {
 }
 export default function FormCrearLicitacion ({ step, setStep }:Props) {
   const { form, handleChange, setForm, loading, setLoading } = useForm(formInit) as HookCrearLicitacion
-  const { servicios, brgs, puntoSums } = useData()
-
+  const { push } = useRouter()
+  const { data: session, status } = useSession()
+  const { servicios, brgs, puntoSums } = useData(session)
+  useEffect(() => {
+    if (status === 'unauthenticated')push('/login')
+  }, [status])
   const sendForm:HandleSubmit = async (e) => {
     console.log('ejecutando form')
     e.preventDefault()
     setLoading(true)
-    const data = await methodPostAuth('licitacion/crearLicitacion', localStorage.getItem('tokenLogin') as string, {
-      title: form.title,
-      description: form.description,
-      tipoServicio: form.tipoServicio,
-      fechaInicioApertura: form.fechaInicioApertura,
-      fechaFinApertura: form.fechaFinApertura,
-      numLicitacion: form.numLicitacion,
-      requisitos: form.requisitos,
-      estado: form.estado,
-      empresa: form.empresa,
-      fechaInicio: form.fechaInicio,
-      fechaFin: form.fechaFin,
-      puntoSum: form.puntoSum,
-      brg: form.brg,
-      factorPlanta: form.factorPlanta,
-      meses: form.meses,
-      author: form.author,
-      user: decode(localStorage.getItem('tokenLogin') as string)._id
-    }) as Response | ErrorResponse
-    if ('error' in data) {
-      console.log('error ', data.error, ' message ', data.message)
+    if (session) {
+      console.log('licitacion ', form)
+      const data = await methodPostAuth('licitacion/crearLicitacion', session.accessToken, {
+        title: form.title,
+        description: form.description,
+        tipoServicio: form.tipoServicio,
+        fechaInicioApertura: form.fechaInicioApertura,
+        fechaFinApertura: form.fechaFinApertura,
+        numLicitacion: form.numLicitacion,
+        requisitos: form.requisitos,
+        estado: form.estado,
+        empresa: form.empresa,
+        fechaInicio: form.fechaInicio,
+        fechaFin: form.fechaFin,
+        puntoSum: form.puntoSum,
+        brg: form.brg,
+        factorPlanta: form.factorPlanta,
+        meses: form.meses,
+        author: form.author,
+        usuario: session.user.sub
+      }) as Response | ErrorResponse
       setLoading(false)
+      if ('error' in data) {
+        console.log('error ', data.error, ' message ', data.message)
+        swal('Error', data.message, 'error')
+      } else {
+        console.log('mensaje ', data.message)
+        swal('Proceso exitoso', data.message, 'success').then(() => {
+          push('/userAccount/licitaciones')
+        })
+      }
     } else {
-      console.log('mensaje ', data.message)
       setLoading(false)
+      push('/login')
     }
   }
   return (

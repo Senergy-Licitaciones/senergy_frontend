@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { DataSelect } from '../../../types/data'
 import { FormCrearLicitacionUser, HandleChange, NumMes } from '../../../types/form'
+import { convertToDate } from '../../../utils'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>,
@@ -11,12 +12,14 @@ type Props={
     setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>
 }
 export default function EspecificacionesTecnicas ({ step, setStep, handleChange, form, puntoSums, brgs, setForm }:Props) {
+  const isMount = useRef(true)
   useEffect(() => {
-    generateMeses()
+    if (isMount.current === false)generateMeses()
+    isMount.current = true
   }, [form.fechaInicio, form.fechaFin])
   const generateMeses = () => {
-    const fechaInicio = new Date(form.fechaInicio)
-    const fechaFin = new Date(form.fechaFin)
+    const fechaInicio = convertToDate(form.fechaInicio)
+    const fechaFin = convertToDate(form.fechaFin)
     if (fechaFin > fechaInicio) {
       const array:NumMes[] = []
       do {
@@ -31,6 +34,7 @@ export default function EspecificacionesTecnicas ({ step, setStep, handleChange,
         } else {
           fechaInicio.setMonth(fechaInicio.getMonth() + 1)
         }
+      // eslint-disable-next-line no-unmodified-loop-condition
       } while (fechaInicio <= fechaFin)
       setForm({
         ...form,

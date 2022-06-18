@@ -60,7 +60,7 @@ export default NextAuth({
     })
   ],
   jwt: {
-    maxAge: 60 * 25
+    maxAge: 60 * 60
   },
   callbacks: {
     async jwt ({ user, token, account }) {

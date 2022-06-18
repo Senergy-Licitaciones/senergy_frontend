@@ -13,7 +13,8 @@ import { signOut, useSession } from 'next-auth/react'
 export default function StaticNavProveedor () {
   const { pathname } = useRouter()
   const [show, setShow] = useState(false)
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
+  console.log('status ', status)
   const logout = async () => {
     swal({
       title: 'Cerrar Sesión',
@@ -21,6 +22,7 @@ export default function StaticNavProveedor () {
       buttons: ['Cancelar', true],
       icon: 'warning'
     }).then(async (willLogout) => {
+      await signOut()
       if (willLogout && session) {
         const data = await methodPutAuth('auth/logoutProveedor', session.accessToken, {}) as ErrorResponse|Response
         if ('error' in data) {

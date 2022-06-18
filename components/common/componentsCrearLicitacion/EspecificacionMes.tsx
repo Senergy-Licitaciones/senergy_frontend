@@ -8,8 +8,9 @@ type Props={
     setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>,
     loading:boolean,
     setLoading:Dispatch<SetStateAction<boolean>>
+    update?:boolean
 }
-export default function EspecificacionMes ({ step, form, setForm, loading }:Props) {
+export default function EspecificacionMes ({ step, form, setForm, loading, update }:Props) {
   return (
         <div className={`bg-white dark:bg-gray-900 p-4 ${step === 4 ? 'block' : 'hidden'}`}>
                         <p className="font-semibold dark:text-gray-400">Especificación por Mes</p>
@@ -19,8 +20,8 @@ export default function EspecificacionMes ({ step, form, setForm, loading }:Prop
                                 <tr className="text-sm font-semibold dark:divide-gray-500 dark:text-gray-400 divide-x">
 
                                 <th className="p-4" >MES</th>
-                                <th className="p-4" >HP</th>
-                                <th className="p-4" >HFP</th>
+                                <th className="p-4" >HP (MW)</th>
+                                <th className="p-4" >HFP (MW)</th>
                                 </tr>
                             </thead>
                             <tbody className=" dark:divide-gray-500 divide-y" >
@@ -71,7 +72,7 @@ export default function EspecificacionMes ({ step, form, setForm, loading }:Prop
                                 <span className="flex items-center transition-all duration-300 text-2xl mr-4 group-hover:animate-bounce justify-center" >
                                     <AiFillCheckCircle/>
                                 </span>
-                                <p>Crear licitación</p>
+                                <p>{update ? 'Actualizar licitación' : 'Crear licitación'}</p>
                             </button>
                             }
                         </article>

@@ -53,6 +53,7 @@ describe('Rendering Component', () => {
     expect(linkUnderlying).toHaveClass('text-yellow-500 after:block')
   })
 })
+
 describe('underlying links', () => {
   test('underlying link about', () => {
     mockNextUseRouter({
