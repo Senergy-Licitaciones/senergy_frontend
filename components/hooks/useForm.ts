@@ -3,6 +3,7 @@ import { HandleChange, HookForm } from '../../types/form'
 
 export const useForm:HookForm = (initForm) => {
   const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
   const [form, setForm] = useState(initForm)
   const handleChange:HandleChange = (e) => {
     const { name, value } = e.target
@@ -12,6 +13,8 @@ export const useForm:HookForm = (initForm) => {
     })
   }
   return {
+    error,
+    setError,
     form,
     handleChange,
     setForm,

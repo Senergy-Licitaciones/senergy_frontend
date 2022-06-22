@@ -6,18 +6,26 @@ import { signIn, useSession } from 'next-auth/react'
 import { TypeToken } from '../../types/data/enums'
 import { IoLockOpenOutline } from 'react-icons/io5'
 import { URL_BASE } from '../../consts/config'
+import { useRouter } from 'next/router'
 const initForm:FormLogin = {
   correo: '',
   password: ''
 }
 export default function FormUserLogin () {
-  const { form, handleChange, loading, setLoading } = useForm(initForm) as HookLogin
+  const { form, handleChange, loading, setLoading, error, setError } = useForm(initForm) as HookLogin
   const { status } = useSession()
+  const { push } = useRouter()
   console.log('status ', status)
   const loginUser:HandleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, callbackUrl: `${URL_BASE}/userAccount` })
+    const result = await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, redirect: false, callbackUrl: `${URL_BASE}/userAccount` }) as {error:string|null, ok:boolean, status:number, url:string}|undefined
+    if (result) {
+      if (result.error) { setError(true) } else {
+        push('/userAccount')
+      }
+    }
+
     setLoading(false)
   }
 
@@ -27,6 +35,7 @@ export default function FormUserLogin () {
                   <IoLockOpenOutline/>
                 </span>
                 <h1 className=" text-3xl text-center 2xl:text-4xl">Inicio de sesión de usuarios</h1>
+                {error && <p className='text-center text-red-500' >Credenciales incorrectas</p> }
                 <hr className='my-4'/>
                 <article className="flex mb-4 flex-col">
                 <label className="" htmlFor="correo">Correo</label>

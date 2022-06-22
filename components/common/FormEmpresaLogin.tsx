@@ -6,16 +6,23 @@ import { signIn } from 'next-auth/react'
 import { TypeToken } from '../../types/data/enums'
 import { IoLockOpenOutline } from 'react-icons/io5'
 import { URL_BASE } from '../../consts/config'
+import { useRouter } from 'next/router'
 const initForm:FormLogin = {
   correo: '',
   password: ''
 }
 export default function FormEmpresaLogin () {
-  const { form, handleChange, loading, setLoading } = useForm(initForm) as HookLogin
+  const { form, handleChange, loading, setLoading, error, setError } = useForm(initForm) as HookLogin
+  const { push } = useRouter()
   const login:HandleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.Proveedor, callbackUrl: `${URL_BASE}/empresaAccount/dashboard` })
+    const result = await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.Proveedor, redirect: false, callbackUrl: `${URL_BASE}/empresaAccount/dashboard` }) as {error:string|null, status:number, url:string, ok:boolean}|undefined
+    if (result) {
+      if (result.error) { setError(true) } else {
+        push('/empresaAccount/dashboard')
+      }
+    }
     setLoading(false)
   }
   return (
@@ -24,6 +31,7 @@ export default function FormEmpresaLogin () {
                 <IoLockOpenOutline/>
                 </span>
                 <h1 className="text-center text-3xl 2xl:text-4xl">Inicio de sesión de proveedores</h1>
+                {error && <p className='text-center text-red-500' >Credenciales incorrectas</p> }
                 <hr className="my-4" />
                 <article className="flex flex-col 2xl:my-6 ">
                 <label className="" htmlFor="correo">Correo</label>

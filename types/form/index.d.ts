@@ -79,8 +79,8 @@ export type HookConfirmProveedor={form:FormConfirmProveedor, handleChange:Handle
 export type HookCrearLicitacion={form:FormCrearLicitacionUser, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}
 export type HookCrearOferta={form:FormCrearOfertaProveedor, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}
 export type HookData=(session:Session|null)=>{brgs:DataSelect[], puntoSums:DataSelect[], servicios:DataSelect[]}
-export type HookForm=(initForm:Form)=>{form:Form, handleChange:HandleChange, setForm:Dispatch<SetStateAction<Form>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}
-export type HookLogin={form:FormLogin, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormLogin>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>};
+export type HookForm=(initForm:Form)=>{form:Form, handleChange:HandleChange, setForm:Dispatch<SetStateAction<Form>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>, error:boolean, setError:Dispatch<SetStateAction<boolean>>}
+export type HookLogin={form:FormLogin, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormLogin>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>, error:boolean, setError:Dispatch<SetStateAction<boolean>>};
 export type HookParamsData={brgs:DataSelect[], puntoSums:DataSelect[], servicios:DataSelect[]}
 export type HookRegistrarUsuario={form:FormRegisterUser, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormRegisterUser>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}
 export type HookRegistrarProveedor={form:FormRegisterProveedor, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormRegisterProveedor>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}
