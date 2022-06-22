@@ -1,8 +1,7 @@
-import LayoutHome from "../../components/layout";
-import FormEmpresaRegister from "../../components/common/FormEmpresaRegister";
-export default function RegisterEmpresa():JSX.Element{
-    
-    return(
+import LayoutHome from '../../components/layout'
+import FormEmpresaRegister from '../../components/common/FormEmpresaRegister'
+export default function RegisterEmpresa () {
+  return (
         <LayoutHome>
             <section className="p-8">
                 <div className="shadow-2xl flex rounded-xl overflow-hidden">
@@ -13,5 +12,5 @@ export default function RegisterEmpresa():JSX.Element{
                 </div>
             </section>
         </LayoutHome>
-    )
+  )
 }

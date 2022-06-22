@@ -1,8 +1,7 @@
-import LayoutHome from "../../components/layout";
-import FormUserRegister from "../../components/common/FormUserRegister";
-export default function RegisterUser():JSX.Element{
-    
-    return(
+import LayoutHome from '../../components/layout'
+import FormUserRegister from '../../components/common/FormUserRegister'
+export default function RegisterUser () {
+  return (
         <LayoutHome>
             <section className="p-8">
                 <div className="shadow-2xl overflow-hidden flex rounded-xl ">
@@ -13,5 +12,5 @@ export default function RegisterUser():JSX.Element{
                 </div>
             </section>
         </LayoutHome>
-    )
+  )
 }

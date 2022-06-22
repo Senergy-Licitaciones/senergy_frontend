@@ -1,7 +1,7 @@
-import LayoutProveedor from "../../../components/layout/layoutProveedor";
+import LayoutProveedor from '../../../components/layout/layoutProveedor'
 
-export default function LicitacionesGuardadas(){
-    return(
+export default function LicitacionesGuardadas () {
+  return (
         <LayoutProveedor>
             <section>
                 <h1 className="text-center dark:text-white text-2xl" >
@@ -9,5 +9,5 @@ export default function LicitacionesGuardadas(){
                 </h1>
             </section>
         </LayoutProveedor>
-    )
+  )
 }

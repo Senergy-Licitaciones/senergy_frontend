@@ -1,7 +1,7 @@
-import LayoutHome from "../components/layout";
+import LayoutHome from '../components/layout'
 
-const Pricing:React.FC=()=>{
-    return(
+const Pricing = () => {
+  return (
         <LayoutHome>
             <section className="flex py-4 px-2 flex-col justify-center min-h-screen items-center" >
                 <h1 className=" text-xl lg:text-2xl text-center 2xl:font-semibold text-gray-700 2xl:text-5xl" >Escoge el plan que más se acomode a ti!</h1>
@@ -84,6 +84,6 @@ const Pricing:React.FC=()=>{
                 </div>
             </section>
         </LayoutHome>
-    )
+  )
 }
-export default Pricing;
+export default Pricing
