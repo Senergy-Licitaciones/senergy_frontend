@@ -9,13 +9,18 @@ type Props={
     form:FormCrearLicitacionUser,
     brgs:DataSelect[],
     puntoSums:DataSelect[],
-    setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>
+    setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>,
+    update?:boolean
 }
-export default function EspecificacionesTecnicas ({ step, setStep, handleChange, form, puntoSums, brgs, setForm }:Props) {
+export default function EspecificacionesTecnicas ({ step, setStep, handleChange, form, puntoSums, brgs, setForm, update }:Props) {
   const isMount = useRef(true)
   useEffect(() => {
-    if (isMount.current === false)generateMeses()
-    isMount.current = true
+    if (update) {
+      if (isMount.current === false)generateMeses()
+    } else {
+      generateMeses()
+    }
+    isMount.current = false
   }, [form.fechaInicio, form.fechaFin])
   const generateMeses = () => {
     const fechaInicio = convertToDate(form.fechaInicio)

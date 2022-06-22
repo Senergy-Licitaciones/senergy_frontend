@@ -60,7 +60,7 @@ export default function UserAccount ({ info }:Props) {
   return (
         <LayoutUser>
             <section className="grid 2xl:text-2xl grid-cols-1 md:grid-cols-4 gap-4 grid-flow-row" >
-                <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
+                <div className="bg-white shadow-lg dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
                     <article className="flex justify-between items-center" >
                     <h2 className="font-semibold dark:text-gray-400 ">Licitaciones</h2>
                     <span className="flex items-center rounded-full p-1  bg-green-100 text-2xl 2xl:text-3xl dark:bg-green-500 dark:text-white text-green-600" >
@@ -78,7 +78,7 @@ export default function UserAccount ({ info }:Props) {
                     <p className="text-xs 2xl:text-sm text-gray-500 dark:text-slate-400" >desde el último mes</p>
                     </div>
                 </div>
-                <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4">
+                <div className="bg-white shadow-lg dark:bg-gray-800 md:row-span-2 flex flex-col p-4">
                     <article className="flex justify-between items-center" >
                     <h2 className="font-semibold dark:text-gray-400 ">Participantes</h2>
                     <span className="flex items-center rounded-full p-2 bg-orange-100 2xl:text-xl text-lg dark:bg-orange-400 dark:text-white text-orange-400" >
@@ -96,14 +96,14 @@ export default function UserAccount ({ info }:Props) {
                     <p className="text-xs 2xl:text-sm text-gray-500 dark:text-gray-400" >desde el último mes</p>
                     </div>
                 </div>
-                <div className="bg-white dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
+                <div className="bg-white shadow-lg dark:bg-gray-800 md:row-span-2 flex flex-col p-4" >
                     <article className="flex justify-between items-center" >
                     <h2 className="font-semibold dark:text-gray-400 ">Último Proveedor</h2>
                     <span className="flex items-center rounded-full p-1  bg-green-100 text-2xl 2xl:text-3xl dark:bg-green-500 dark:text-white text-green-600" >
                         <HiOutlineDocumentAdd/>
                     </span>
                     </article>
-                    <p className="text-lg 2xl:text-xl text-center font-bold dark:text-gray-400 " >{info.lastProvider}</p>
+                    <p className="text-lg 2xl:text-xl text-center  dark:text-gray-400 " >{info.lastProvider}</p>
                     <div className="flex justify-between items-center">
                     <article className="text-green-400 flex 2xl:text-base text-sm">
                     <p>+25%</p>
@@ -114,7 +114,7 @@ export default function UserAccount ({ info }:Props) {
                     <p className="text-xs 2xl:text-sm text-gray-500 dark:text-slate-400" >desde el último mes</p>
                     </div>
                 </div>
-                <div className="bg-white md:row-span-3 flex flex-col p-4 dark:bg-gray-800">
+                <div className="bg-white shadow-lg md:row-span-3 flex flex-col p-4 dark:bg-gray-800">
                     <div className="flex justify-between">
                         <article className="flex flex-col">
                             <p className="font-semibold dark:text-gray-400">{info.empresa}</p>
@@ -135,19 +135,19 @@ export default function UserAccount ({ info }:Props) {
                         </span>
                         <p className="text-gray-700 dark:text-gray-400">+51 {info.phone}</p>
                     </article>
-                    <hr className="mt-4 border-gray-700 "/>
+                    <hr className="my-4 border-gray-700 "/>
 
                     <div className="flex flex-1 items-center justify-center">
 
                     <p className="text-gray-500 text-center 2xl:text-base text-xs dark:text-gray-400">{info.correo}</p>
                     </div>
                 </div>
-                <div className="bg-white md:col-span-2 md:row-span-5 " >
+                <div className="bg-white shadow-lg md:col-span-2 md:row-span-5 " >
                     <div id="container" className="w-full " >
 
                     </div>
                 </div>
-                <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex flex-col p-4 md:row-span-5">
+                <div className="bg-white shadow-lg dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex flex-col p-4 md:row-span-5">
                     <h2 className="text-xl text-center" >Licitación más reciente</h2>
                     {'message' in info.lastLicitacion
                       ? <h2>{info.lastLicitacion.message}</h2>
@@ -165,7 +165,7 @@ export default function UserAccount ({ info }:Props) {
                         <p className="text-xl" >{info.lastLicitacion.ruc}</p>
                     </article>
                     <button className="bg-green-500 flex py-2 rounded  items-center justify-center text-gray-200 " >
-                        <span className="flex justify-center text-2xl mr-6 animate-bounce text-gray-200 items-center" >
+                        <span className="flex justify-center text-2xl mr-6 text-gray-200 items-center" >
                             <AiOutlineFolderView/>
                         </span>
                         <p>Ver licitación</p>
@@ -173,7 +173,7 @@ export default function UserAccount ({ info }:Props) {
                     </>
                     }
                 </div>
-                <div className="bg-white dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-3">
+                <div className="bg-white shadow-lg dark:text-gray-400 text-gray-600 font-semibold dark:bg-gray-800 justify-between flex items-center flex-col p-4 md:row-span-3">
                     {'message' in info.lastLicitacion
                       ? <h2>{info.lastLicitacion.message}</h2>
                       : <CalendarioFechaApertura fechaInicioApertura={info.lastLicitacion.fechaInicioapertura} fechaFinApertura={info.lastLicitacion.fechaFinApertura} />

@@ -46,7 +46,7 @@ export default function FormUpdateLicitacion ({ step, setStep, formInit, id }:Pr
         <form onSubmit={sendForm} className="flex-1 mb-4 md:m-0" >
           <InfoGeneral step={step} setStep={setStep} handleChange={handleChange} servicios={servicios} form={form} />
           <InfoDetallada step={step} setStep={setStep} handleChange={handleChange} form={form} />
-          <EspecificacionesTecnicas brgs={brgs} form={form} handleChange={handleChange} puntoSums={puntoSums} setForm={setForm} setStep={setStep} step={step} />
+          <EspecificacionesTecnicas update={true} brgs={brgs} form={form} handleChange={handleChange} puntoSums={puntoSums} setForm={setForm} setStep={setStep} step={step} />
           <EspecificacionMes update={true} form={form} loading={loading} setForm={setForm} setLoading={setLoading} step={step} />
         </form>
   )

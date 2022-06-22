@@ -39,14 +39,14 @@ export default function StaticNav () {
     }
   }
   return (
-        <aside className="hidden md:flex  sticky top-0 bottom-0 z-20 flex-col 2xl:py-6 2xl:px-10 py-4 px-4 lg:px-8 h-screen bg-gray-100 dark:bg-gray-900">
-            <div className=" " >
+        <aside className="hidden md:flex md:flex-col md:items-center shadow-xl shadow-gray-400 sticky top-0 bottom-0 z-20 flex-col 2xl:py-6 2xl:px-10 py-4 px-4 lg:px-6 h-screen bg-gray-100 dark:bg-gray-900">
+            <div className="  " >
                 <img className="w-8 2xl:w-12 h-auto" src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
             </div>
             <ul className="flex flex-col flex-1  justify-around" >
                 <li>
                     <Link href="/userAccount" >
-                        <a className={` relative after:-left-1/2 after:hidden hover:after:block after:absolute after:text-xs  after:content-["Dashboard"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 
+                        <a className={` relative flex justify-center after:-left-1/2 after:hidden  after:top-full hover:after:block after:absolute after:text-xs  after:content-["Dashboard"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 
                         ${getFormatRoute(pathname) === 'userAccount' || getFormatRoute(pathname) === 'dashboard' || getFormatRoute(pathname) === 'proveedoresFrecuentes' || getFormatRoute(pathname) === 'mejoresOfertas'
                         ? 'text-yellow-500'
  : 'text-gray-400 dark:text-white'} `} >
@@ -56,21 +56,21 @@ export default function StaticNav () {
                 </li>
                 <li>
                     <Link href="/userAccount/licitaciones" >
-                        <a className={`relative after:-left-1/2 after:hidden hover:after:block after:absolute after:text-xs  after:content-["Licitaciones"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'licitaciones' || getFormatRoute(pathname) === 'crearLicitacion' || getFormatRoute(pathname) === 'actualizarLicitacion' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                        <a className={`relative flex justify-center after:-left-1/2 after:top-full after:hidden hover:after:block after:absolute after:text-xs  after:content-["Licitaciones"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'licitaciones' || getFormatRoute(pathname) === 'crearLicitacion' || getFormatRoute(pathname) === 'actualizarLicitacion' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
                             <IoDocumentTextOutline/>
                         </a>
                     </Link>
                 </li>
                 <li>
                     <Link href="/userAccount" >
-                        <a className={`relative after:-left-1/2 after:hidden hover:after:block after:absolute after:text-xs  after:content-["Manuales"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                        <a className={`relative flex justify-center after:-left-1/2 after:top-full after:hidden hover:after:block after:absolute after:text-xs  after:content-["Manuales"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
                             <AiOutlineQuestionCircle/>
                         </a>
                     </Link>
                 </li>
                 <li>
                     <Link href="/userAccount" >
-                        <a className={`text-2xl after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                        <a className={`text-2xl flex justify-center after:-left-full after:top-full relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
                             <FiSettings/>
                         </a>
                     </Link>

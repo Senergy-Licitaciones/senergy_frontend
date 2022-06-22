@@ -4,6 +4,7 @@ import { useForm } from '../hooks/useForm'
 import Loader from './Loader'
 import { signIn } from 'next-auth/react'
 import { TypeToken } from '../../types/data/enums'
+import { IoLockOpenOutline } from 'react-icons/io5'
 const initForm:FormLogin = {
   correo: '',
   password: ''
@@ -18,36 +19,39 @@ export default function FormEmpresaLogin () {
   }
   return (
         <form onSubmit={login} className=" p-8 2xl:p-16 2xl:text-2xl flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]" >
-                <h1 className="font-bold text-3xl 2xl:text-4xl">Inicio de sesión de proveedores</h1>
+                <span className='flex items-center justify-center text-sky-500 text-3xl' >
+                <IoLockOpenOutline/>
+                </span>
+                <h1 className="text-center text-3xl 2xl:text-4xl">Inicio de sesión de proveedores</h1>
                 <hr className="my-4" />
                 <article className="flex flex-col 2xl:my-6 ">
-                <label className="font-bold" htmlFor="correo">Correo</label>
-                <input onChange={handleChange} value={form.correo} name="correo" type="email"/>
+                <label className="" htmlFor="correo">Correo</label>
+                <input className='rounded bg-gray-100 border-gray-300' onChange={handleChange} value={form.correo} name="correo" type="email"/>
                 </article>
                 <article className="flex my-3 2xl:my-6 flex-col">
-                <label className="font-bold" htmlFor="password">Contraseña</label>
-                <input onChange={handleChange} value={form.password} name="password" type="password"/>
+                <label className="" htmlFor="password">Contraseña</label>
+                <input className='rounded bg-gray-100 border-gray-300' onChange={handleChange} value={form.password} name="password" type="password"/>
                 </article>
                 {
                     loading
                       ? <article className="flex justify-center" >
                         <Loader/>
                     </article>
-                      : <button className="bg-blue-500 text-white 2xl:my-4 my-3 font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
+                      : <button className="bg-sky-500 hover:bg-sky-700 transition-colors duration-300 text-white 2xl:my-4 my-3 font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
                 }
                 <article className="flex justify-center">
 
                 <Link href="/login">
-                <a className="text-blue-400">
-                    Si posees una cuenta de usuario inicia sesión aquí!
+                <a className="text-sky-400">
+                    Si posees una cuenta de <strong>usuario</strong> inicia sesión <strong>aquí</strong>!
                 </a>
                 </Link>
                 </article>
                 <hr className="bg-gray-300 my-3 2xl:my-4 "/>
                 <article className="flex justify-center">
                 <Link href="/register/empresa">
-                    <a className="text-blue-400">
-                        ¿Aún no estás registrado? Ingresa aquí!
+                    <a className="text-sky-400">
+                        ¿Aún no estás <strong>registrado</strong>? Ingresa <strong>aquí</strong>!
                     </a>
                 </Link>
                 </article>
