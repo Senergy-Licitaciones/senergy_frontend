@@ -91,21 +91,21 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="potencia">Potencia</label>
                             <div className="flex" >
                             <input onChange={handleChange} value={form.potencia} name="potencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar potencia" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/kW</span>
+                            <span className="flex bg-gray-200 px-2 items-center" >US$/kW-mes</span>
                             </div>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHp">Energía Horas Punta</label>
                             <div className="flex">
                             <input onChange={handleChange} value={form.energiaHp} name="energiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Punta" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
+                            <span className="flex bg-gray-200 px-2 items-center" >US$/MWh</span>
                             </div>
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHfp">Energía Horas Fuera de Punta</label>
                             <div className="flex">
                             <input onChange={handleChange} value={form.energiaHfp} name="energiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Fuera de Punta" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
+                            <span className="flex bg-gray-200 px-2 items-center" >US$/MWh</span>
                             </div>
                         </article>
 
@@ -114,7 +114,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <select onChange={handleChange} value={form.potenciaFacturar} className="dark:bg-gray-800 dark:text-gray-400" name="potenciaFacturar" id="">
                                 <option value="">-Seleccionar potencia a facturar-</option>
                                 <option value={'MD en Horas Puntas del Mes'}>MD en Horas Puntas del Mes</option>
-                                <option value={'Demanda coincidente con la Máxima'}>Demanda coincidente con la Máxima Demanda del SINEI</option>
+                                <option value={'Demanda coincidente con la Máxima'}>Demanda coincidente con la Máxima Demanda del SEIN</option>
                                 <option value={'MD en Horas de Punta personalizada'}>MD en Horas de Punta personalizada</option>
                             </select>
                         </article>

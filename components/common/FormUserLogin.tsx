@@ -5,6 +5,7 @@ import Loader from './Loader'
 import { signIn, useSession } from 'next-auth/react'
 import { TypeToken } from '../../types/data/enums'
 import { IoLockOpenOutline } from 'react-icons/io5'
+import { URL_BASE } from '../../consts/config'
 const initForm:FormLogin = {
   correo: '',
   password: ''
@@ -16,7 +17,7 @@ export default function FormUserLogin () {
   const loginUser:HandleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, callbackUrl: 'http://localhost:3000/userAccount' })
+    await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, callbackUrl: `${URL_BASE}/userAccount` })
     setLoading(false)
   }
 
