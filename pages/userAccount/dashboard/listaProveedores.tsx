@@ -10,7 +10,7 @@ type Props={
   token:String,
   proveedores:InfoBasicaProveedor[]
 }
-export default function ProveedoresFrecuentes ({ proveedores }:Props) {
+export default function ListaProveedores ({ proveedores }:Props) {
   return (
         <LayoutUser>
             <section>
@@ -19,6 +19,7 @@ export default function ProveedoresFrecuentes ({ proveedores }:Props) {
         </LayoutUser>
   )
 }
+
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
   try {
     const data = await getSession({ req: ctx.req })
