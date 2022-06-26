@@ -58,12 +58,12 @@ export default function TableLicitacionesUser ({ licitaciones }:Props) {
                             </td>
                             <td className="p-4 flex justify-around" >
                                 <Link href={`/userAccount/licitaciones/${el._id}/edit`} >
-                                <a className="bg-green-500 text-white p-2 text-xl rounded" >
+                                <a className="bg-green-500 relative after:top-full after:left-0 after:text-green-500 after:hidden after:absolute hover:after:block after:text-xs after:content-['Editar'] text-white p-2 text-xl rounded" >
                                     <AiOutlineEdit/>
                                 </a>
                                 </Link>
                                  <Link href={`/userAccount/licitaciones/${el._id}`} >
-                                <a className="bg-yellow-500 text-white p-2 text-xl rounded" >
+                                <a className="bg-yellow-500 relative after:top-full after:left-0 after:text-yellow-500 after:hidden after:absolute hover:after:block after:text-xs after:content-['Detalles'] text-white p-2 text-xl rounded" >
                                     <AiOutlineFileSearch/>
                                 </a>
                                 </Link>

@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import LayoutProveedor from '../../components/layout/layoutProveedor'
+import { TypeToken } from '../../types/data/enums'
 import { verifyToken } from '../../utils/handleJwt'
 
 export default function HomeProveedor () {
@@ -19,7 +20,7 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
     console.log('antes del verify ', data)
     const result = verifyToken(data.token)
     if (!result) throw new Error('Token inválido')
-    if (result.type !== 'proveedor') throw new Error('Debe iniciar sesión como proveedor para acceder a este recurso')
+    if (result.type !== TypeToken.Proveedor) throw new Error('Debe iniciar sesión como proveedor para acceder a este recurso')
     return {
       props: {
         token: data.token

@@ -17,7 +17,6 @@ const initForm:FormCrearOfertaProveedor = {
   formulaIndexEnergia: [],
   potMinFacturable: 0,
   excesoPotencia: 100
-
 }
 type Props={
     idLicitacion:string,
@@ -31,6 +30,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
     potencia: '',
     energia: ''
   })
+
   const handleChangeIndex:HandleChange = (e) => {
     const { value, name } = e.target
     name === 'formulaIndexPotencia'
@@ -48,7 +48,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
     try {
       if (session) {
         setLoading(true)
-        const data = await methodPostAuth('proveedor/crearOferta', session.accessToken, { ...form, idLicitacion }) as Response|ErrorResponse
+        const data = await methodPostAuth('proveedor/crearOferta', session.accessToken, { ...form, excesoEnergiaHp: form.excesoPotencia > 100 ? form.excesoEnergiaHp : undefined, excesoEnergiaHfp: form.excesoPotencia > 100 ? form.excesoEnergiaHfp : undefined, licitacion: idLicitacion }) as Response|ErrorResponse
         setLoading(false)
         if ('error' in data) {
           console.log('data ', data)
@@ -192,6 +192,25 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <span className="flex bg-gray-200 px-2 items-center" >100% - 200%</span>
                             </div>
                         </article>
+                        {
+                          form.excesoPotencia > 100 &&
+                          <>
+                            <article className="flex flex-col my-4">
+                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHp">Exceso de Energía en Horas Punta</label>
+                            <div className="flex">
+                            <input onChange={handleChange} value={form.excesoEnergiaHp} name="excesoEnergiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energía HP" type="number" />
+                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
+                            </div>
+                        </article>
+                        <article className="flex flex-col my-4">
+                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHfp">Exceso de Energía en Horas Fuera de Punta</label>
+                            <div className="flex">
+                            <input onChange={handleChange} value={form.excesoEnergiaHfp} name="excesoEnergiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energia HFP" type="number" />
+                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
+                            </div>
+                        </article>
+                          </>
+                        }
                         <article className="flex justify-end pt-4">
                             {
                                 loading
