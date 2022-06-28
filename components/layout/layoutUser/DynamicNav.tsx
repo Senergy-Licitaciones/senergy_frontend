@@ -108,8 +108,8 @@ function DashboardNav () {
                     </div>
                     <ul className={`overflow-hidden transition-all duration-500 ${show.proveedores ? 'my-4 h-auto' : 'h-0'}`}>
                         <li >
-                            <Link href="/userAccount/dashboard/lista-proveedores">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'lista-proveedores' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} >
+                            <Link href="/userAccount/dashboard/listaProveedores">
+                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'listaProveedores' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} >
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
