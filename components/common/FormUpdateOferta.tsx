@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
-import { HandleChange, HandleSubmit, HookCrearOferta } from '../../types/form'
+import { FormCrearOfertaProveedor, HandleChange, HandleSubmit } from '../../types/form'
 import { useForm } from '../hooks/useForm'
 import swal from 'sweetalert'
 import { methodPutAuth } from '../../utils/fetch'
@@ -9,12 +9,13 @@ import Loader from './Loader'
 import { useRouter } from 'next/router'
 import { Oferta } from '../../types/data'
 import { useSession } from 'next-auth/react'
+import validatorCrearOferta from '../../utils/validators/crearOferta'
 type Props={
     oferta:Oferta
 }
 export default function FormUpdateOferta ({ oferta }:Props) {
   console.log('oferta ', oferta)
-  const { form, handleChange, setForm, setLoading, loading } = useForm({
+  const { form, handleChange, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'>>({
     potencia: oferta.potencia,
     energiaHp: oferta.energiaHp,
     energiaHfp: oferta.energiaHfp,
@@ -22,9 +23,10 @@ export default function FormUpdateOferta ({ oferta }:Props) {
     formulaIndexPotencia: oferta.formulaIndexPotencia,
     formulaIndexEnergia: oferta.formulaIndexEnergia,
     potMinFacturable: oferta.potMinFacturable,
-    excesoPotencia: oferta.excesoPotencia
-
-  }) as HookCrearOferta
+    excesoPotencia: oferta.excesoPotencia,
+    excesoEnergiaHp: oferta.excesoEnergiaHp,
+    excesoEnergiaHfp: oferta.excesoEnergiaHfp
+  }, validatorCrearOferta)
   const [index, setIndex] = useState({
     potencia: '',
     energia: ''
@@ -93,6 +95,7 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             <input onChange={handleChange} value={form.potencia} name="potencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar potencia" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >US$/kW</span>
                             </div>
+                            {error.potencia && <p className='text-red-500 font-light text-sm' >{error.potencia}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHp">Energía Horas Punta</label>
@@ -100,6 +103,7 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             <input onChange={handleChange} value={form.energiaHp} name="energiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Punta" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
                             </div>
+                            {error.energiaHp && <p className='text-red-500 text-sm font-light' >{error.energiaHp}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHfp">Energía Horas Fuera de Punta</label>
@@ -107,6 +111,7 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             <input onChange={handleChange} value={form.energiaHfp} name="energiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Fuera de Punta" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
                             </div>
+                            {error.energiaHfp && <p className='text-red-500 font-light text-sm' >{error.energiaHfp}</p> }
                         </article>
 
                         <article className="flex flex-col my-4">
@@ -117,6 +122,7 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                                 <option value={'Demanda coincidente con la Máxima'}>Demanda coincidente con la Máxima Demanda del SINEI</option>
                                 <option value={'MD en Horas de Punta personalizada'}>MD en Horas de Punta personalizada</option>
                             </select>
+                            {error.potenciaFacturar && <p className='text-red-500 font-light text-sm' >{error.potenciaFacturar}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="formulaIndexPotencia">Fórmula de Indexación para Potencia</label>
@@ -184,6 +190,7 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             <input onChange={handleChange} value={form.potMinFacturable} name="potMinFacturable" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Potencia Mínima Facturable" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
                             </div>
+                            {error.potMinFacturable && <p className='text-red-500 font-light text-sm' >{error.potMinFacturable}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoPotencia">Exceso de Potencia</label>
@@ -191,7 +198,27 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             <input onChange={handleChange} value={form.excesoPotencia} name="excesoPotencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage MDC" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >100% - 200%</span>
                             </div>
+                            {error.excesoPotencia && <p className='text-red-500 text-sm font-light' >{error.excesoPotencia}</p> }
                         </article>
+                        {
+                          form.excesoPotencia > 100 &&
+                          <>
+                            <article className="flex flex-col my-4">
+                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHp">Exceso de Energía en Horas Punta</label>
+                            <div className="flex">
+                            <input onChange={handleChange} value={form.excesoEnergiaHp} name="excesoEnergiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energía HP" type="number" />
+                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
+                            </div>
+                        </article>
+                        <article className="flex flex-col my-4">
+                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHfp">Exceso de Energía en Horas Fuera de Punta</label>
+                            <div className="flex">
+                            <input onChange={handleChange} value={form.excesoEnergiaHfp} name="excesoEnergiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energia HFP" type="number" />
+                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
+                            </div>
+                        </article>
+                          </>
+                        }
                         <article className="flex justify-end pt-4">
                             {
                                 loading

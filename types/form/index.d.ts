@@ -2,6 +2,7 @@
 import { Session } from 'next-auth'
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react'
 import { DataSelect } from '../data'
+import { ErrorsForm, ValidatorForm } from '../validators'
 import { Estado } from './enums'
 
 export type FactorIndex={
@@ -44,7 +45,9 @@ export type FormCrearOfertaProveedor={
     formulaIndexPotencia:FactorIndex[],
     formulaIndexEnergia:FactorIndex[],
     potMinFacturable:number,
-    excesoPotencia:number
+    excesoPotencia:number,
+    excesoEnergiaHp?:number,
+    excesoEnergiaHfp?:number
 }
 export type FormLogin={
     correo:string,
@@ -79,7 +82,7 @@ export type HookConfirmProveedor={form:FormConfirmProveedor, handleChange:Handle
 export type HookCrearLicitacion={form:FormCrearLicitacionUser, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}
 export type HookCrearOferta={form:FormCrearOfertaProveedor, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}
 export type HookData=(session:Session|null)=>{brgs:DataSelect[], puntoSums:DataSelect[], servicios:DataSelect[]}
-export type HookForm=(initForm:Form)=>{form:Form, handleChange:HandleChange, setForm:Dispatch<SetStateAction<Form>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>, error:boolean, setError:Dispatch<SetStateAction<boolean>>}
+export type HookForm= <ParamForm, ValidationForm>(initForm:ParamForm, validator:ValidatorForm<ValidationForm>)=>{form:ParamForm, handleChange:HandleChange, setForm:Dispatch<SetStateAction<ParamForm>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>, error:ErrorsForm<ValidationForm>, setError:Dispatch<SetStateAction<ErrorsForm<ValidationForm>>>}
 export type HookLogin={form:FormLogin, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormLogin>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>, error:boolean, setError:Dispatch<SetStateAction<boolean>>};
 export type HookParamsData={brgs:DataSelect[], puntoSums:DataSelect[], servicios:DataSelect[]}
 export type HookRegistrarUsuario={form:FormRegisterUser, handleChange:HandleChange, setForm:Dispatch<SetStateAction<FormRegisterUser>>, loading:boolean, setLoading:Dispatch<SetStateAction<boolean>>}

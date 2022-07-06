@@ -2,9 +2,10 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 import swal from 'sweetalert'
-import { FormCrearLicitacionUser, HandleSubmit, HookCrearLicitacion } from '../../types/form'
+import { FormCrearLicitacionUser, HandleSubmit } from '../../types/form'
 import { ErrorResponse, Response } from '../../types/methods'
 import { methodPutAuth } from '../../utils/fetch'
+import validatorCrearLicitacion from '../../utils/validators/crearLicitacion'
 import { useData } from '../hooks/useData'
 import { useForm } from '../hooks/useForm'
 import EspecificacionesTecnicas from './componentsCrearLicitacion/EspecificacionesTecnicas'
@@ -19,7 +20,7 @@ type Props={
     id:string
 }
 export default function FormUpdateLicitacion ({ step, setStep, formInit, id }:Props) {
-  const { form, setForm, loading, setLoading, handleChange } = useForm(formInit) as HookCrearLicitacion
+  const { form, setForm, loading, setLoading, handleChange, error } = useForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>(formInit, validatorCrearLicitacion)
   const { push } = useRouter()
   const { data: session, status } = useSession()
   const { brgs, puntoSums, servicios } = useData(session)
@@ -44,9 +45,9 @@ export default function FormUpdateLicitacion ({ step, setStep, formInit, id }:Pr
   }
   return (
         <form onSubmit={sendForm} className="flex-1 mb-4 md:m-0" >
-          <InfoGeneral step={step} setStep={setStep} handleChange={handleChange} servicios={servicios} form={form} />
-          <InfoDetallada step={step} setStep={setStep} handleChange={handleChange} form={form} />
-          <EspecificacionesTecnicas update={true} brgs={brgs} form={form} handleChange={handleChange} puntoSums={puntoSums} setForm={setForm} setStep={setStep} step={step} />
+          <InfoGeneral error={error} step={step} setStep={setStep} handleChange={handleChange} servicios={servicios} form={form} />
+          <InfoDetallada error={error} step={step} setForm={setForm} setStep={setStep} handleChange={handleChange} form={form} />
+          <EspecificacionesTecnicas error={error} update={true} brgs={brgs} form={form} handleChange={handleChange} puntoSums={puntoSums} setForm={setForm} setStep={setStep} step={step} />
           <EspecificacionMes update={true} form={form} loading={loading} setForm={setForm} setLoading={setLoading} step={step} />
         </form>
   )

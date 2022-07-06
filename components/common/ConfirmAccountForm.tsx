@@ -1,14 +1,14 @@
-import { useRouter } from 'next/router'
-import { FormConfirmAccount, HandleSubmit, HookConfirmAccount } from '../../types/form'
+/* import { useRouter } from 'next/router'
+import { FormConfirmAccount, HandleSubmit } from '../../types/form'
 import { ErrorResponse } from '../../types/methods'
 import { methodPut } from '../../utils/fetch'
 import { useForm } from '../hooks/useForm'
 const initForm:FormConfirmAccount = {
   code: '',
   idUser: ''
-}
+} */
 export default function ConfirmAccountForm () {
-  const { form, handleChange } = useForm(initForm) as HookConfirmAccount
+  /* const { form, handleChange } = useForm<FormConfirmAccount>(initForm)
   const { push } = useRouter()
   const confirmAccount:HandleSubmit = async (e) => {
     e.preventDefault()
@@ -32,5 +32,5 @@ export default function ConfirmAccountForm () {
 
             <button className="text-white bg-yellow-400 rounded-xl py-2 font-extrabold shadow-lg shadow-yellow-200" type="submit" >Enviar Código</button>
         </form>
-  )
+  ) */
 }

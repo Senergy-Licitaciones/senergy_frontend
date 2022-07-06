@@ -19,12 +19,12 @@ export function HomePage () {
                     <article className="flex p-4 flex-col sm:flex-row justify-center">
                         <Link href="/login">
                             <a className=" mb-4 sm:mb-0 py-4 mr-2 px-8 bg-yellow-400 text-white rounded-lg text-xl 2xl:text-2xl font-bold">
-                                Iniciar como usuario
+                                Usuario Libre
                             </a>
                         </Link>
                         <Link href="/login/empresa">
                             <a className="py-4 ml-2 px-8 shadow-2xl text-yellow-400 rounded-lg font-bold text-xl 2xl:text-2xl border-2 border-yellow-500 " >
-                                ¿Eres un proveedor?
+                                Proveedor de Energía Eléctrica
                             </a>
                         </Link>
 

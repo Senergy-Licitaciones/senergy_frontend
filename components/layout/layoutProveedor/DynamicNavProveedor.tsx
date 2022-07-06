@@ -1,6 +1,5 @@
 import { IoIosArrowForward } from 'react-icons/io'
 import { HiOutlineDocumentText } from 'react-icons/hi'
-import { RiFileHistoryLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
@@ -44,17 +43,7 @@ function LicitacionNav () {
                     </div>
 
                 </li>
-                <li className="mb-2">
-                    <div onClick={() => push('/empresaAccount/licitaciones/licitacionesGuardadas')} className="flex justify-between cursor-pointer py-2 group">
-                        <h2 className={` ${getFormatRoute(pathname) === 'licitacionesGuardadas' ? 'text-yellow-500 font-bold' : 'text-gray-400 dark:group-hover:text-white group-hover:text-gray-900'}`} >
-                            Licitaciones guardadas
-                        </h2>
-                        <span className={`transition-all duration-500 flex justify-center items-center text-gray-400 ${getFormatRoute(pathname) === 'licitacionesGuardadas' && ' text-yellow-500 rotate-90'}`}>
-                            <IoIosArrowForward/>
-                        </span>
-                    </div>
 
-                </li>
                 <li className="mb-2">
                     <div onClick={() => push('/empresaAccount/licitaciones/historialOfertas')} className="flex justify-between cursor-pointer py-2 group">
                         <h2 className={`text-gray-400 dark:group-hover:text-white group-hover:text-gray-900 ${getFormatRoute(pathname) === 'historialOfertas' && 'text-yellow-500 font-bold'}`} >
@@ -105,38 +94,10 @@ function DashboardNav () {
                             </a>
                             </Link>
                         </li>
-                        <li >
-                            <Link href="/empresaAccount/dashboard/historialLicitaciones">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'historialLicitaciones' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-white  hover:text-gray-900'} `} >
-                            <span className="flex justify-center items-center mr-2">
-                                <RiFileHistoryLine/>
-                            </span>
-                            <h3>Historial de licitaciones</h3>
-                            </a>
-                            </Link>
-                        </li>
 
                     </ul>
                 </li>
 
-                <li className="mb-2">
-                    <div className="flex justify-between cursor-pointer py-2 group">
-                        <h2 className="text-gray-400 dark:group-hover:text-white group-hover:text-gray-900" >
-                            Personal
-                        </h2>
-                        <span className="flex justify-center items-center text-gray-400">
-                            <IoIosArrowForward/>
-                        </span>
-                    </div>
-                </li>
-                <li className="mb-2">
-                    <div className="flex justify-between cursor-pointer py-2 group" >
-                        <h2 className="text-gray-400 dark:group-hover:text-white group-hover:text-gray-900">Global</h2>
-                        <span className="flex justify-center items-center text-gray-400">
-                            <IoIosArrowForward/>
-                        </span>
-                    </div>
-                </li>
             </ul>
         </div>
   )

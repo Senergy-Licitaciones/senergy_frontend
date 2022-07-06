@@ -12,6 +12,7 @@ import { ErrorResponse } from '../../types/methods'
 import { Info } from '../../types/data'
 import CalendarioFechaApertura from '../../components/common/CalendarioFechaApertura'
 import { getSession } from 'next-auth/react'
+import { TypeToken } from '../../types/data/enums'
 const Highcharts = require('highcharts')
 type Props={
     info:Info,
@@ -250,6 +251,7 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
     const data = await getSession({ req: ctx.req })
     if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
     console.log('data session ', data)
+    if (data.user.tipo !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario para acceder a este recurso')
     const info = await methodGetAuth('user/getInfoDashboard', data.accessToken) as ErrorResponse|Info
     if ('error' in info) throw new Error(info.message)
     return {

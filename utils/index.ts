@@ -5,8 +5,8 @@ export const getRouteTitle = (route:string):string => {
       return 'Dashboard General' }
     case 'dashboard':{
       return 'Historial de licitaciones' }
-    case 'proveedoresFrecuentes':{
-      return 'Proveedores frecuentes'
+    case 'listaProveedores':{
+      return 'Lista de proveedores'
     }
     case 'mejoresOfertas':{
       return 'Mejores ofertas'

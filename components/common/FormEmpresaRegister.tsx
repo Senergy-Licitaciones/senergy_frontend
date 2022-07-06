@@ -1,6 +1,6 @@
-import Link from 'next/link'
+/* import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FormRegisterProveedor, HandleSubmit, HookRegistrarProveedor } from '../../types/form'
+import { FormRegisterProveedor, HandleSubmit } from '../../types/form'
 import { ErrorResponse, ResponseRegisterProveedor } from '../../types/methods'
 import { methodPost } from '../../utils/fetch'
 import { useForm } from '../hooks/useForm'
@@ -16,9 +16,9 @@ const initForm:FormRegisterProveedor = {
   address: '',
   phone: 0,
   terms: true
-}
+} */
 export default function FormEmpresaRegister () {
-  const { form, handleChange, setForm, loading, setLoading } = useForm(initForm) as HookRegistrarProveedor
+  /* const { form, handleChange, setForm, loading, setLoading } = useForm<FormRegisterProveedor>(initForm)
   const { push } = useRouter()
   const register:HandleSubmit = async (e) => {
     try {
@@ -117,5 +117,5 @@ export default function FormEmpresaRegister () {
                         </Link>
                         </article>
                     </form>
-  )
+  ) */
 }

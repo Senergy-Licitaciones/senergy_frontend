@@ -61,6 +61,25 @@ export interface Oferta extends FormCrearOfertaProveedor{
     proveedor:string,
     licitacion:Partial<Licitacion>
 }
+export interface InfoBasicaProveedor{
+    _id:string,
+    razSocial:string,
+    ruc:string,
+    web:string,
+    correo:string,
+    address:string,
+    phone1:number,
+    createdAt:Date,
+    updatedAt:Date
+}
+export interface InfoDashboardProveedor{
+    numOfertas:number,
+    numLicitaciones:number
+    plan:Role
+    timeToExpireLic:string,
+    ofertas:Array<{fechaInicio:string, fechaFin:string, empresa:string, participantes:number}>,
+    licitaciones:Array<{fechaInicioApertura:string, fechaFinApertura:string, empresa:string, participantes:number}>
+}
 export interface TokenData{
     _id:string
 }

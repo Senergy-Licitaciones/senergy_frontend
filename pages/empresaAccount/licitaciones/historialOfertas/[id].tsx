@@ -3,6 +3,7 @@ import { getSession } from 'next-auth/react'
 import FormUpdateOferta from '../../../../components/common/FormUpdateOferta'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
 import { Oferta } from '../../../../types/data'
+import { TypeToken } from '../../../../types/data/enums'
 import { ErrorResponse } from '../../../../types/methods'
 import { methodGetAuth } from '../../../../utils/fetch'
 type Props={
@@ -25,7 +26,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const params = context.params as {id:string}
     const data = await getSession({ req: context.req })
     if (!data) throw new Error('Debe iniciar sesión primero')
-    if (data.type !== 'proveedor') throw new Error('No tiene permisos para acceder a este recurso')
+    if (data.user.tipo !== TypeToken.Proveedor) throw new Error('No tiene permisos para acceder a este recurso')
     const oferta = await methodGetAuth(`oferta/ofertaById/${params.id}`, data.accessToken) as Oferta|ErrorResponse
     if ('error' in oferta) throw new Error(oferta.message)
     return {
