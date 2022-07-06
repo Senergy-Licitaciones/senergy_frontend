@@ -118,4 +118,7 @@ export default function FormEmpresaRegister () {
                         </article>
                     </form>
   ) */
+  return (
+    <h1>En mantenimiento</h1>
+  )
 }

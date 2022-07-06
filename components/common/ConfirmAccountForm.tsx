@@ -33,4 +33,7 @@ export default function ConfirmAccountForm () {
             <button className="text-white bg-yellow-400 rounded-xl py-2 font-extrabold shadow-lg shadow-yellow-200" type="submit" >Enviar Código</button>
         </form>
   ) */
+  return (
+    <h1>En mantenimiento</h1>
+  )
 }

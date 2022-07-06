@@ -54,4 +54,7 @@ export default function ConfirmProveedorForm () {
             }
         </form>
   ) */
+  return (
+    <h1>En mantenimiento</h1>
+  )
 }
