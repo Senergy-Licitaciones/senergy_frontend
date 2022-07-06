@@ -68,7 +68,7 @@ export interface InfoBasicaProveedor{
     web:string,
     correo:string,
     address:string,
-    phone:number,
+    phone1:number,
     createdAt:Date,
     updatedAt:Date
 }

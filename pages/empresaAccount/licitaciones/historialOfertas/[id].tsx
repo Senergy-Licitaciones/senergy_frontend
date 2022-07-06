@@ -26,7 +26,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const params = context.params as {id:string}
     const data = await getSession({ req: context.req })
     if (!data) throw new Error('Debe iniciar sesión primero')
-    if (data.type !== TypeToken.Proveedor) throw new Error('No tiene permisos para acceder a este recurso')
+    if (data.user.tipo !== TypeToken.Proveedor) throw new Error('No tiene permisos para acceder a este recurso')
     const oferta = await methodGetAuth(`oferta/ofertaById/${params.id}`, data.accessToken) as Oferta|ErrorResponse
     if ('error' in oferta) throw new Error(oferta.message)
     return {

@@ -13,7 +13,7 @@ type Props={
 export default function EspecificacionMes ({ step, form, setForm, loading, update }:Props) {
   return (
         <div className={`bg-white dark:bg-gray-900 p-4 ${step === 4 ? 'block' : 'hidden'}`}>
-                        <p className="font-semibold dark:text-gray-400">Especificación por Mes</p>
+                        <p className="font-semibold dark:text-gray-400">Especificación por Mes <strong className='text-red-500' >*</strong></p>
                         <div className="max-h-96 overflow-y-auto" >
                         <table className=" bg-gray-100 dark:bg-gray-800 w-full dark:divide-gray-600 divide-y mt-4">
                             <thead>
@@ -29,7 +29,7 @@ export default function EspecificacionMes ({ step, form, setForm, loading, updat
                                     <tr className="text-sm dark:divide-gray-500 dark:text-gray-400 divide-x" key={index} >
                                         <td className="p-4 text-center" >{mes.mes}</td>
                                         <td className="p-4 text-center ">
-                                            <input className="bg-transparent dark:text-gray-400" onChange={(e) => setForm({
+                                            <input className="bg-transparent w-24 dark:text-gray-400" onChange={(e) => setForm({
                                               ...form,
                                               meses: form.meses.map((mes, i) => {
                                                 if (i === index) {
@@ -44,7 +44,7 @@ export default function EspecificacionMes ({ step, form, setForm, loading, updat
                                             })} value={form.meses[index].hp} type="number" />
                                         </td>
                                         <td className="p-4 text-center " >
-                                            <input className="bg-transparent dark:text-gray-400" onChange={(e) => setForm({
+                                            <input className="bg-transparent w-24 dark:text-gray-400" onChange={(e) => setForm({
                                               ...form,
                                               meses: form.meses.map((mes, i) => {
                                                 if (i === index) {

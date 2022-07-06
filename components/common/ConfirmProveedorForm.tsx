@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import { FormConfirmProveedor, HandleSubmit, HookConfirmProveedor } from '../../types/form'
+/* import { useRouter } from 'next/router'
+import { FormConfirmProveedor, HandleSubmit } from '../../types/form'
 import { ErrorResponse, Response } from '../../types/methods'
 import { methodPut } from '../../utils/fetch'
 import { useForm } from '../hooks/useForm'
@@ -9,9 +9,9 @@ import Loader from './Loader'
 const initForm:FormConfirmProveedor = {
   code: '',
   correo: ''
-}
+} */
 export default function ConfirmProveedorForm () {
-  const { form, handleChange, loading, setLoading } = useForm(initForm) as HookConfirmProveedor
+  /* const { form, handleChange, loading, setLoading } = useForm<FormConfirmProveedor>(initForm)
   const { push } = useRouter()
   const confirmAccount:HandleSubmit = async (e) => {
     try {
@@ -53,5 +53,5 @@ export default function ConfirmProveedorForm () {
                   : <button className="text-white bg-yellow-400 rounded-xl py-2 font-extrabold shadow-lg shadow-yellow-200" type="submit" >Enviar Código</button>
             }
         </form>
-  )
+  ) */
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
-import { FormCrearOfertaProveedor, HandleChange, HandleSubmit, HookCrearOferta } from '../../types/form'
+import { FormCrearOfertaProveedor, HandleChange, HandleSubmit } from '../../types/form'
 import { useForm } from '../hooks/useForm'
 import swal from 'sweetalert'
 import { methodPostAuth } from '../../utils/fetch'
@@ -8,6 +8,7 @@ import { ErrorResponse, Response } from '../../types/methods'
 import Loader from './Loader'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import validatorCrearOferta from '../../utils/validators/crearOferta'
 const initForm:FormCrearOfertaProveedor = {
   potencia: 0,
   energiaHp: 0,
@@ -22,7 +23,7 @@ type Props={
     idLicitacion:string,
 }
 export default function FormCrearOferta ({ idLicitacion }:Props) {
-  const { form, handleChange, setForm, setLoading, loading } = useForm(initForm) as HookCrearOferta
+  const { form, handleChange, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'>>(initForm, validatorCrearOferta)
   console.log('form ', form)
   const { push } = useRouter()
   const { data: session } = useSession()
@@ -93,6 +94,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <input onChange={handleChange} value={form.potencia} name="potencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar potencia" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >US$/kW-mes</span>
                             </div>
+                            {error.potencia && <p className='text-red-500 text-sm font-light' >{error.potencia}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHp">Energía Horas Punta</label>
@@ -100,6 +102,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <input onChange={handleChange} value={form.energiaHp} name="energiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Punta" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >US$/MWh</span>
                             </div>
+                            {error.energiaHp && <p className='text-red-500 text-sm font-light' >{error.energiaHp}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHfp">Energía Horas Fuera de Punta</label>
@@ -107,6 +110,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <input onChange={handleChange} value={form.energiaHfp} name="energiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Fuera de Punta" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >US$/MWh</span>
                             </div>
+                            {error.energiaHfp && <p className='text-red-500 font-light text-sm' >{error.energiaHfp}</p> }
                         </article>
 
                         <article className="flex flex-col my-4">
@@ -117,6 +121,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                                 <option value={'Demanda coincidente con la Máxima'}>Demanda coincidente con la Máxima Demanda del SEIN</option>
                                 <option value={'MD en Horas de Punta personalizada'}>MD en Horas de Punta personalizada</option>
                             </select>
+                            {error.potenciaFacturar && <p className='text-red-500 font-light text-sm' >{error.potenciaFacturar}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="formulaIndexPotencia">Fórmula de Indexación para Potencia</label>
@@ -184,6 +189,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <input onChange={handleChange} value={form.potMinFacturable} name="potMinFacturable" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Potencia Mínima Facturable" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
                             </div>
+                            {error.potMinFacturable && <p className='text-red-500 text-sm font-light' >{error.potMinFacturable}</p> }
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoPotencia">Exceso de Potencia</label>
@@ -191,6 +197,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <input onChange={handleChange} value={form.excesoPotencia} name="excesoPotencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage MDC" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >100% - 200%</span>
                             </div>
+                            {error.excesoPotencia && <p className='text-red-500 text-sm font-light' >{error.excesoPotencia}</p> }
                         </article>
                         {
                           form.excesoPotencia > 100 &&

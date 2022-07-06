@@ -46,7 +46,7 @@ export default function TableProveedoresToUser ({ proveedores }:Props) {
                                 {el.ruc}
                             </td>
                             <td className="p-2">
-                                {el.phone}
+                                {el.phone1}
                             </td>
                             <td className="p-2">
                                 {el.correo}
