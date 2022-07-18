@@ -23,7 +23,6 @@ export default NextAuth({
       },
       async authorize (credentials) {
         try {
-          console.log('Authorize', credentials)
           if (credentials == null) throw new Error('No se proporcionó las credenciales')
           const { correo, password, tipo } = credentials
           if (tipo === TypeToken.User) {
@@ -65,7 +64,6 @@ export default NextAuth({
   callbacks: {
     async jwt ({ user, token, account }) {
       try {
-        console.log('user ', user, 'token:', token, 'account', account)
         if (account && user) {
           return {
             ...token,
@@ -82,9 +80,8 @@ export default NextAuth({
         return token
       }
     },
-    async session ({ session, token, user }) {
+    async session ({ session, token }) {
       try {
-        console.log('session ', session, 'token', token, 'user', user)
         const payload = token as {email:string, name:string, sub:string, accessToken:string, tipo:TypeToken}
         session.accessToken = payload.accessToken
         session.user = {

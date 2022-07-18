@@ -37,10 +37,16 @@ export type FormCrearLicitacionUser={
     factorPlanta:number,
     meses:NumMes[]
 }
+export interface BloqueEnergia{
+    fechaInicio:Date,
+    fechaFin:Date,
+    energia:number
+}
 export type FormCrearOfertaProveedor={
     potencia:number,
-    energiaHp:number,
-    energiaHfp:number,
+    energiaHp:Array<BloqueEnergia>,
+    tarifa:boolean,
+    energiaHfp:Array<BloqueEnergia>,
     potenciaFacturar:string,
     formulaIndexPotencia:FactorIndex[],
     formulaIndexEnergia:FactorIndex[],
