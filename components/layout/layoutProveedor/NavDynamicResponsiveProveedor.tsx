@@ -4,7 +4,7 @@ import { RiFileHistoryLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
-import { getFormatRoute } from '../../../utils'
+import { getFormatRoute } from '../../../utils/formats'
 export default function NavDynamicResponsiveProveedor () {
   const { pathname } = useRouter()
   return (

@@ -3,15 +3,16 @@ import { IoAnalyticsOutline, IoDocumentTextOutline } from 'react-icons/io5'
 import { FiSettings } from 'react-icons/fi'
 import { AiOutlineQuestionCircle, AiOutlineUser } from 'react-icons/ai'
 import { useRouter } from 'next/router'
-import { getFormatRoute } from '../../../utils'
+import { getFormatRoute } from '../../../utils/formats'
 import { useState } from 'react'
-import { methodPutAuth } from '../../../utils/fetch'
-import { ErrorResponse, Response } from '../../../types/methods'
 import swal from 'sweetalert'
 import { signOut, useSession } from 'next-auth/react'
+import { logoutUser } from '../../../services/auth'
+import Loader from '../../common/Loader'
 export default function StaticNav () {
   const { pathname } = useRouter()
   const { data: session } = useSession()
+  if (!session) return <Loader/>
   const [show, setShow] = useState(false)
   const logout = async () => {
     try {
@@ -22,17 +23,11 @@ export default function StaticNav () {
         buttons: ['Cancelar', true],
         dangerMode: true
       }).then(async (willLogout) => {
-        if (willLogout && session) {
-          const response = await methodPutAuth('auth/logoutUsuario', session.accessToken, {}) as Response|ErrorResponse
-          if ('error' in response) {
-            console.log('error al cerrar sesión ', response.message, ' ', response.error)
-            swal(response.message, response.error.toString(), 'error')
-          } else {
-            await signOut()
-          }
-        } else {
-          await signOut()
+        if (willLogout) {
+          await logoutUser(session.accessToken)
+          return await signOut()
         }
+        return true
       })
     } catch (err) {
       console.log('error ', err)

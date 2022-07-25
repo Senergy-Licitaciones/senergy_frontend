@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { getFormatRoute } from '../../utils'
+import { getFormatRoute } from '../../utils/formats'
 import AsideBurger from './AsideBurger'
 export default function HeaderHome () {
   const { pathname } = useRouter()

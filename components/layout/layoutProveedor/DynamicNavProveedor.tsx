@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
 import { useTemplate } from '../../../stateManagement/contexts/HandleTemplateContext'
-import { getFormatRoute } from '../../../utils'
+import { getFormatRoute } from '../../../utils/formats'
 export default function DynamicNavProveedor () {
   const { template } = useTemplate()
   const { pathname } = useRouter()

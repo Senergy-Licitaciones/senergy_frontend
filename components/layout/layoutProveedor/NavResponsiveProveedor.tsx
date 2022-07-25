@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { getFormatRoute } from '../../../utils'
+import { getFormatRoute } from '../../../utils/formats'
 import { IoAnalyticsOutline } from 'react-icons/io5'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 import { FiSettings } from 'react-icons//fi'
