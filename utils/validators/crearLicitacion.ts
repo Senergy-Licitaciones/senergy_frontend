@@ -26,7 +26,7 @@ const validatorCrearLicitacion:ValidatorForm<FormCrearLicitacionUser, Omit<FormC
   if (!form.brg.trim()) errors.brg = 'Campo requerido'
   if (!form.empresa.trim()) errors.empresa = 'Campo requerido'
   if (!form.estado.trim()) errors.estado = 'Campo requerido'
-  if (form.factorPlanta <= 0) errors.factorPlanta = 'Debe ser mayor a 0'
+  if (form.factorPlanta <= 0 || form.factorPlanta >= 1) errors.factorPlanta = 'Debe estar entre 0 y 1'
   if (!form.fechaInicioApertura.trim()) {
     errors.fechaInicioApertura = 'Campo requerido'
   } else if (convertToDate(form.fechaInicioApertura) < new Date())errors.fechaInicioApertura = 'Fecha inválida'

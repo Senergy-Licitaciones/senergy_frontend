@@ -13,6 +13,8 @@ type Props={
 export default function EnergiaBloque ({ form, setForm, tipoEnergia }:Props) {
   console.log(tipoEnergia)
   const addBloque = () => {
+    const tarifa = tipoEnergia === Energia.Hp ? 'tarifaEnergiaHp' : 'tarifaEnergiaHfp'
+    !form[tarifa] &&
     setForm({
       ...form,
       [tipoEnergia]: [...form[tipoEnergia], { fechaInicio: new Date(), fechaFin: new Date(), energia: 0 }]
@@ -22,7 +24,17 @@ export default function EnergiaBloque ({ form, setForm, tipoEnergia }:Props) {
         <article className="flex flex-col my-4">
           <label className='text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg' htmlFor={tipoEnergia + '-bloque'}>{tipoEnergia === Energia.Hp ? 'Energía en Horas Punta' : 'Energía en Horas Fuera de Punta'}</label>
            <article className='flex justify-center' >
-            <span id={tipoEnergia + '-bloque'} onClick={addBloque} className="bg-green-500  text-white justify-center cursor-pointer flex font-bold py-2 px-4 rounded" >Agregar Bloque</span>
+            <span id={tipoEnergia + '-bloque'} onClick={addBloque} className={`bg-green-500  text-white justify-center ${tipoEnergia === Energia.Hp ? (form.tarifaEnergiaHp ? 'opacity-30' : 'cursor-pointer') : (form.tarifaEnergiaHfp ? 'opacity-30' : 'cursor-pointer')} flex font-bold py-2 px-4 rounded`} >Agregar Bloque</span>
+           </article>
+           <article className='flex items-center pl-4 py-6'>
+            <input onChange={(e) => {
+              setForm({
+                ...form,
+                [tipoEnergia === Energia.Hp ? 'tarifaEnergiaHp' : 'tarifaEnergiaHfp']: e.target.checked,
+                [tipoEnergia]: e.target.checked ? [] : form[tipoEnergia]
+              })
+            }} type="checkbox" checked={tipoEnergia === Energia.Hp ? form.tarifaEnergiaHp : form.tarifaEnergiaHfp} name={tipoEnergia === Energia.Hp ? 'tarifaEnergiaHp' : 'tarifaEnergiaHfp'}/>
+            <label className='ml-4 text-sm text-gray-500' htmlFor={tipoEnergia === Energia.Hp ? 'tarifaEnergiaHp' : 'tarifaEnergiaHfp'}>Modalidad por tarifa</label>
            </article>
             {
                 form[tipoEnergia].map((_el, i) => (

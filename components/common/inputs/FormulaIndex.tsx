@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-import { TypeFormulaIndex } from '../../../types/data/enums'
+import { Parametro, TypeFormulaIndex } from '../../../types/data/enums'
 import { FormCrearOfertaProveedor, HandleChange } from '../../../types/form'
 type Props={
     setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>,
@@ -20,12 +20,15 @@ export default function FormulaIndex ({ setForm, form, formula }:Props) {
   }
   return (
         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="formulaIndexPotencia">Fórmula de Indexación para Potencia</label>
+                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="formulaIndexPotencia">Fórmula de Indexación para {formula === TypeFormulaIndex.Potencia ? 'Potencia' : 'Energía'}</label>
                             <select onChange={handleChangeIndex} value={index} className="dark:bg-gray-800 dark:text-gray-400" name="formulaIndexPotencia" id="">
                                 <option value="">-Seleccionar un índice-</option>
-                                <option value="PPI">PPI</option>
-                                <option value="PGN">PGN</option>
-                                <option value="PG">PG</option>
+                                <option value="PPI">{'PPI - ' + Parametro.PPI}</option>
+                                <option value="PGN">{'PGN - ' + Parametro.PGN}</option>
+                                <option value="PG">{'PG - ' + Parametro.PG}</option>
+                                <option value="PC">{'PC - ' + Parametro.PC}</option>
+                                <option value="PR500">{'PR500 - ' + Parametro.PR500}</option>
+                                <option value="PR6">{'PR6 - ' + Parametro.PR6}</option>
                             </select>
                             <span onClick={generarFormula} className="bg-sky-600 block cursor-pointer py-2 px-4 text-white" >Agregar índice</span>
                             {form[formula].map((el, i) => (

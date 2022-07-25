@@ -16,7 +16,7 @@ import swal from 'sweetalert'
 import validatorCrearLicitacion from '../../utils/validators/crearLicitacion'
 type Props={
     step:number,
-    setStep:Dispatch<SetStateAction<number>>
+    setStep:Dispatch<SetStateAction<number>>,
 }
 
 const formInit:FormCrearLicitacionUser = {
@@ -39,9 +39,9 @@ const formInit:FormCrearLicitacionUser = {
   meses: []
 }
 export default function FormCrearLicitacion ({ step, setStep }:Props) {
-  const { form, handleChange, setForm, loading, setLoading, error } = useForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'description'|'requisitos'|'meses'>>(formInit, validatorCrearLicitacion)
-  const { push } = useRouter()
   const { data: session, status } = useSession()
+  const { form, handleChange, setForm, loading, setLoading, error } = useForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'description'|'requisitos'|'meses'>>({ ...formInit, empresa: session ? session.user.name : '' }, validatorCrearLicitacion)
+  const { push } = useRouter()
   const { servicios, brgs, puntoSums } = useData(session)
   useEffect(() => {
     if (status === 'unauthenticated')push('/login')

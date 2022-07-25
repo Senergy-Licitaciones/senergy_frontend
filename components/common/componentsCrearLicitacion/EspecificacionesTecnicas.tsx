@@ -53,9 +53,8 @@ export default function EspecificacionesTecnicas ({ step, setStep, handleChange,
         <div className={`bg-white dark:bg-gray-900 p-4 ${step === 3 ? 'block' : 'hidden'}`}>
                         <p className="font-semibold dark:text-gray-400 ">Especificaciones Técnicas</p>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="empresa">Empresa <strong className='text-red-500' >*</strong></label>
-                            <input onChange={handleChange} value={form.empresa} name="empresa" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Nombre de Empresa" type="text" />
-                            {error.empresa && <p className='text-red-500 font-light text-sm' >{error.empresa}</p> }
+                            <label className="text-gray-500 text-sm" htmlFor="empresa">Razón Social <strong className='text-red-500' >*</strong></label>
+                            <input disabled value={form.empresa} name="empresa" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Nombre de Empresa" type="text" />
                         </article>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="fechaInicio">Fecha de Inicio <strong className='text-red-500' >*</strong></label>

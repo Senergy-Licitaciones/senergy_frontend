@@ -38,7 +38,7 @@ export default function InfoDetallada ({ handleChange, step, setStep, form, setF
                             {error.estado && <p className='text-red-500 font-light text-sm' >{error.estado}</p> }
                         </article>
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="author">Autor <strong className='text-red-500' >*</strong></label>
+                            <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="author">Responsable de Licitación <strong className='text-red-500' >*</strong></label>
                             <input onChange={handleChange} value={form.author} name="author" className="rounded dark:bg-gray-800 dark:text-gray-400 placeholder:text-sm " placeholder="Nombre completo" type="text" />
                             {error.author && <p className='text-red-500 font-light text-sm' >{error.author}</p> }
                         </article>

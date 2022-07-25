@@ -12,10 +12,13 @@ import EnergiaBloque from './inputs/EnergiaBloque'
 import { Energia, TypeFormulaIndex } from '../../types/data/enums'
 import FormulaIndex from './inputs/FormulaIndex'
 import InputExcesoPotencia from './inputs/InputExcesoPotencia'
+import PotenciaBloque from './inputs/PotenciaBloque'
 const initForm:FormCrearOfertaProveedor = {
-  potencia: 0,
+  potencia: [],
   energiaHp: [],
-  tarifa: false,
+  tarifaPotencia: false,
+  tarifaEnergiaHp: false,
+  tarifaEnergiaHfp: false,
   energiaHfp: [],
   potenciaFacturar: '',
   formulaIndexPotencia: [],
@@ -63,18 +66,7 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                             <AiOutlineQuestionCircle/>
                         </span>
                         </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="potencia">Potencia</label>
-                            <div className="flex" >
-                            <input onChange={handleChange} value={form.potencia} name="potencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar potencia" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/kW-mes</span>
-                            </div>
-                            {error.potencia && <p className='text-red-500 text-sm font-light' >{error.potencia}</p> }
-                            <article>
-                            <input onChange={(e) => setForm({ ...form, tarifa: e.target.checked })} type="checkbox" className='mr-4' name="tarifa" checked={form.tarifa} />
-                            <label htmlFor="tarifa">Modalidad por Tarifa</label>
-                            </article>
-                        </article>
+                        <PotenciaBloque form={form} setForm={setForm} />
                         <EnergiaBloque tipoEnergia={Energia.Hp} error={error} form={form} setForm={setForm} />
                         <EnergiaBloque error={error} form={form} setForm={setForm} tipoEnergia={Energia.Hfp} />
                         <article className="flex flex-col my-4">
