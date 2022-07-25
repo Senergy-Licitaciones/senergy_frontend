@@ -9,7 +9,7 @@ import Loader from './Loader'
 import { useRouter } from 'next/router'
 import { Oferta } from '../../types/data'
 import { useSession } from 'next-auth/react'
-import validatorCrearOferta from '../../utils/validators/crearOferta'
+import validatorCrearOferta from '../../utils/validators/crearOferta.validator'
 type Props={
     oferta:Oferta
 }

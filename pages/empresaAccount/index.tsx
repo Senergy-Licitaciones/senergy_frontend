@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import LayoutProveedor from '../../components/layout/layoutProveedor'
 import { TypeToken } from '../../types/data/enums'
-import { verifyToken } from '../../utils/handleJwt'
+import { verifyToken } from '../../utils/handleJwt.utility'
 
 export default function HomeProveedor () {
   return (

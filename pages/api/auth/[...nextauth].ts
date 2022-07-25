@@ -4,7 +4,7 @@ import { TokenProveedor, TokenUser } from '../../../types/data'
 import { TypeToken } from '../../../types/data/enums'
 import { ErrorResponse, LoginResponse } from '../../../types/methods'
 import { methodPut } from '../../../utils/fetch'
-import { decode } from '../../../utils/handleJwt'
+import { decode } from '../../../utils/handleJwt.utility'
 export default NextAuth({
   providers: [
     CredentialsProvider({

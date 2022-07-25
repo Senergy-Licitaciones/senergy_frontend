@@ -1,3 +1,3 @@
-export * from './generateNumber'
-export * from './handleJwt'
-export * from './fetcher'
+export * from './generateNumber.utility'
+export * from './handleJwt.utility'
+export * from './fetcher.utility'

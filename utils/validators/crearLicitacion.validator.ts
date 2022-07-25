@@ -3,7 +3,7 @@ import { FormCrearLicitacionUser } from '../../types/form'
 import { ErrorsForm, ValidatorForm } from '../../types/validators'
 import { convertToDate } from '../formats'
 
-const validatorCrearLicitacion:ValidatorForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'| 'meses'|'description'|'requisitos'>> = (form) => {
+export const validatorCrearLicitacion:ValidatorForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'| 'meses'|'description'|'requisitos'>> = (form) => {
   const errors:ErrorsForm<Omit<FormCrearLicitacionUser, 'tipoLicitacion'| 'meses'|'description'|'requisitos'>> = {
     author: '',
     brg: '',
@@ -46,4 +46,3 @@ const validatorCrearLicitacion:ValidatorForm<FormCrearLicitacionUser, Omit<FormC
   if (!form.tipoServicio.trim()) errors.tipoServicio = 'Campo requerido'
   return errors
 }
-export default validatorCrearLicitacion

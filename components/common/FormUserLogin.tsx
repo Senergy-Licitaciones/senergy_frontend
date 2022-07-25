@@ -8,7 +8,7 @@ import { IoLockOpenOutline } from 'react-icons/io5'
 import { URL_BASE } from '../../consts/config'
 import { useRouter } from 'next/router'
 import swal from 'sweetalert'
-import validatorLogin from '../../utils/validators/login'
+import validatorLogin from '../../utils/validators/login.validator'
 const initForm:FormLogin = {
   correo: '',
   password: ''

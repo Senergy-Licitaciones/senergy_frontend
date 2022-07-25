@@ -1,7 +1,7 @@
 import { FormCrearOfertaProveedor } from '../../types/form'
 import { ErrorsForm, ValidatorForm } from '../../types/validators'
 
-const validatorCrearOferta:ValidatorForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'formulaIndexPotencia'|'formulaIndexEnergia'|'excesoEnergiaHp'|'excesoEnergiaHfp'|'potencia'|'energiaHp'|'energiaHfp'|'tarifaPotencia'|'tarifaEnergiaHp'|'tarifaEnergiaHfp'>> = (form) => {
+export const validatorCrearOferta:ValidatorForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'formulaIndexPotencia'|'formulaIndexEnergia'|'excesoEnergiaHp'|'excesoEnergiaHfp'|'potencia'|'energiaHp'|'energiaHfp'|'tarifaPotencia'|'tarifaEnergiaHp'|'tarifaEnergiaHfp'>> = (form) => {
   const errors:ErrorsForm<Omit<FormCrearOfertaProveedor, 'tarifaPotencia'|'tarifaEnergiaHfp'|'tarifaEnergiaHp' |'potencia'|'energiaHp'|'energiaHfp'| 'formulaIndexPotencia'|'formulaIndexEnergia'|'excesoEnergiaHp'|'excesoEnergiaHfp'>> = {
     excesoPotencia: '',
     potenciaFacturar: '',
@@ -12,4 +12,3 @@ const validatorCrearOferta:ValidatorForm<FormCrearOfertaProveedor, Omit<FormCrea
   if (form.excesoPotencia < 100 || form.excesoPotencia > 200) errors.excesoPotencia = 'El exceso de potencia debe estar entre 100 - 200 %'
   return errors
 }
-export default validatorCrearOferta

@@ -13,7 +13,7 @@ import { Estado } from '../../types/form/enums'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import swal from 'sweetalert'
-import validatorCrearLicitacion from '../../utils/validators/crearLicitacion'
+import validatorCrearLicitacion from '../../utils/validators/crearLicitacion.validator'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>,
