@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
-import { HandleChange, HookForm } from '../../types/form'
+import { HandlerChange } from '../../types/form'
+import { UseForm } from '../../types/hooks'
 
-export const useForm:HookForm = (initForm, validator) => {
+export const useForm:UseForm = (initForm, validator) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [form, setForm] = useState(initForm)
   const [error, setError] = useState(validator(initForm))
   useEffect(() => {
     setError(validator(form))
   }, [form])
-  const handleChange:HandleChange = (e) => {
+  const handleChange:HandlerChange = (e) => {
     const { name, value } = e.target
     setForm({
       ...form,

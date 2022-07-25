@@ -4,7 +4,7 @@ import { FormCrearOfertaProveedor, HandleChange, HandleSubmit } from '../../type
 import { useForm } from '../hooks/useForm'
 import swal from 'sweetalert'
 import { methodPutAuth } from '../../utils/fetch'
-import { ErrorResponse, Response } from '../../types/methods'
+import { ErrorResponse, Response } from '../../types/hooks'
 import Loader from './Loader'
 import { useRouter } from 'next/router'
 import { Oferta } from '../../types/models'

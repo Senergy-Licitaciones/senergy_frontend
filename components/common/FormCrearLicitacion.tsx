@@ -8,7 +8,7 @@ import InfoDetallada from './componentsCrearLicitacion/InfoDetallada'
 import InfoGeneral from './componentsCrearLicitacion/InfoGeneral'
 
 import { methodPostAuth } from '../../utils/fetch'
-import { Response, ErrorResponse } from '../../types/methods'
+import { Response, ErrorResponse } from '../../types/hooks'
 import { Estado } from '../../types/form/enums'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'

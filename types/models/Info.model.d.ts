@@ -1,4 +1,4 @@
-import { Response } from '../methods'
+import { Response } from '../hooks'
 
 export interface Info{
     numLicitaciones:number,
