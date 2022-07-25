@@ -1,9 +1,9 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { TokenProveedor, TokenUser } from '../../../types/data'
-import { TypeToken } from '../../../types/data/enums'
-import { ErrorResponse, LoginResponse } from '../../../types/methods'
-import { methodPut } from '../../../utils/fetch'
+import { loginUser } from '../../../services/auth'
+import { loginProveedor } from '../../../services/auth/loginProveedor.service'
+import { TokenProveedor, TokenUser } from '../../../types/models'
+import { TypeToken } from '../../../types/models/enums'
 import { decode } from '../../../utils/handleJwt.utility'
 export default NextAuth({
   providers: [
@@ -26,31 +26,29 @@ export default NextAuth({
           if (credentials == null) throw new Error('No se proporcionó las credenciales')
           const { correo, password, tipo } = credentials
           if (tipo === TypeToken.User) {
-            const data = await methodPut('auth/loginUsuario', { correo, password }) as LoginResponse|ErrorResponse
-            if ('error' in data) throw new Error(data.message)
-            const { _id, empresa, type } = decode(data.token) as TokenUser
+            const data = await loginUser({ correo, password })
+            const { _id, empresa, type } = decode(data.accessToken) as TokenUser
             return {
               email: correo,
               sub: _id,
               name: empresa,
               tipo: type,
-              token: data.token
+              token: data.accessToken
             }
           }
           if (tipo === TypeToken.Proveedor) {
-            const data = await methodPut('auth/loginProveedor', { correo, password }) as LoginResponse|ErrorResponse
-            if ('error' in data) throw new Error(data.message)
-            const { _id, type, razSocial } = decode(data.token) as TokenProveedor
+            const data = await loginProveedor({ correo, password })
+            const { _id, type, razSocial } = decode(data.accessToken) as TokenProveedor
 
             return {
               email: correo,
               sub: _id,
               tipo: type,
               name: razSocial,
-              token: data.token
+              token: data.accessToken
             }
           }
-          return null
+          throw new Error('No se proporcionó el tipo de usuario')
         } catch (err) {
           console.log('error ', err)
           return null

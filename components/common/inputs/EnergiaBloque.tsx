@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Energia } from '../../../types/data/enums'
+import { Energia } from '../../../types/models/enums'
 import { FormCrearOfertaProveedor } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
 import { convertDateToString, convertToDate } from '../../../utils/formats'

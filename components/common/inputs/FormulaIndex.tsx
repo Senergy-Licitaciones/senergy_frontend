@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-import { Parametro, TypeFormulaIndex } from '../../../types/data/enums'
+import { Parametro, TypeFormulaIndex } from '../../../types/models/enums'
 import { FormCrearOfertaProveedor, HandleChange } from '../../../types/form'
 type Props={
     setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>,

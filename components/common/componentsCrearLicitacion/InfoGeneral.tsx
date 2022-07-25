@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
-import { DataSelect } from '../../../types/data'
+import { DataSelect } from '../../../types/models'
 import { FormCrearLicitacionUser, HandleChange } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
 type Props={

@@ -7,7 +7,7 @@ import { methodPutAuth } from '../../utils/fetch'
 import { ErrorResponse, Response } from '../../types/methods'
 import Loader from './Loader'
 import { useRouter } from 'next/router'
-import { Oferta } from '../../types/data'
+import { Oferta } from '../../types/models'
 import { useSession } from 'next-auth/react'
 import validatorCrearOferta from '../../utils/validators/crearOferta.validator'
 type Props={

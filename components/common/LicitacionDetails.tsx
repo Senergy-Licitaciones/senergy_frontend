@@ -1,4 +1,4 @@
-import { Licitacion } from '../../types/data'
+import { Licitacion } from '../../types/models'
 
 type Props={
     licitacion:Omit<Licitacion, 'usuario'|'participantes'>

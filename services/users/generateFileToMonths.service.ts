@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios'
 import { FetcherBodyAuth } from '../../types/fetch'
 import { NumMes } from '../../types/form'
 import { senergy } from '../../utils/fetcher.utility'
-import handleAxiosError from '../../utils/handleErrors/handleAxiosError.utility'
+import { handleAxiosError } from '../../utils/handleErrors'
 
 const generateFileToMonths:FetcherBodyAuth<NumMes[], {filename:string}> = async (meses, token) => {
   try {

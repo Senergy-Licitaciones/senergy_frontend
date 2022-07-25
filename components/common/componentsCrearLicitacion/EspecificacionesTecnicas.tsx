@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
-import { DataSelect } from '../../../types/data'
+import { DataSelect } from '../../../types/models'
 import { FormCrearLicitacionUser, HandleChange, NumMes } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
 import { convertToDate } from '../../../utils/formats'
