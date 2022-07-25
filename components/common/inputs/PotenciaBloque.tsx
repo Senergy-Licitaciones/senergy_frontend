@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 import { FormCrearOfertaProveedor } from '../../../types/form'
-import { convertDateToString, convertToDate } from '../../../utils'
+import { convertDateToString, convertToDate } from '../../../utils/formats'
 
 type Props={
     form:FormCrearOfertaProveedor,

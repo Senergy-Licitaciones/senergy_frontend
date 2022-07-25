@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { DataSelect } from '../../../types/data'
 import { FormCrearLicitacionUser, HandleChange, NumMes } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
-import { convertToDate } from '../../../utils'
+import { convertToDate } from '../../../utils/formats'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>,
