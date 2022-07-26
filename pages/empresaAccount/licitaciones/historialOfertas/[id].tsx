@@ -3,8 +3,8 @@ import { getSession } from 'next-auth/react'
 import FormUpdateOferta from '../../../../components/common/FormUpdateOferta'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
 import { getOferta } from '../../../../services/ofertas'
-import { Oferta } from '../../../../types/models'
-import { TypeToken } from '../../../../types/models/enums'
+import { Oferta } from '@mytypes/models'
+import { TypeToken } from '@mytypes/models/enums'
 
 type Props={
     id:string,

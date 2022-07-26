@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
-import { FetcherBodyAuth } from '../../types/fetch'
-import { NumMes } from '../../types/form'
+import { FetcherBodyAuth } from '@mytypes/fetch'
+import { NumMes } from '@mytypes/form'
 import { senergy } from '../../utils/fetcher.utility'
 import { handleAxiosError } from '../../utils/handleErrors'
 

@@ -4,8 +4,8 @@ import { getSession } from 'next-auth/react'
 import SteperUpdateLicitacion from '../../../../components/common/SteperUpdateLicitacion'
 import LayoutUser from '../../../../components/layout/layoutUser/LayoutUser'
 import { getLicitacion } from '../../../../services/licitaciones'
-import { Licitacion } from '../../../../types/models'
-import { TypeToken } from '../../../../types/models/enums'
+import { Licitacion } from '@mytypes/models'
+import { TypeToken } from '@mytypes/models/enums'
 type Props={
   licitacion:Omit<Licitacion, 'usuario'|'participantes'>,
   data:Session,

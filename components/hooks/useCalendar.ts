@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { UseCalendar } from '../../types/hooks/useCalendar'
+import { UseCalendar } from '@mytypes/hooks'
 import { convertToDate } from '../../utils/formats'
 
 export const useCalendar:UseCalendar = (fechaInicioApertura, fechaFinApertura) => {

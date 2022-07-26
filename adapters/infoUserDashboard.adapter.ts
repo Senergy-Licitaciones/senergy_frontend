@@ -1,4 +1,4 @@
-import { Info } from '../types/models'
+import { Info } from '@mytypes/models'
 
 export const createInfoUserDashboardAdapter = (response:any):Info => {
   return {

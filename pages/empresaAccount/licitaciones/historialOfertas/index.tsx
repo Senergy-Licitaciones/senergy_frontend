@@ -1,10 +1,10 @@
 import { GetServerSideProps } from 'next'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
-import { Oferta } from '../../../../types/models'
+import { Oferta } from '@mytypes/models'
 import TableOfertas from '../../../../components/common/TableOfertas'
 import { getSession } from 'next-auth/react'
 import { Session } from 'next-auth'
-import { TypeToken } from '../../../../types/models/enums'
+import { TypeToken } from '@mytypes/models/enums'
 import { getOfertas } from '../../../../services/ofertas'
 type Props={
     ofertas:Oferta[],

@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { FetcherAuth } from '../../types/fetch'
+import { FetcherAuth } from '@mytypes/fetch'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 

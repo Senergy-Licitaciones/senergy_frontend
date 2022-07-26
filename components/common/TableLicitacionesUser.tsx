@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { AiOutlineEdit, AiOutlineFileSearch } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
-import { Licitacion } from '../../types/models'
+import { Licitacion } from '@mytypes/models'
 type Props={
     licitaciones:Array<Licitacion>
 }

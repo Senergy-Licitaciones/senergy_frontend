@@ -1,5 +1,5 @@
-import { FormCrearOfertaProveedor } from '../../types/form'
-import { ErrorsForm, ValidatorForm } from '../../types/validators'
+import { FormCrearOfertaProveedor } from '@mytypes/form'
+import { ErrorsForm, ValidatorForm } from '@mytypes/validators'
 
 export const validatorCrearOferta:ValidatorForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'formulaIndexPotencia'|'formulaIndexEnergia'|'excesoEnergiaHp'|'excesoEnergiaHfp'|'potencia'|'energiaHp'|'energiaHfp'|'tarifaPotencia'|'tarifaEnergiaHp'|'tarifaEnergiaHfp'>> = (form) => {
   const errors:ErrorsForm<Omit<FormCrearOfertaProveedor, 'tarifaPotencia'|'tarifaEnergiaHfp'|'tarifaEnergiaHp' |'potencia'|'energiaHp'|'energiaHfp'| 'formulaIndexPotencia'|'formulaIndexEnergia'|'excesoEnergiaHp'|'excesoEnergiaHfp'>> = {

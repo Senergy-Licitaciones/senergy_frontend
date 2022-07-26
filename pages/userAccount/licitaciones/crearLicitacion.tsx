@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import SteperCrearLicitacion from '../../../components/common/SteperCrearLicitacion'
 import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
-import { TypeToken } from '../../../types/models/enums'
+import { TypeToken } from '@mytypes/models/enums'
 
 export default function CrearLicitacion () {
   return (

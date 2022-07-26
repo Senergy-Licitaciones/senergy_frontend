@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FormCrearLicitacionUser } from '../../types/form'
+import { FormCrearLicitacionUser } from '@mytypes/form'
 import AsideSteper from './AsideSteper'
 import FormUpdateLicitacion from './FormUpdateLicitacion'
 type Props={

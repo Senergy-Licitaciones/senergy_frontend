@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { OPTIONS_ESTADO } from '../../../consts'
-import { FormCrearLicitacionUser, HandlerChange } from '../../../types/form'
-import { ErrorsForm } from '../../../types/validators'
+import { FormCrearLicitacionUser, HandlerChange } from '@mytypes/form'
+import { ErrorsForm } from '@mytypes/validators'
 import generateNumber from '../../../utils/generateNumber.utility'
 import InputSelect from '../inputs/InputSelect'
 

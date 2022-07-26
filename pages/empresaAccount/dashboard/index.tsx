@@ -5,8 +5,8 @@ import LayoutProveedor from '../../../components/layout/layoutProveedor'
 import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { TypeToken } from '../../../types/models/enums'
-import { InfoDashboardProveedor } from '../../../types/models'
+import { TypeToken } from '@mytypes/models/enums'
+import { InfoDashboardProveedor } from '@mytypes/models'
 import { getInfoDashboard } from '../../../services/proveedores'
 type Props={
   infoDashboard:InfoDashboardProveedor,
