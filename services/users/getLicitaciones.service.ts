@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios'
+import { createLicitacionesAdapter } from '@/adapters'
 import { FetcherAuth } from '../../types/fetch'
 import { Licitacion } from '../../types/models'
 import { senergy } from '../../utils'
@@ -10,8 +10,8 @@ export const getLicitaciones:FetcherAuth<Licitacion[]> = async (token) => {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }) as AxiosResponse<Licitacion[]>
-    return data
+    })
+    return createLicitacionesAdapter(data)
   } catch (err) {
     throw handleAxiosError(err)
   }
