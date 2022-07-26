@@ -19,8 +19,8 @@ export const createLicitacionesAdapter = (response:any[]):Omit<Licitacion, 'tipo
       author: licitacion.author,
       usuario: licitacion.usuario,
       participantes: licitacion.participantes,
-      createdAt: licitacion.createdAt,
-      updatedAt: licitacion.updatedAt
+      createdAt: new Date(licitacion.createdAt),
+      updatedAt: new Date(licitacion.updatedAt)
     }
   })
 }

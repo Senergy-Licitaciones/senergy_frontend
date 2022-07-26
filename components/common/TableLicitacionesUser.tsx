@@ -6,6 +6,7 @@ type Props={
     licitaciones:Array<Omit<Licitacion, 'puntoSum'|'brg'|'tipoServicio'>>
 }
 export default function TableLicitacionesUser ({ licitaciones }:Props) {
+  console.log('table ', licitaciones)
   return (
         <>
         <div className="flex justify-between">
@@ -41,8 +42,9 @@ export default function TableLicitacionesUser ({ licitaciones }:Props) {
                             <td className="font-semibold p-4" >
                                 {el.numLicitacion}
                             </td>
-                            <td className="font-semibold p-4">
+                            <td className="font-semibold p-4 relative">
                                 {el.title}
+                                {el.createdAt.valueOf() !== el.updatedAt.valueOf() && <span className="absolute bottom-2 left-2 text-xs font-light dark:text-yellow-400 text-yellow-800">Modificado por {el.author} el {el.updatedAt.toLocaleDateString()}</span>}
                             </td>
                             <td className="p-4">
                                 {el.fechaInicioApertura}
