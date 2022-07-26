@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { FormCrearLicitacionUser, NumMes } from '../../../types/form'
+import { FormCrearLicitacionUser, NumMes } from '@mytypes/form'
 
 type Props={
     form:FormCrearLicitacionUser,

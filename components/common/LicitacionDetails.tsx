@@ -1,5 +1,5 @@
 import { HEADS_TABLE_ESPECIFICACION_MES } from '../../consts'
-import { Licitacion } from '../../types/models'
+import { Licitacion } from '@mytypes/models'
 import TableHead from './tables/TableHead'
 
 type Props={

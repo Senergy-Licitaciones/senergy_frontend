@@ -7,10 +7,10 @@ import { HiOutlineDocumentAdd, HiOutlineLocationMarker } from 'react-icons/hi'
 import { FaUserAlt } from 'react-icons/fa'
 import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
-import { Info } from '../../types/models'
+import { Info } from '@mytypes/models'
 import CalendarioFechaApertura from '../../components/common/CalendarioFechaApertura'
 import { getSession } from 'next-auth/react'
-import { TypeToken } from '../../types/models/enums'
+import { TypeToken } from '@mytypes/models/enums'
 import { getInfoDashboard } from '../../services/users'
 const Highcharts = require('highcharts')
 type Props={

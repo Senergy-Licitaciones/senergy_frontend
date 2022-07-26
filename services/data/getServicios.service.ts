@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { createDataAdapter } from '../../adapters'
-import { FetcherAuth } from '../../types/fetch'
-import { DataSelect } from '../../types/models'
+import { FetcherAuth } from '@mytypes/fetch'
+import { DataSelect } from '@mytypes/models'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 

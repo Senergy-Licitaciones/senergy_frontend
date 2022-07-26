@@ -1,5 +1,5 @@
-import { FormCrearOfertaProveedor, HandlerChange } from '../../../types/form'
-import { ErrorsForm } from '../../../types/validators'
+import { FormCrearOfertaProveedor, HandlerChange } from '@mytypes/form'
+import { ErrorsForm } from '@mytypes/validators'
 
 type Props={
     handleChange:HandlerChange,

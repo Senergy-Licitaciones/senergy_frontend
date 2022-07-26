@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
-import { FetcherBody } from '../../types/fetch'
-import { NumMes } from '../../types/form'
-import { senergy } from '../../utils/fetcher.utility'
+import { FetcherBody } from '@mytypes/fetch'
+import { NumMes } from '@mytypes/form'
+import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 
 export const uploadFile:FetcherBody<

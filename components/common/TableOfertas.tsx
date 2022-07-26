@@ -1,4 +1,4 @@
-import { Oferta } from '../../types/models'
+import { Oferta } from '@mytypes/models'
 import Link from 'next/link'
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'

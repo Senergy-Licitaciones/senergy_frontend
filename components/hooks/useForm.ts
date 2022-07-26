@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { HandlerChange } from '../../types/form'
-import { UseForm } from '../../types/hooks'
+import { HandlerChange } from '@mytypes/form'
+import { UseForm } from '@mytypes/hooks'
 
 export const useForm:UseForm = (initForm, validator) => {
   const [loading, setLoading] = useState<boolean>(false)

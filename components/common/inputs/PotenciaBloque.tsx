@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { FormCrearOfertaProveedor } from '../../../types/form'
+import { FormCrearOfertaProveedor } from '@mytypes/form'
 import { convertDateToString, convertToDate } from '../../../utils/formats'
 
 type Props={

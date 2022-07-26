@@ -1,4 +1,4 @@
-import { DataSelect } from '../types/models'
+import { DataSelect } from '@mytypes/models'
 import { convertToDate } from '../utils/formats'
 
 export const createDataAdapter = (response:Array<any>):DataSelect[] => {

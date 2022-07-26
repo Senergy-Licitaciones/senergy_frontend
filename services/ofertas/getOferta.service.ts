@@ -1,6 +1,6 @@
 import { createOfertaAdapter } from '../../adapters'
-import { FetcherBodyAuth } from '../../types/fetch'
-import { Oferta } from '../../types/models'
+import { FetcherBodyAuth } from '@mytypes/fetch'
+import { Oferta } from '@mytypes/models'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 

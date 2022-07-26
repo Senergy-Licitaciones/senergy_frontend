@@ -1,6 +1,15 @@
 {
   "compilerOptions": {
     "target": "es2016",
+    "baseUrl": ".",
+    "paths": {
+        "@/*": [
+          "./*"
+        ],
+        "@mytypes/*":[
+          "./types/*"
+        ]
+      },
     "lib": [
       "dom",
       "dom.iterable",

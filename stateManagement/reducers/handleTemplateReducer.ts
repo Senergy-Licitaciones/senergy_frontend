@@ -1,4 +1,4 @@
-import { StateTemplate } from '../../types/stateManagement/handleTemplate'
+import { StateTemplate } from '@mytypes/stateManagement/handleTemplate'
 import { HANDLE_TEMPLATE_ACTIONS } from '../actions/handleTemplateActions'
 
 export const initialTemplateState:StateTemplate = {

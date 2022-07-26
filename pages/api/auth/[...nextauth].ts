@@ -2,8 +2,8 @@ import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { loginUser } from '../../../services/auth'
 import { loginProveedor } from '../../../services/auth/loginProveedor.service'
-import { TokenProveedor, TokenUser } from '../../../types/models'
-import { TypeToken } from '../../../types/models/enums'
+import { TokenProveedor, TokenUser } from '@mytypes/models'
+import { TypeToken } from '@mytypes/models/enums'
 import { decode } from '../../../utils/handleJwt.utility'
 export default NextAuth({
   providers: [

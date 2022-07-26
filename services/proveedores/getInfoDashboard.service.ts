@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { createInfoDashboardAdapter } from '../../adapters'
-import { FetcherAuth } from '../../types/fetch'
-import { InfoDashboardProveedor } from '../../types/models'
+import { FetcherAuth } from '@mytypes/fetch'
+import { InfoDashboardProveedor } from '@mytypes/models'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 
