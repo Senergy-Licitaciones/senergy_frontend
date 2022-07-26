@@ -1,5 +1,4 @@
 import { Licitacion } from '@mytypes/models'
-import { convertToDate } from '../utils/formats'
 
 export const createLicitacionByIdAdapter = (response:any):Omit<Licitacion, 'usuario'|'participantes'> => {
   return {
@@ -29,7 +28,7 @@ export const createLicitacionByIdAdapter = (response:any):Omit<Licitacion, 'usua
     factorPlanta: response.factorPlanta,
     meses: response.meses,
     author: response.author,
-    createdAt: convertToDate(response.createdAt),
-    updatedAt: convertToDate(response.updatedAt)
+    createdAt: response.createdAt,
+    updatedAt: response.updatedAt
   }
 }

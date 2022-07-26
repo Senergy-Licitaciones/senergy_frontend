@@ -3,7 +3,7 @@ import { AiOutlineEdit, AiOutlineFileSearch } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
 import { Licitacion } from '@mytypes/models'
 type Props={
-    licitaciones:Array<Licitacion>
+    licitaciones:Array<Omit<Licitacion, 'puntoSum'|'brg'|'tipoServicio'>>
 }
 export default function TableLicitacionesUser ({ licitaciones }:Props) {
   return (

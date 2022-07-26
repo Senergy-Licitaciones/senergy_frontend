@@ -6,15 +6,16 @@ import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
 import { getLicitaciones } from '../../../services/users'
 import { Licitacion } from '@mytypes/models'
 import { TypeToken } from '@mytypes/models/enums'
+import { createLicitacionesAdapter } from '@/adapters'
 type Props={
     data:Session,
-    licitaciones:Array<Licitacion>
+    licitaciones:Array<Omit<Licitacion, 'puntoSum'|'brg'|'tipoServicio'|'createdAt'|'updatedAt'>&{createdAt:string, updatedAt:string}>
 }
 export default function UserLicitaciones ({ licitaciones }:Props) {
   return (
         <LayoutUser>
             <section>
-                <TableLicitacionesUser licitaciones={licitaciones} />
+                <TableLicitacionesUser licitaciones={createLicitacionesAdapter(licitaciones)} />
             </section>
         </LayoutUser>
   )
@@ -25,6 +26,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
     if (data.user.tipo !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario primero')
     const licitaciones = await getLicitaciones(data.accessToken)
+    console.log(licitaciones)
     return {
       props: {
         data,
