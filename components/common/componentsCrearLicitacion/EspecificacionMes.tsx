@@ -1,11 +1,11 @@
 import { useSession } from 'next-auth/react'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { AiFillCheckCircle } from 'react-icons/ai'
-import { API } from '../../../consts/config'
+import { API } from '../../../config'
 import generateFileToMonths from '../../../services/users/generateFileToMonths.service'
 import uploadFile from '../../../services/users/uploadFile.service'
 import { FormCrearLicitacionUser, NumMes } from '../../../types/form'
-import handleErrorSwal from '../../../utils/handleErrors/handleErrorSwal.utility'
+import { handleErrorSwal } from '../../../utils/handleErrors'
 import Loader from '../Loader'
 type Props={
     step:number,

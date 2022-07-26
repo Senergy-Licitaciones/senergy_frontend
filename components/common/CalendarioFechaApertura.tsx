@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { convertToDate, formatMes } from '../../utils'
+import { convertToDate, formatMes } from '../../utils/formats'
 
 type Props={
     fechaInicioApertura:string,

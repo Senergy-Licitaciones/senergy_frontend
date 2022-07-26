@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import { Parametro, TypeFormulaIndex } from '../../../types/models/enums'
-import { FormCrearOfertaProveedor, HandleChange } from '../../../types/form'
+import { FormCrearOfertaProveedor, HandlerChange } from '../../../types/form'
 type Props={
     setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>,
     form:FormCrearOfertaProveedor,
@@ -8,7 +8,7 @@ type Props={
 }
 export default function FormulaIndex ({ setForm, form, formula }:Props) {
   const [index, setIndex] = useState('')
-  const handleChangeIndex:HandleChange = (e) => {
+  const handleChangeIndex:HandlerChange = (e) => {
     const { value } = e.target
     setIndex(value)
   }

@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { DataSelect } from '../../../types/models'
-import { FormCrearLicitacionUser, HandleChange, NumMes } from '../../../types/form'
+import { FormCrearLicitacionUser, HandlerChange, NumMes } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
 import { convertToDate } from '../../../utils/formats'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>,
-    handleChange:HandleChange,
+    handleChange:HandlerChange,
     error:ErrorsForm<Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>
     form:FormCrearLicitacionUser,
     brgs:DataSelect[],

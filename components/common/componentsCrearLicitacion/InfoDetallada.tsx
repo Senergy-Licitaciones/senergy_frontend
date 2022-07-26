@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react'
-import { FormCrearLicitacionUser, HandleChange } from '../../../types/form'
+import { FormCrearLicitacionUser, HandlerChange } from '../../../types/form'
 import { Estado } from '../../../types/form/enums'
 import { ErrorsForm } from '../../../types/validators'
 import generateNumber from '../../../utils/generateNumber.utility'
 
 type Props={
-    handleChange:HandleChange,
+    handleChange:HandlerChange,
     step:number,
     error:ErrorsForm<Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>
     setStep:Dispatch<SetStateAction<number>>,

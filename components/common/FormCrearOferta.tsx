@@ -1,18 +1,18 @@
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
-import { FormCrearOfertaProveedor, HandleSubmit } from '../../types/form'
+import { FormCrearOfertaProveedor, HandlerSubmit } from '../../types/form'
 import { useForm } from '../hooks/useForm'
 import swal from 'sweetalert'
-import { methodPostAuth } from '../../utils/fetch'
-import { ErrorResponse, Response } from '../../types/hooks'
 import Loader from './Loader'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-import validatorCrearOferta from '../../utils/validators/crearOferta.validator'
 import EnergiaBloque from './inputs/EnergiaBloque'
 import { Energia, TypeFormulaIndex } from '../../types/models/enums'
 import FormulaIndex from './inputs/FormulaIndex'
 import InputExcesoPotencia from './inputs/InputExcesoPotencia'
 import PotenciaBloque from './inputs/PotenciaBloque'
+import { createOferta } from '../../services/proveedores'
+import { handleErrorSwal } from '../../utils/handleErrors'
+import { validatorCrearOferta } from '../../utils/validators'
 const initForm:FormCrearOfertaProveedor = {
   potencia: [],
   energiaHp: [],
@@ -30,30 +30,21 @@ type Props={
     idLicitacion:string,
 }
 export default function FormCrearOferta ({ idLicitacion }:Props) {
-  const { form, handleChange, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'>>(initForm, validatorCrearOferta)
+  const { form, handleChange, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'|'tarifaPotencia'|'tarifaEnergiaHp'|'tarifaEnergiaHfp'|'potencia'|'energiaHp'|'energiaHfp'>>(initForm, validatorCrearOferta)
   console.log('FormCrearOferta ', form)
   const { push } = useRouter()
   const { data: session } = useSession()
-  const handleSubmit:HandleSubmit = async (e) => {
+  if (!session) return <Loader/>
+  const handleSubmit:HandlerSubmit = async (e) => {
     e.preventDefault()
     try {
-      if (session) {
-        setLoading(true)
-        const data = await methodPostAuth('proveedor/crearOferta', session.accessToken, { ...form, excesoEnergiaHp: form.excesoPotencia > 100 ? form.excesoEnergiaHp : undefined, excesoEnergiaHfp: form.excesoPotencia > 100 ? form.excesoEnergiaHfp : undefined, licitacion: idLicitacion }) as Response|ErrorResponse
-        setLoading(false)
-        if ('error' in data) {
-          console.log('data ', data)
-          swal(data.message, data.error.toString(), 'error')
-        } else {
-          swal('Operación exitosa', data.message, 'success').then(() => push('/empresaAccount/licitaciones'))
-        }
-      } else {
-        push('/login/empresa')
-      }
-    } catch (err) {
-      console.log('error ', err)
+      setLoading(true)
+      const data = await createOferta({ form, licitacion: idLicitacion }, session.accessToken)
       setLoading(false)
-      swal('Ha ocurrido un error', 'Revise el formulario y vuelva a intentarlo', 'error')
+      swal('Operación exitosa', data.message, 'success').then(() => push('/empresaAccount/licitaciones'))
+    } catch (err) {
+      setLoading(false)
+      handleErrorSwal(err)
     }
   }
   return (

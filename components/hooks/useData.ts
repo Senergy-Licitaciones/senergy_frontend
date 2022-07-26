@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getBrgs, getPuntoSums, getServicios } from '../../services/data'
-import { ParamsUseData, UseData } from '../../types/hooks'
+import { UseData } from '../../types/hooks'
+import { DataSelect } from '../../types/models'
 
 export const useData:UseData = (session) => {
   const [data, setData] = useState<{
-    brgs:Array<ParamsUseData>,
-    puntoSums:Array<ParamsUseData>,
-    servicios:Array<ParamsUseData>
+    brgs:Array<DataSelect>,
+    puntoSums:Array<DataSelect>,
+    servicios:Array<DataSelect>
   }>({
     brgs: [],
     puntoSums: [],

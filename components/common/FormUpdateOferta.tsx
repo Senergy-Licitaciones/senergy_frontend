@@ -1,24 +1,31 @@
-import { useState } from 'react'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
-import { FormCrearOfertaProveedor, HandleChange, HandleSubmit } from '../../types/form'
+import { FormCrearOfertaProveedor, HandlerSubmit } from '../../types/form'
 import { useForm } from '../hooks/useForm'
 import swal from 'sweetalert'
-import { methodPutAuth } from '../../utils/fetch'
-import { ErrorResponse, Response } from '../../types/hooks'
 import Loader from './Loader'
 import { useRouter } from 'next/router'
 import { Oferta } from '../../types/models'
 import { useSession } from 'next-auth/react'
-import validatorCrearOferta from '../../utils/validators/crearOferta.validator'
+import { validatorCrearOferta } from '../../utils/validators'
+import { editOferta } from '../../services/ofertas'
+import { handleErrorSwal } from '../../utils/handleErrors'
+import PotenciaBloque from './inputs/PotenciaBloque'
+import EnergiaBloque from './inputs/EnergiaBloque'
+import { Energia, TypeFormulaIndex } from '../../types/models/enums'
+import FormulaIndex from './inputs/FormulaIndex'
+import InputExcesoPotencia from './inputs/InputExcesoPotencia'
 type Props={
     oferta:Oferta
 }
 export default function FormUpdateOferta ({ oferta }:Props) {
   console.log('oferta ', oferta)
-  const { form, handleChange, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'>>({
+  const { form, handleChange, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'|'tarifaPotencia'|'tarifaEnergiaHp'|'tarifaEnergiaHfp'|'potencia'|'energiaHp'|'energiaHfp'>>({
     potencia: oferta.potencia,
     energiaHp: oferta.energiaHp,
     energiaHfp: oferta.energiaHfp,
+    tarifaEnergiaHfp: oferta.tarifaEnergiaHfp,
+    tarifaPotencia: oferta.tarifaPotencia,
+    tarifaEnergiaHp: oferta.tarifaEnergiaHp,
     potenciaFacturar: oferta.potenciaFacturar,
     formulaIndexPotencia: oferta.formulaIndexPotencia,
     formulaIndexEnergia: oferta.formulaIndexEnergia,
@@ -27,57 +34,23 @@ export default function FormUpdateOferta ({ oferta }:Props) {
     excesoEnergiaHp: oferta.excesoEnergiaHp,
     excesoEnergiaHfp: oferta.excesoEnergiaHfp
   }, validatorCrearOferta)
-  const [index, setIndex] = useState({
-    potencia: '',
-    energia: ''
-  })
+
   const { push } = useRouter()
   const { data: session } = useSession()
-  const handleChangeIndex:HandleChange = (e) => {
-    const { value, name } = e.target
-    name === 'formulaIndexPotencia'
-      ? setIndex({
-        ...index,
-        potencia: value
-      })
-      : setIndex({
-        ...index,
-        energia: value
-      })
-  }
-  const handleSubmit:HandleSubmit = async (e) => {
+  if (!session) return <Loader/>
+
+  const handleSubmit:HandlerSubmit = async (e) => {
     e.preventDefault()
     try {
-      if (session) {
-        setLoading(true)
-        const data = await methodPutAuth(`oferta/editOferta/${oferta._id}`, session.accessToken, form) as Response|ErrorResponse
-        setLoading(false)
-        if ('error' in data) {
-          console.log('data ', data)
-          swal(data.message, data.error.toString(), 'error')
-        } else {
-          swal('Operación exitosa', data.message, 'success').then(() => push('/empresaAccount/licitaciones/historialOfertas'))
-        }
-      } else {
-        push('/login/empresa')
-      }
-    } catch (err) {
-      console.log('error ', err)
+      setLoading(true)
+      const data = await editOferta({ form, id: oferta._id }, session.accessToken)
       setLoading(false)
-      swal('Ha ocurrido un error', 'Revise el formulario y vuelva a intentarlo', 'error')
+
+      swal('Operación exitosa', data.message, 'success').then(() => push('/empresaAccount/licitaciones/historialOfertas'))
+    } catch (err) {
+      setLoading(false)
+      handleErrorSwal(err)
     }
-  }
-  const generarFormulaPotencia = () => {
-    setForm({
-      ...form,
-      formulaIndexPotencia: [...form.formulaIndexPotencia, { index: index.potencia, factor: 0 }]
-    })
-  }
-  const generarFormulaEnergia = () => {
-    setForm({
-      ...form,
-      formulaIndexEnergia: [...form.formulaIndexEnergia, { index: index.energia, factor: 0 }]
-    })
   }
   return (
         <form onSubmit={handleSubmit} >
@@ -89,31 +62,9 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             <AiOutlineQuestionCircle/>
                         </span>
                         </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="potencia">Potencia</label>
-                            <div className="flex" >
-                            <input onChange={handleChange} value={form.potencia} name="potencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar potencia" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/kW</span>
-                            </div>
-                            {error.potencia && <p className='text-red-500 font-light text-sm' >{error.potencia}</p> }
-                        </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHp">Energía Horas Punta</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.energiaHp} name="energiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Punta" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
-                            </div>
-                            {error.energiaHp && <p className='text-red-500 text-sm font-light' >{error.energiaHp}</p> }
-                        </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="energiaHfp">Energía Horas Fuera de Punta</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.energiaHfp} name="energiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Energía en Horas Fuera de Punta" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >US$/mWH</span>
-                            </div>
-                            {error.energiaHfp && <p className='text-red-500 font-light text-sm' >{error.energiaHfp}</p> }
-                        </article>
-
+                        <PotenciaBloque form={form} setForm={setForm} />
+                        <EnergiaBloque error={error} form={form} setForm={setForm} tipoEnergia={Energia.Hp} />
+                        <EnergiaBloque error={error} form={form} setForm={setForm} tipoEnergia={Energia.Hfp} />
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="potenciaFacturar">Potencia a Facturar</label>
                             <select onChange={handleChange} value={form.potenciaFacturar} className="dark:bg-gray-800 dark:text-gray-400" name="potenciaFacturar" id="">
@@ -124,66 +75,8 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             </select>
                             {error.potenciaFacturar && <p className='text-red-500 font-light text-sm' >{error.potenciaFacturar}</p> }
                         </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="formulaIndexPotencia">Fórmula de Indexación para Potencia</label>
-                            <select onChange={handleChangeIndex} value={index.potencia} className="dark:bg-gray-800 dark:text-gray-400" name="formulaIndexPotencia" id="">
-                                <option value="">-Seleccionar un índice-</option>
-                                <option value="PPI">PPI</option>
-                                <option value="PGN">PGN</option>
-                                <option value="PG">PG</option>
-                            </select>
-                            <span onClick={generarFormulaPotencia} className="bg-sky-600 block cursor-pointer py-2 px-4 text-white" >Agregar índice</span>
-                            {form.formulaIndexPotencia.map((el, i) => (
-                                <article key={`formula-index-potencia-update-${i}`} className="flex flex-col my-4" >
-                                   <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor={el.index}>{el.index}</label>
-
-                                    <input onChange={(e) => setForm({
-                                      ...form,
-                                      formulaIndexPotencia: form.formulaIndexPotencia.map((elemento, pos) => {
-                                        if (pos === i) {
-                                          return {
-                                            ...elemento,
-                                            factor: parseFloat(e.target.value)
-                                          }
-                                        }
-                                        return elemento
-                                      })
-                                    })} value={form.formulaIndexPotencia[i].factor} name={el.index} className="rounded dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar factor" type="number" />
-
-                                </article>
-                            ))}
-                        </article>
-
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="formulaIndexEnergia">Fórmula de Indexación para Energía</label>
-                            <select onChange={handleChangeIndex} value={index.energia} className="dark:bg-gray-800 dark:text-gray-400" name="formulaIndexEnergia" id="">
-                                <option value="">-Seleccionar un índice-</option>
-                                <option value="PPI">PPI</option>
-                                <option value="PGN">PGN</option>
-                                <option value="PG">PG</option>
-                            </select>
-                            <span onClick={generarFormulaEnergia} className="bg-sky-600 block cursor-pointer py-2 px-4 text-white" >Agregar índice</span>
-                            {form.formulaIndexEnergia.map((el, i) => (
-                                <article key={`formula-index-energia-update-${i}`} className="flex flex-col my-4" >
-                                   <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor={el.index}>{el.index}</label>
-
-                                    <input onChange={(e) => setForm({
-                                      ...form,
-                                      formulaIndexEnergia: form.formulaIndexEnergia.map((elemento, pos) => {
-                                        if (pos === i) {
-                                          return {
-                                            ...elemento,
-                                            factor: parseFloat(e.target.value)
-                                          }
-                                        }
-                                        return elemento
-                                      })
-                                    })} value={form.formulaIndexEnergia[i].factor} name={el.index} className="rounded dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar factor" type="number" />
-
-                                </article>
-                            ))}
-                        </article>
-
+                        <FormulaIndex form={form} setForm={setForm} formula={TypeFormulaIndex.Potencia} />
+                        <FormulaIndex form={form} setForm={setForm} formula={TypeFormulaIndex.Energia} />
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="potMinFacturable">Potencia Mínima Facturable</label>
                             <div className="flex">
@@ -192,33 +85,7 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                             </div>
                             {error.potMinFacturable && <p className='text-red-500 font-light text-sm' >{error.potMinFacturable}</p> }
                         </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoPotencia">Exceso de Potencia</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.excesoPotencia} name="excesoPotencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage MDC" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >100% - 200%</span>
-                            </div>
-                            {error.excesoPotencia && <p className='text-red-500 text-sm font-light' >{error.excesoPotencia}</p> }
-                        </article>
-                        {
-                          form.excesoPotencia > 100 &&
-                          <>
-                            <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHp">Exceso de Energía en Horas Punta</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.excesoEnergiaHp} name="excesoEnergiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energía HP" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
-                            </div>
-                        </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHfp">Exceso de Energía en Horas Fuera de Punta</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.excesoEnergiaHfp} name="excesoEnergiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energia HFP" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
-                            </div>
-                        </article>
-                          </>
-                        }
+                        <InputExcesoPotencia error={error} form={form} handleChange={handleChange} />
                         <article className="flex justify-end pt-4">
                             {
                                 loading

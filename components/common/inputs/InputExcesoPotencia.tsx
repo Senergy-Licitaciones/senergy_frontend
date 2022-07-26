@@ -1,8 +1,8 @@
-import { FormCrearOfertaProveedor, HandleChange } from '../../../types/form'
+import { FormCrearOfertaProveedor, HandlerChange } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
 
 type Props={
-    handleChange:HandleChange,
+    handleChange:HandlerChange,
     form:FormCrearOfertaProveedor,
     error:ErrorsForm<Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp' | 'excesoEnergiaHfp' | 'formulaIndexPotencia' | 'formulaIndexEnergia'>>
 }

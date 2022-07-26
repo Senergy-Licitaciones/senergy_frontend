@@ -1,12 +1,8 @@
 import { Session } from 'next-auth'
-
-export interface ParamsUseData{
-    _id: string
-    name: string
-}
+import { DataSelect } from '../models'
 
 export type UseData = (session: Session) => {
-    brgs:Array<ParamsUseData>,
-    puntoSums:Array<ParamsUseData>,
-    servicios:Array<ParamsUseData>
+    brgs:Array<DataSelect>,
+    puntoSums:Array<DataSelect>,
+    servicios:Array<DataSelect>
 };

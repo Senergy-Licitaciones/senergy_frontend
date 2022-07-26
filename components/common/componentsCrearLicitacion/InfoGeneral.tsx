@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from 'react'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 import { DataSelect } from '../../../types/models'
-import { FormCrearLicitacionUser, HandleChange } from '../../../types/form'
+import { FormCrearLicitacionUser, HandlerChange } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>,
-    handleChange:HandleChange,
+    handleChange:HandlerChange,
     error:ErrorsForm<Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>
     form:FormCrearLicitacionUser,
     servicios:DataSelect[]
