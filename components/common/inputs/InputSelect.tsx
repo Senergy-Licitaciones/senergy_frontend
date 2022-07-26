@@ -1,4 +1,4 @@
-import { HandlerChange, OptionSelect } from '../../../types/form'
+import { HandlerChange, OptionSelect } from '@mytypes/form'
 
 type Props={
     name:string,

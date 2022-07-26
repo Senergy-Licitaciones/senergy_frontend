@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { API, useSession } from '../../../config'
 import { generateFileToMonths, uploadFile } from '../../../services/users'
-import { FormCrearLicitacionUser } from '../../../types/form'
+import { FormCrearLicitacionUser } from '@mytypes/form'
 import { handleErrorSwal } from '../../../utils/handleErrors'
 import Loader from '../Loader'
 

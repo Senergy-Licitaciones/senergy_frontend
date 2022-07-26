@@ -1,4 +1,4 @@
-import { Licitacion } from '../types/models'
+import { Licitacion } from '@mytypes/models'
 import { convertToDate } from '../utils/formats'
 
 export const createLicitacionByIdAdapter = (response:any):Omit<Licitacion, 'usuario'|'participantes'> => {

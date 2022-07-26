@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
-import { FetcherBodyAuth } from '../../types/fetch'
-import { FormCrearLicitacionUser } from '../../types/form'
+import { FetcherBodyAuth } from '@mytypes/fetch'
+import { FormCrearLicitacionUser } from '@mytypes/form'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 

@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 import { createLoginAdapter } from '../../adapters'
-import { FetcherBody } from '../../types/fetch'
+import { FetcherBody } from '@mytypes/fetch'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 

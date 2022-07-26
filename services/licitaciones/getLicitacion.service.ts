@@ -1,6 +1,6 @@
 import { createLicitacionByIdAdapter } from '../../adapters'
-import { FetcherBodyAuth } from '../../types/fetch'
-import { Licitacion } from '../../types/models'
+import { FetcherBodyAuth } from '@mytypes/fetch'
+import { Licitacion } from '@mytypes/models'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 

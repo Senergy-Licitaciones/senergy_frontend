@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Energia } from '../../../types/models/enums'
-import { FormCrearOfertaProveedor } from '../../../types/form'
-import { ErrorsForm } from '../../../types/validators'
+import { Energia } from '@mytypes/models/enums'
+import { FormCrearOfertaProveedor } from '@mytypes/form'
+import { ErrorsForm } from '@mytypes/validators'
 import { convertDateToString, convertToDate } from '../../../utils/formats'
 
 type Props={

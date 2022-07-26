@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { NumMes } from '../../types/form'
-import { UseMeses } from '../../types/hooks'
+import { NumMes } from '@mytypes/form'
+import { UseMeses } from '@mytypes/hooks'
 import { convertToDate } from '../../utils/formats'
 
 export const useMeses:UseMeses = (update, form, setForm) => {

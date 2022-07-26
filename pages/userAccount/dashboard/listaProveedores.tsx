@@ -3,8 +3,8 @@ import { getSession } from 'next-auth/react'
 import TableProveedoresToUser from '../../../components/common/TableProveedoresToUser'
 import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
 import { getProveedoresToUser } from '../../../services/proveedores'
-import { InfoBasicaProveedor } from '../../../types/models'
-import { TypeToken } from '../../../types/models/enums'
+import { InfoBasicaProveedor } from '@mytypes/models'
+import { TypeToken } from '@mytypes/models/enums'
 type Props={
   token:String,
   proveedores:InfoBasicaProveedor[]

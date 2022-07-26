@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getBrgs, getPuntoSums, getServicios } from '../../services/data'
-import { UseData } from '../../types/hooks'
-import { DataSelect } from '../../types/models'
+import { UseData } from '@mytypes/hooks'
+import { DataSelect } from '@mytypes/models'
 
 export const useData:UseData = (session) => {
   const [data, setData] = useState<{

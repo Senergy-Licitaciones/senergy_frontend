@@ -1,6 +1,6 @@
 import { REGEX_FORM } from '../../consts/regex'
-import { FormCrearLicitacionUser } from '../../types/form'
-import { ErrorsForm, ValidatorForm } from '../../types/validators'
+import { FormCrearLicitacionUser } from '@mytypes/form'
+import { ErrorsForm, ValidatorForm } from '@mytypes/validators'
 import { convertToDate } from '../formats'
 
 export const validatorCrearLicitacion:ValidatorForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'| 'meses'|'description'|'requisitos'>> = (form) => {

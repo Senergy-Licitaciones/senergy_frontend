@@ -1,4 +1,4 @@
-import { Oferta } from '../types/models'
+import { Oferta } from '@mytypes/models'
 
 export const createOfertaAdapter = (response:any):Oferta => {
   return {

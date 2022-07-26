@@ -1,4 +1,4 @@
-import { InfoDashboardProveedor } from '../types/models'
+import { InfoDashboardProveedor } from '@mytypes/models'
 
 export const createInfoDashboardAdapter = (response:any):InfoDashboardProveedor => {
   return {

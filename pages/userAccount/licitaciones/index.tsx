@@ -4,8 +4,8 @@ import { getSession } from 'next-auth/react'
 import TableLicitacionesUser from '../../../components/common/TableLicitacionesUser'
 import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
 import { getLicitaciones } from '../../../services/users'
-import { Licitacion } from '../../../types/models'
-import { TypeToken } from '../../../types/models/enums'
+import { Licitacion } from '@mytypes/models'
+import { TypeToken } from '@mytypes/models/enums'
 type Props={
     data:Session,
     licitaciones:Array<Licitacion>

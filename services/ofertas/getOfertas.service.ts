@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
-import { FetcherAuth } from '../../types/fetch'
-import { Oferta } from '../../types/models'
+import { FetcherAuth } from '@mytypes/fetch'
+import { Oferta } from '@mytypes/models'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
 

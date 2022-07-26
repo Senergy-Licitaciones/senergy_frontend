@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useReducer } from 'react'
-import { ValueTemplateProvider } from '../../types/stateManagement/handleTemplate'
+import { ValueTemplateProvider } from '@mytypes/stateManagement/handleTemplate'
 import { handleTemplateReducer, initialTemplateState } from '../reducers/handleTemplateReducer'
 
 const HandleTemplateContext = createContext<ValueTemplateProvider>({ template: { dynamicNavState: false } })
