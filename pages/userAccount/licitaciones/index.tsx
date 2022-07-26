@@ -3,10 +3,9 @@ import { Session } from 'next-auth'
 import { getSession } from 'next-auth/react'
 import TableLicitacionesUser from '../../../components/common/TableLicitacionesUser'
 import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
-import { Licitacion } from '../../../types/data'
-import { TypeToken } from '../../../types/data/enums'
-import { ErrorResponse } from '../../../types/methods'
-import { methodGetAuth } from '../../../utils/fetch'
+import { getLicitaciones } from '../../../services/users'
+import { Licitacion } from '../../../types/models'
+import { TypeToken } from '../../../types/models/enums'
 type Props={
     data:Session,
     licitaciones:Array<Licitacion>
@@ -25,8 +24,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const data = await getSession({ req: context.req })
     if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
     if (data.user.tipo !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario primero')
-    const licitaciones = await methodGetAuth('user/getLicitaciones', data.accessToken) as ErrorResponse|Array<Licitacion>
-    if ('error' in licitaciones) throw new Error(licitaciones.message)
+    const licitaciones = await getLicitaciones(data.accessToken)
     return {
       props: {
         data,

@@ -1,12 +1,11 @@
 import LayoutProveedor from '../../../components/layout/layoutProveedor'
 import TableLicitaciones from '../../../components/common/TableLicitaciones'
 import { GetServerSideProps } from 'next'
-import { methodGetAuth } from '../../../utils/fetch'
-import { Licitacion } from '../../../types/data'
-import { TypeToken } from '../../../types/data/enums'
-import { ErrorResponse } from '../../../types/methods'
+import { Licitacion } from '../../../types/models'
+import { TypeToken } from '../../../types/models/enums'
 import { getSession } from 'next-auth/react'
 import { Session } from 'next-auth'
+import { getLicitacionesLibres } from '../../../services/licitaciones'
 type Props = {
     licitaciones: Licitacion[],
     data: Session
@@ -25,8 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const data = await getSession({ req: ctx.req })
     if (!data) throw new Error('Debe iniciar sesión primero para acceder a este recurso')
     if (data.user.tipo !== TypeToken.Proveedor) throw new Error('Debe iniciar sesión como proveedor para acceder a este recurso')
-    const licitaciones = await methodGetAuth('licitacion/licitacionesLibres', data.accessToken) as Licitacion[]|ErrorResponse
-    if ('error' in licitaciones) throw new Error(licitaciones.message)
+    const licitaciones = await getLicitacionesLibres(data.accessToken)
     return {
       props: {
         licitaciones,

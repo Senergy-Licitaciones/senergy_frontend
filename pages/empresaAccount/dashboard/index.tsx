@@ -5,10 +5,9 @@ import LayoutProveedor from '../../../components/layout/layoutProveedor'
 import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { methodGetAuth } from '../../../utils/fetch'
-import { ErrorResponse } from '../../../types/methods'
-import { TypeToken } from '../../../types/data/enums'
-import { InfoDashboardProveedor } from '../../../types/data'
+import { TypeToken } from '../../../types/models/enums'
+import { InfoDashboardProveedor } from '../../../types/models'
+import { getInfoDashboard } from '../../../services/proveedores'
 type Props={
   infoDashboard:InfoDashboardProveedor,
   token:string
@@ -163,8 +162,7 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
     const data = await getSession({ req: ctx.req })
     if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
     if (data.user.tipo !== TypeToken.Proveedor) throw new Error('Debe iniciar sesión como proveedor para acceder a este recurso')
-    const infoDashboard = await methodGetAuth('proveedor/infoDashboardProveedor', data.accessToken) as ErrorResponse|InfoDashboardProveedor
-    if ('error' in infoDashboard) throw new Error(infoDashboard.message)
+    const infoDashboard = await getInfoDashboard(data.accessToken)
     return {
       props: {
         token: data.accessToken,

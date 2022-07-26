@@ -1,5 +1,5 @@
 import { BsSearch } from 'react-icons/bs'
-import { InfoBasicaProveedor } from '../../types/data'
+import { InfoBasicaProveedor } from '../../types/models'
 
 type Props={
     proveedores:InfoBasicaProveedor[]

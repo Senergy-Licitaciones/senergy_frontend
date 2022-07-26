@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { getFormatRoute, getRouteTitleProveedor } from '../../../utils'
+import { getFormatRoute, getRouteTitleProveedor } from '../../../utils/formats'
 import { IoIosArrowBack } from 'react-icons/io'
 import { BsBell, BsSunFill } from 'react-icons/bs'
 import { useTemplate } from '../../../stateManagement/contexts/HandleTemplateContext'

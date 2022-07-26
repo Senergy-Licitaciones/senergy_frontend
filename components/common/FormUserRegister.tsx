@@ -100,4 +100,7 @@ export default function FormUserRegister () {
                         </article>
                     </form>
   ) */
+  return (
+    <h1>En mantenimiento</h1>
+  )
 }

@@ -3,7 +3,7 @@ import { Session } from 'next-auth'
 import { getSession } from 'next-auth/react'
 import FormCrearOferta from '../../../../components/common/FormCrearOferta'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
-import { TypeToken } from '../../../../types/data/enums'
+import { TypeToken } from '../../../../types/models/enums'
 type Props={
     id:string,
     data:Session
@@ -22,6 +22,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
     const { id } = context.params as {id:string}
     const data = await getSession({ req: context.req })
+    console.log('session', data)
     if (!data) throw new Error('Debe iniciar sesión primero para acceder a este recurso')
     if (data.user.tipo !== TypeToken.Proveedor) throw new Error('Debe iniciar sesión como proveedor para acceder a este recurso')
     return {

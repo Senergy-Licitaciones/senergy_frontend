@@ -1,14 +1,14 @@
 import Link from 'next/link'
-import { FormLogin, HandleSubmit } from '../../types/form'
+import { FormLogin, HandlerSubmit } from '../../types/form'
 import { useForm } from '../hooks/useForm'
 import Loader from './Loader'
 import { signIn, useSession } from 'next-auth/react'
-import { TypeToken } from '../../types/data/enums'
+import { TypeToken } from '../../types/models/enums'
 import { IoLockOpenOutline } from 'react-icons/io5'
-import { URL_BASE } from '../../consts/config'
+import { URL_BASE } from '../../config'
 import { useRouter } from 'next/router'
 import swal from 'sweetalert'
-import validatorLogin from '../../utils/validators/login'
+import { validatorLogin } from '../../utils/validators'
 const initForm:FormLogin = {
   correo: '',
   password: ''
@@ -18,7 +18,7 @@ export default function FormUserLogin () {
   const { status } = useSession()
   const { push } = useRouter()
   console.log('status ', status)
-  const loginUser:HandleSubmit = async (e) => {
+  const loginUser:HandlerSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     const result = await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, redirect: false, callbackUrl: `${URL_BASE}/userAccount` }) as {error:string|null, ok:boolean, status:number, url:string}|undefined

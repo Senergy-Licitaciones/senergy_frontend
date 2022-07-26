@@ -3,17 +3,18 @@ import { IoAnalyticsOutline } from 'react-icons/io5'
 import { FiSettings } from 'react-icons/fi'
 import { AiOutlineQuestionCircle, AiOutlineUser } from 'react-icons/ai'
 import { useRouter } from 'next/router'
-import { getFormatRoute } from '../../../utils'
+import { getFormatRoute } from '../../../utils/formats'
 import { useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import swal from 'sweetalert'
-import { ErrorResponse, Response } from '../../../types/methods'
-import { methodPutAuth } from '../../../utils/fetch'
 import { signOut, useSession } from 'next-auth/react'
+import { logoutProveedor } from '../../../services/auth'
+import Loader from '../../common/Loader'
 export default function StaticNavProveedor () {
   const { pathname } = useRouter()
   const [show, setShow] = useState(false)
   const { data: session, status } = useSession()
+  if (!session) return <Loader/>
   console.log('status ', status)
   const logout = async () => {
     swal({
@@ -22,18 +23,11 @@ export default function StaticNavProveedor () {
       buttons: ['Cancelar', true],
       icon: 'warning'
     }).then(async (willLogout) => {
-      await signOut()
-      if (willLogout && session) {
-        const data = await methodPutAuth('auth/logoutProveedor', session.accessToken, {}) as ErrorResponse|Response
-        if ('error' in data) {
-          console.log('error ', data)
-          swal(data.message, data.error.toString(), 'error')
-        } else {
-          await signOut()
-        }
-      } else {
-        await signOut()
+      if (willLogout) {
+        await logoutProveedor(session.accessToken)
+        return await signOut()
       }
+      return true
     })
   }
   return (

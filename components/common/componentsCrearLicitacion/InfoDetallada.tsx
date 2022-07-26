@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from 'react'
-import { FormCrearLicitacionUser, HandleChange } from '../../../types/form'
-import { Estado } from '../../../types/form/enums'
+import { OPTIONS_ESTADO } from '../../../consts'
+import { FormCrearLicitacionUser, HandlerChange } from '../../../types/form'
 import { ErrorsForm } from '../../../types/validators'
-import generateNumber from '../../../utils/generateNumber'
+import generateNumber from '../../../utils/generateNumber.utility'
+import InputSelect from '../inputs/InputSelect'
 
 type Props={
-    handleChange:HandleChange,
+    handleChange:HandlerChange,
     step:number,
     error:ErrorsForm<Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>
     setStep:Dispatch<SetStateAction<number>>,
@@ -28,17 +29,9 @@ export default function InfoDetallada ({ handleChange, step, setStep, form, setF
                             <label className="text-gray-500 text-sm" htmlFor="requisitos">Requisitos</label>
                             <textarea onChange={handleChange} value={form.requisitos} name="requisitos" className="rounded dark:bg-gray-800 placeholder:text-sm" placeholder="Agregar requisitos de licitación" id="" cols={30} rows={5}></textarea>
                         </article>
+                        <InputSelect error={error.estado} handleChange={handleChange} label="Estado" name='estado' options={OPTIONS_ESTADO} value={form.estado} />
                         <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="estado">Estado <strong className='text-red-500' >*</strong></label>
-                            <select onChange={handleChange} value={form.estado} className="dark:bg-gray-800 dark:text-gray-400" name="estado" id="">
-                                <option value="">-Seleccione un estado-</option>
-                                <option value={Estado.Cerrado}>Cerrado</option>
-                                <option value={Estado.Abierto}>Abierto</option>
-                            </select>
-                            {error.estado && <p className='text-red-500 font-light text-sm' >{error.estado}</p> }
-                        </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="author">Autor <strong className='text-red-500' >*</strong></label>
+                            <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="author">Responsable de Licitación <strong className='text-red-500' >*</strong></label>
                             <input onChange={handleChange} value={form.author} name="author" className="rounded dark:bg-gray-800 dark:text-gray-400 placeholder:text-sm " placeholder="Nombre completo" type="text" />
                             {error.author && <p className='text-red-500 font-light text-sm' >{error.author}</p> }
                         </article>

@@ -1,12 +1,11 @@
 import { GetServerSideProps } from 'next'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
-import { methodGetAuth } from '../../../../utils/fetch'
-import { Oferta } from '../../../../types/data'
-import { ErrorResponse } from '../../../../types/methods'
+import { Oferta } from '../../../../types/models'
 import TableOfertas from '../../../../components/common/TableOfertas'
 import { getSession } from 'next-auth/react'
 import { Session } from 'next-auth'
-import { TypeToken } from '../../../../types/data/enums'
+import { TypeToken } from '../../../../types/models/enums'
+import { getOfertas } from '../../../../services/ofertas'
 type Props={
     ofertas:Oferta[],
     data:Session
@@ -25,8 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const data = await getSession({ req: ctx.req })
     if (!data) throw new Error('Debe Iniciar Sesión')
     if (data.user.tipo !== TypeToken.Proveedor) throw new Error('No tiene acceso a esta página')
-    const ofertas = await methodGetAuth('oferta/showOfertas', data.accessToken) as Oferta[]|ErrorResponse
-    if ('error' in ofertas) throw new Error(ofertas.message)
+    const ofertas = await getOfertas(data.accessToken)
     return {
       props: {
         ofertas,

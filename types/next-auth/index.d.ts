@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import NextAuth from 'next-auth'
-import { TypeToken } from '../data/enums'
+import { TypeToken } from '../models/enums'
 
 declare module 'next-auth' {
   /**

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTemplate } from '../../../stateManagement/contexts/HandleTemplateContext'
-import { getFormatRoute } from '../../../utils'
+import { getFormatRoute } from '../../../utils/formats'
 import { ValueTemplateProvider } from '../../../types/stateManagement/handleTemplate'
 export default function DynamicNav () {
   const { template }:ValueTemplateProvider = useTemplate()

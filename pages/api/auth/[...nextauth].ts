@@ -1,10 +1,10 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { TokenProveedor, TokenUser } from '../../../types/data'
-import { TypeToken } from '../../../types/data/enums'
-import { ErrorResponse, LoginResponse } from '../../../types/methods'
-import { methodPut } from '../../../utils/fetch'
-import { decode } from '../../../utils/handleJwt'
+import { loginUser } from '../../../services/auth'
+import { loginProveedor } from '../../../services/auth/loginProveedor.service'
+import { TokenProveedor, TokenUser } from '../../../types/models'
+import { TypeToken } from '../../../types/models/enums'
+import { decode } from '../../../utils/handleJwt.utility'
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -23,35 +23,32 @@ export default NextAuth({
       },
       async authorize (credentials) {
         try {
-          console.log('Authorize', credentials)
           if (credentials == null) throw new Error('No se proporcionó las credenciales')
           const { correo, password, tipo } = credentials
           if (tipo === TypeToken.User) {
-            const data = await methodPut('auth/loginUsuario', { correo, password }) as LoginResponse|ErrorResponse
-            if ('error' in data) throw new Error(data.message)
-            const { _id, empresa, type } = decode(data.token) as TokenUser
+            const data = await loginUser({ correo, password })
+            const { _id, empresa, type } = decode(data.accessToken) as TokenUser
             return {
               email: correo,
               sub: _id,
               name: empresa,
               tipo: type,
-              token: data.token
+              token: data.accessToken
             }
           }
           if (tipo === TypeToken.Proveedor) {
-            const data = await methodPut('auth/loginProveedor', { correo, password }) as LoginResponse|ErrorResponse
-            if ('error' in data) throw new Error(data.message)
-            const { _id, type, razSocial } = decode(data.token) as TokenProveedor
+            const data = await loginProveedor({ correo, password })
+            const { _id, type, razSocial } = decode(data.accessToken) as TokenProveedor
 
             return {
               email: correo,
               sub: _id,
               tipo: type,
               name: razSocial,
-              token: data.token
+              token: data.accessToken
             }
           }
-          return null
+          throw new Error('No se proporcionó el tipo de usuario')
         } catch (err) {
           console.log('error ', err)
           return null
@@ -65,7 +62,6 @@ export default NextAuth({
   callbacks: {
     async jwt ({ user, token, account }) {
       try {
-        console.log('user ', user, 'token:', token, 'account', account)
         if (account && user) {
           return {
             ...token,
@@ -82,9 +78,8 @@ export default NextAuth({
         return token
       }
     },
-    async session ({ session, token, user }) {
+    async session ({ session, token }) {
       try {
-        console.log('session ', session, 'token', token, 'user', user)
         const payload = token as {email:string, name:string, sub:string, accessToken:string, tipo:TypeToken}
         session.accessToken = payload.accessToken
         session.user = {
