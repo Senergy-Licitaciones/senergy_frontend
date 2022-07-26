@@ -24,8 +24,8 @@ export default function FormUpdateLicitacion ({ step, setStep, formInit, id }:Pr
   const { form, setForm, loading, setLoading, handleChange, error } = useForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>(formInit, validatorCrearLicitacion)
   const { push } = useRouter()
   const { data: session } = useSession()
-  if (!session) return <Loader/>
   const { brgs, puntoSums, servicios } = useData(session)
+  if (!session) return <Loader/>
   const sendForm:HandlerSubmit = async (e) => {
     e.preventDefault()
     try {

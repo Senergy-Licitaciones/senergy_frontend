@@ -14,6 +14,8 @@ import EnergiaBloque from './inputs/EnergiaBloque'
 import { Energia, TypeFormulaIndex } from '../../types/models/enums'
 import FormulaIndex from './inputs/FormulaIndex'
 import InputExcesoPotencia from './inputs/InputExcesoPotencia'
+import InputSelect from './inputs/InputSelect'
+import { OPTIONS_POTENCIA_FACTURAR } from '../../consts'
 type Props={
     oferta:Oferta
 }
@@ -65,16 +67,7 @@ export default function FormUpdateOferta ({ oferta }:Props) {
                         <PotenciaBloque form={form} setForm={setForm} />
                         <EnergiaBloque error={error} form={form} setForm={setForm} tipoEnergia={Energia.Hp} />
                         <EnergiaBloque error={error} form={form} setForm={setForm} tipoEnergia={Energia.Hfp} />
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg " htmlFor="potenciaFacturar">Potencia a Facturar</label>
-                            <select onChange={handleChange} value={form.potenciaFacturar} className="dark:bg-gray-800 dark:text-gray-400" name="potenciaFacturar" id="">
-                                <option value="">-Seleccionar potencia a facturar-</option>
-                                <option value={'MD en Horas Puntas del Mes'}>MD en Horas Puntas del Mes</option>
-                                <option value={'Demanda coincidente con la Máxima'}>Demanda coincidente con la Máxima Demanda del SINEI</option>
-                                <option value={'MD en Horas de Punta personalizada'}>MD en Horas de Punta personalizada</option>
-                            </select>
-                            {error.potenciaFacturar && <p className='text-red-500 font-light text-sm' >{error.potenciaFacturar}</p> }
-                        </article>
+                        <InputSelect error={error.potenciaFacturar} handleChange={handleChange} label="Potencia a facturar" name='potenciaFacturar' options={OPTIONS_POTENCIA_FACTURAR} value={form.potenciaFacturar} />
                         <FormulaIndex form={form} setForm={setForm} formula={TypeFormulaIndex.Potencia} />
                         <FormulaIndex form={form} setForm={setForm} formula={TypeFormulaIndex.Energia} />
                         <article className="flex flex-col my-4">

@@ -4,7 +4,7 @@ import { ErrorsForm, ValidatorForm } from '../validators'
 
 export type UseForm=<Form, ValidationForm>(initForm:Form, validatorForm:ValidatorForm<Form, ValidationForm>)=>{
     form:Form,
-    error:ErrorsForm<ValidatorForm>,
+    error:ErrorsForm<ValidationForm>,
     setError:Dispatch<SetStateAction<ErrorsForm<ValidatorForm>>>
     loading:boolean,
     setLoading:Dispatch<SetStateAction<boolean>>

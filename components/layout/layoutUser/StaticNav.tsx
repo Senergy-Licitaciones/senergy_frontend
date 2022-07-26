@@ -11,9 +11,9 @@ import { logoutUser } from '../../../services/auth'
 import Loader from '../../common/Loader'
 export default function StaticNav () {
   const { pathname } = useRouter()
+  const [show, setShow] = useState(false)
   const { data: session } = useSession()
   if (!session) return <Loader/>
-  const [show, setShow] = useState(false)
   const logout = async () => {
     try {
       swal({

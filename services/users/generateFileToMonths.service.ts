@@ -4,7 +4,7 @@ import { NumMes } from '../../types/form'
 import { senergy } from '../../utils/fetcher.utility'
 import { handleAxiosError } from '../../utils/handleErrors'
 
-const generateFileToMonths:FetcherBodyAuth<NumMes[], {filename:string}> = async (meses, token) => {
+export const generateFileToMonths:FetcherBodyAuth<NumMes[], {filename:string}> = async (meses, token) => {
   try {
     const { data } = await senergy.post('/user/generate-file-to-months-details', { meses }, {
       headers: {
@@ -16,4 +16,3 @@ const generateFileToMonths:FetcherBodyAuth<NumMes[], {filename:string}> = async 
     throw handleAxiosError(err)
   }
 }
-export default generateFileToMonths

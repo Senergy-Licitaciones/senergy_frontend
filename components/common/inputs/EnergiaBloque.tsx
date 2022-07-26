@@ -8,7 +8,7 @@ type Props={
     form:FormCrearOfertaProveedor,
     tipoEnergia:Energia
     setForm:Dispatch<SetStateAction<FormCrearOfertaProveedor>>
-    error:ErrorsForm<Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp' | 'excesoEnergiaHfp' | 'formulaIndexEnergia' | 'formulaIndexPotencia'>>
+    error:ErrorsForm<Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp' | 'excesoEnergiaHfp' | 'formulaIndexEnergia' | 'formulaIndexPotencia' | 'potencia' | 'energiaHp' | 'tarifaPotencia' | 'tarifaEnergiaHp' | 'tarifaEnergiaHfp' | 'energiaHfp'>>
 }
 export default function EnergiaBloque ({ form, setForm, tipoEnergia }:Props) {
   console.log(tipoEnergia)

@@ -4,7 +4,7 @@ import { NumMes } from '../../types/form'
 import { senergy } from '../../utils/fetcher.utility'
 import { handleAxiosError } from '../../utils/handleErrors'
 
-const uploadFile:FetcherBody<
+export const uploadFile:FetcherBody<
 {filename:string, form:FormData},
 NumMes[]
 > = async ({ filename, form }) => {
@@ -19,4 +19,3 @@ NumMes[]
     throw handleAxiosError(err)
   }
 }
-export default uploadFile

@@ -4,7 +4,7 @@ import { ErrorsForm } from '../../../types/validators'
 type Props={
     handleChange:HandlerChange,
     form:FormCrearOfertaProveedor,
-    error:ErrorsForm<Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp' | 'excesoEnergiaHfp' | 'formulaIndexPotencia' | 'formulaIndexEnergia'>>
+    error:ErrorsForm<Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp' | 'excesoEnergiaHfp' | 'formulaIndexEnergia' | 'formulaIndexPotencia' | 'tarifaPotencia' | 'tarifaEnergiaHp' | 'tarifaEnergiaHfp' | 'potencia' | 'energiaHp' | 'energiaHfp'>>
 }
 export default function InputExcesoPotencia ({ handleChange, form, error }:Props) {
   return (

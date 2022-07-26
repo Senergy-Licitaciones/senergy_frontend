@@ -1,4 +1,6 @@
+import { HEADS_TABLE_ESPECIFICACION_MES } from '../../consts'
 import { Licitacion } from '../../types/models'
+import TableHead from './tables/TableHead'
 
 type Props={
     licitacion:Omit<Licitacion, 'usuario'|'participantes'>
@@ -35,14 +37,7 @@ export default function LicitacionDetails ({ licitacion }:Props) {
                         </article>
                         <article>
                             <table className="bg-gray-100 dark:bg-gray-800 w-full dark:divide-gray-600 divide-y mt-4" >
-                                <thead >
-                                    <tr className="text-sm font-semibold dark:divide-gray-500 dark:text-gray-400 divide-x" >
-
-                                    <th className="p-4" >Mes</th>
-                                    <th className="p-4" >HP</th>
-                                    <th className="p-4" >HFP</th>
-                                    </tr>
-                                </thead>
+                                <TableHead heads={HEADS_TABLE_ESPECIFICACION_MES} />
                                 <tbody className="dark:divide-gray-500 divide-y" >
                                     {licitacion.meses.map((el, i) => (
                                         <tr className="text-sm dark:divide-gray-500 dark:text-gray-400 divide-x" key={`${licitacion._id}-mes-${i}`}>
