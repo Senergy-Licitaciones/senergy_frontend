@@ -1,4 +1,4 @@
-import { CALENDAR_SIZE, DAYS_WEEK } from '../../consts'
+import { CALENDAR_SIZE, DAYS_WEEK } from '../../constants'
 import { convertToDate, formatMes } from '../../utils/formats'
 import { useCalendar } from '../hooks/useCalendar'
 

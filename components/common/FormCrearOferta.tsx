@@ -14,7 +14,7 @@ import { createOferta } from '../../services/proveedores'
 import { handleErrorSwal } from '../../utils/handleErrors'
 import { validatorCrearOferta } from '../../utils/validators'
 import InputSelect from './inputs/InputSelect'
-import { OPTIONS_POTENCIA_FACTURAR } from '../../consts'
+import { OPTIONS_POTENCIA_FACTURAR } from '../../constants'
 const initForm:FormCrearOfertaProveedor = {
   potencia: [],
   energiaHp: [],

@@ -15,7 +15,7 @@ import { Energia, TypeFormulaIndex } from '@mytypes/models/enums'
 import FormulaIndex from './inputs/FormulaIndex'
 import InputExcesoPotencia from './inputs/InputExcesoPotencia'
 import InputSelect from './inputs/InputSelect'
-import { OPTIONS_POTENCIA_FACTURAR } from '../../consts'
+import { OPTIONS_POTENCIA_FACTURAR } from '../../constants'
 type Props={
     oferta:Oferta
 }

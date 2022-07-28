@@ -1,4 +1,4 @@
-import { HEADS_TABLE_ESPECIFICACION_MES } from '../../consts'
+import { HEADS_TABLE_ESPECIFICACION_MES } from '../../constants'
 import { Licitacion } from '@mytypes/models'
 import TableHead from './tables/TableHead'
 

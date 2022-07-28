@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import { AiFillCheckCircle } from 'react-icons/ai'
-import { HEADS_TABLE_ESPECIFICACION_MES } from '../../../consts'
+import { HEADS_TABLE_ESPECIFICACION_MES } from '../../../constants'
 import { FormCrearLicitacionUser } from '@mytypes/form'
 import EspecificacionEnergia from '../inputs/EspecificacionEnergia'
 import EspecificacionMesFile from '../inputs/EspecificacionMesFile'

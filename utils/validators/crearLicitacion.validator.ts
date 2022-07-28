@@ -1,4 +1,4 @@
-import { REGEX_FORM } from '../../consts/regex'
+import { REGEX_FORM } from '../../constants/regex'
 import { FormCrearLicitacionUser } from '@mytypes/form'
 import { ErrorsForm, ValidatorForm } from '@mytypes/validators'
 import { convertToDate } from '../formats'
