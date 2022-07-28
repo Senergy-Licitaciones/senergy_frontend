@@ -1,4 +1,3 @@
-import { createOfertaAdapter } from '../../adapters'
 import { FetcherBodyAuth } from '@mytypes/fetch'
 import { Oferta } from '@mytypes/models'
 import { senergy } from '../../utils'
@@ -11,7 +10,7 @@ export const getOferta:FetcherBodyAuth<string, Oferta> = async (id, token) => {
         Authorization: `Bearer ${token}`
       }
     })
-    return createOfertaAdapter(data)
+    return data
   } catch (err) {
     throw handleAxiosError(err)
   }

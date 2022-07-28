@@ -1,20 +1,20 @@
 import { GetServerSideProps } from 'next'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
-import { Oferta } from '@mytypes/models'
 import TableOfertas from '../../../../components/common/TableOfertas'
 import { getSession } from 'next-auth/react'
 import { Session } from 'next-auth'
 import { TypeToken } from '@mytypes/models/enums'
 import { getOfertas } from '../../../../services/ofertas'
+import { createOfertaAdapter } from '@/adapters'
 type Props={
-    ofertas:Oferta[],
+    ofertas:any[],
     data:Session
 }
 export default function HistorialOfertas ({ ofertas }:Props) {
   return (
         <LayoutProveedor>
             <section>
-                <TableOfertas ofertas={ofertas} />
+                <TableOfertas ofertas={ofertas.map((oferta) => createOfertaAdapter(oferta))} />
             </section>
         </LayoutProveedor>
   )

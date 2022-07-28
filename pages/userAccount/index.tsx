@@ -15,9 +15,10 @@ import { getInfoDashboard } from '../../services/users'
 const Highcharts = require('highcharts')
 type Props={
     info:Info,
-    token:string
+    token:string,
+    empresa:string
 }
-export default function UserAccount ({ info }:Props) {
+export default function UserAccount ({ info, empresa }:Props) {
   const ids:{
         [index:string]:number
     } = {
@@ -117,7 +118,7 @@ export default function UserAccount ({ info }:Props) {
                 <div className="bg-white shadow-lg md:row-span-3 flex flex-col p-4 dark:bg-gray-800">
                     <div className="flex justify-between">
                         <article className="flex flex-col">
-                            <p className="font-semibold dark:text-gray-400">{info.empresa}</p>
+                            <p className="font-semibold dark:text-gray-400">{empresa}</p>
                             <p className="text-yellow-500 2xl:text-base text-xs">Empresa</p>
                         </article>
 
@@ -255,7 +256,8 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
     return {
       props: {
         info,
-        token: data.accessToken
+        token: data.accessToken,
+        empresa: data.user.name
       }
     }
   } catch (err) {

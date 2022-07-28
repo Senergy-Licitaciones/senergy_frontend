@@ -53,13 +53,13 @@ export default function TableOfertas ({ ofertas }:Props) {
                                 {el.licitacion.fechaFinApertura}
                             </td>
                             <td className="font-semibold p-4">
-                                {el.potencia}
+                                {el.tarifaPotencia ? 'Modalidad por Tarifa' : 'Modalidad por bloques'}
                             </td>
                             <td className="p-4">
-                                {el.energiaHp}
+                                {el.tarifaEnergiaHp ? 'Modalidad por Tarifa' : 'Modalidad por bloques'}
                             </td>
                             <td className="p-4">
-                                {el.energiaHfp}
+                                {el.tarifaEnergiaHfp ? 'Modalidad por Tarifa' : 'Modalidad por bloques'}
                             </td>
                             <td className="p-4 flex justify-around " >
                                 <Link href={`/empresaAccount/licitaciones/historialOfertas/${el._id}`} >

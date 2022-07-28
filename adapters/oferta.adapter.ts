@@ -17,6 +17,8 @@ export const createOfertaAdapter = (response:any):Oferta => {
     tarifaEnergiaHp: response.tarifaEnergiaHp,
     tarifaPotencia: response.tarifaPotencia,
     excesoEnergiaHfp: response.excesoEnergiaHfp,
-    excesoEnergiaHp: response.excesoEnergiaHp
+    excesoEnergiaHp: response.excesoEnergiaHp,
+    createdAt: new Date(response.createdAt),
+    updatedAt: new Date(response.updatedAt)
   }
 }
