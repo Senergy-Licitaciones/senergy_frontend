@@ -4,5 +4,7 @@ import { Licitacion } from './Licitacion.model'
 export interface Oferta extends FormCrearOfertaProveedor{
     _id:string,
     proveedor:string,
-    licitacion:Partial<Licitacion>
+    licitacion:Partial<Licitacion>,
+    createdAt:Date,
+    updatedAt:Date
 }
