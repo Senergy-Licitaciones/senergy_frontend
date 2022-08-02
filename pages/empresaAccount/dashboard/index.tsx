@@ -4,10 +4,11 @@ import Highcharts from 'highcharts'
 import LayoutProveedor from '../../../components/layout/layoutProveedor'
 import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
-import { TypeToken } from '@mytypes/models/enums'
 import { InfoDashboardProveedor } from '@mytypes/models'
 import { getInfoDashboard } from '../../../services/proveedores'
+// eslint-disable-next-line camelcase
+import { Session, unstable_getServerSession } from 'next-auth'
+import { configNextAuth } from '@/pages/api/auth/[...nextauth]'
 type Props={
   infoDashboard:InfoDashboardProveedor,
   token:string
@@ -159,13 +160,12 @@ export default function DashboardProveedor ({ infoDashboard }:Props) {
 }
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
   try {
-    const data = await getSession({ req: ctx.req })
-    if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
-    if (data.user.tipo !== TypeToken.Proveedor) throw new Error('Debe iniciar sesión como proveedor para acceder a este recurso')
-    const infoDashboard = await getInfoDashboard(data.accessToken)
+    const session = await unstable_getServerSession(ctx.req, ctx.res, configNextAuth) as Session
+    const infoDashboard = await getInfoDashboard(session.accessToken)
+    console.log(infoDashboard)
     return {
       props: {
-        token: data.accessToken,
+        token: session.accessToken,
         infoDashboard
       }
     }
@@ -174,10 +174,6 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
     return {
       props: {
         error: error.message
-      },
-      redirect: {
-        destination: '/login/empresa',
-        permanent: false
       }
     }
   }

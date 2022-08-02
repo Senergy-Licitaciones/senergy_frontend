@@ -1,12 +1,9 @@
 import { GetServerSideProps } from 'next'
-import { Session } from 'next-auth'
-import { getSession } from 'next-auth/react'
+// eslint-disable-next-line camelcase
 import FormCrearOferta from '../../../../components/common/FormCrearOferta'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
-import { TypeToken } from '@mytypes/models/enums'
 type Props={
-    id:string,
-    data:Session
+    id:string
 }
 export default function LicitacionOferta ({ id }:Props) {
   return (
@@ -21,14 +18,9 @@ export default function LicitacionOferta ({ id }:Props) {
 export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
     const { id } = context.params as {id:string}
-    const data = await getSession({ req: context.req })
-    console.log('session', data)
-    if (!data) throw new Error('Debe iniciar sesión primero para acceder a este recurso')
-    if (data.user.tipo !== TypeToken.Proveedor) throw new Error('Debe iniciar sesión como proveedor para acceder a este recurso')
     return {
       props: {
-        id,
-        data
+        id
       }
     }
   } catch (err) {
@@ -36,9 +28,6 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     return {
       props: {
         error: error.message
-      },
-      redirect: {
-        destination: '/login/empresa'
       }
     }
   }

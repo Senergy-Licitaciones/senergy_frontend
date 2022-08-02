@@ -1,14 +1,13 @@
 import { GetServerSideProps } from 'next'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
 import TableOfertas from '../../../../components/common/TableOfertas'
-import { getSession } from 'next-auth/react'
-import { Session } from 'next-auth'
-import { TypeToken } from '@mytypes/models/enums'
+// eslint-disable-next-line camelcase
+import { Session, unstable_getServerSession } from 'next-auth'
 import { getOfertas } from '../../../../services/ofertas'
 import { createOfertaAdapter } from '@/adapters'
+import { configNextAuth } from '@/pages/api/auth/[...nextauth]'
 type Props={
-    ofertas:any[],
-    data:Session
+    ofertas:any[]
 }
 export default function HistorialOfertas ({ ofertas }:Props) {
   return (
@@ -21,14 +20,11 @@ export default function HistorialOfertas ({ ofertas }:Props) {
 }
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
-    const data = await getSession({ req: ctx.req })
-    if (!data) throw new Error('Debe Iniciar Sesión')
-    if (data.user.tipo !== TypeToken.Proveedor) throw new Error('No tiene acceso a esta página')
-    const ofertas = await getOfertas(data.accessToken)
+    const session = await unstable_getServerSession(ctx.req, ctx.res, configNextAuth) as Session
+    const ofertas = await getOfertas(session.accessToken)
     return {
       props: {
-        ofertas,
-        data
+        ofertas
       }
     }
   } catch (err) {
@@ -36,10 +32,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         message: error.message
-      },
-      redirect: {
-        destination: '/login/empresa'
-
       }
     }
   }

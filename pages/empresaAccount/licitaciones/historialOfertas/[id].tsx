@@ -1,14 +1,14 @@
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
 import FormUpdateOferta from '../../../../components/common/FormUpdateOferta'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
 import { getOferta } from '../../../../services/ofertas'
 import { Oferta } from '@mytypes/models'
-import { TypeToken } from '@mytypes/models/enums'
+// eslint-disable-next-line camelcase
+import { Session, unstable_getServerSession } from 'next-auth'
+import { configNextAuth } from '@/pages/api/auth/[...nextauth]'
 
 type Props={
     id:string,
-    token:string,
     oferta:Oferta
 }
 export default function EditOferta ({ oferta }:Props) {
@@ -24,23 +24,17 @@ export default function EditOferta ({ oferta }:Props) {
 export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
     const params = context.params as {id:string}
-    const data = await getSession({ req: context.req })
-    if (!data) throw new Error('Debe iniciar sesión primero')
-    if (data.user.tipo !== TypeToken.Proveedor) throw new Error('No tiene permisos para acceder a este recurso')
-    const oferta = await getOferta(params.id, data.accessToken)
+    const session = await unstable_getServerSession(context.req, context.res, configNextAuth) as Session
+    const oferta = await getOferta(params.id, session.accessToken)
     return {
       props: {
         id: params.id,
-        data,
         oferta
       }
     }
   } catch (err) {
     const error = err as Error
     return {
-      redirect: {
-        destination: '/login/empresa'
-      },
       props: {
         error: error.message
       }
