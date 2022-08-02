@@ -1,10 +1,11 @@
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
 import TableProveedoresToUser from '../../../components/common/TableProveedoresToUser'
 import LayoutUser from '../../../components/layout/layoutUser/LayoutUser'
 import { getProveedoresToUser } from '../../../services/proveedores'
 import { InfoBasicaProveedor } from '@mytypes/models'
-import { TypeToken } from '@mytypes/models/enums'
+// eslint-disable-next-line camelcase
+import { Session, unstable_getServerSession } from 'next-auth'
+import { configNextAuth } from '@/pages/api/auth/[...nextauth]'
 type Props={
   token:String,
   proveedores:InfoBasicaProveedor[]
@@ -21,23 +22,20 @@ export default function ListaProveedores ({ proveedores }:Props) {
 
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
   try {
-    const data = await getSession({ req: ctx.req })
-    if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
-    if (data.user.tipo !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario para acceder a este recurso')
-    const proveedores = await getProveedoresToUser(data.accessToken)
+    // const data = await getSession({ req: ctx.req })
+    const session = await unstable_getServerSession(ctx.req, ctx.res, configNextAuth) as Session
+    // if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
+    // if (data.user.tipo !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario para acceder a este recurso')
+    const proveedores = await getProveedoresToUser(session.accessToken)
     return {
       props: {
-        token: data.accessToken,
+        token: session.accessToken,
         proveedores
       }
     }
   } catch (err) {
     const error = err as Error
     return {
-      redirect: {
-        destination: '/login',
-        permanent: false
-      },
       props: {
         error: error.message
       }

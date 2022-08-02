@@ -7,7 +7,6 @@ import { getFormatRoute } from '../../../utils/formats'
 import { useState } from 'react'
 import swal from 'sweetalert'
 import { signOut, useSession } from 'next-auth/react'
-import { logoutUser } from '../../../services/auth'
 import Loader from '../../common/Loader'
 export default function StaticNav () {
   const { pathname } = useRouter()
@@ -24,7 +23,7 @@ export default function StaticNav () {
         dangerMode: true
       }).then(async (willLogout) => {
         if (willLogout) {
-          await logoutUser(session.accessToken)
+          // await logoutUser(session.accessToken)
           return await signOut()
         }
         return true

@@ -9,9 +9,10 @@ import { useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { Info } from '@mytypes/models'
 import CalendarioFechaApertura from '../../components/common/CalendarioFechaApertura'
-import { getSession } from 'next-auth/react'
-import { TypeToken } from '@mytypes/models/enums'
 import { getInfoDashboard } from '../../services/users'
+// eslint-disable-next-line camelcase
+import { Session, unstable_getServerSession } from 'next-auth'
+import { configNextAuth } from '../api/auth/[...nextauth]'
 const Highcharts = require('highcharts')
 type Props={
     info:Info,
@@ -248,26 +249,25 @@ export default function UserAccount ({ info, empresa }:Props) {
 }
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
   try {
-    const data = await getSession({ req: ctx.req })
-    if (!data) throw new Error('Debe iniciar sesión para acceder a este recurso')
-    console.log('data session ', data)
-    if (data.user.tipo !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario para acceder a este recurso')
-    const info = await getInfoDashboard(data.accessToken)
+    console.log('iniciando server side')
+    const session = await unstable_getServerSession(ctx.req, ctx.res, configNextAuth) as Session
+    console.log(session)
+    // console.log('data session ', data)
+    // if (data.user.tipo !== TypeToken.User) throw new Error('Debe iniciar sesión como usuario para acceder a este recurso')
+    const info = await getInfoDashboard(session.accessToken)
     return {
       props: {
         info,
-        token: data.accessToken,
-        empresa: data.user.name
+        token: session.accessToken,
+        empresa: session.user.name
       }
     }
   } catch (err) {
     const error = err as Error
+    console.log(error)
     return {
       props: {
         error: error.message
-      },
-      redirect: {
-        destination: '/login'
       }
     }
   }

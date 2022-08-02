@@ -22,6 +22,7 @@ export default function FormUserLogin () {
     e.preventDefault()
     setLoading(true)
     const result = await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, redirect: false, callbackUrl: `${URL_BASE}/userAccount` }) as {error:string|null, ok:boolean, status:number, url:string}|undefined
+    console.log('result ', result)
     if (result) {
       if (result.error) { swal('Proceso Fallido', 'Credenciales incorrectas', 'error') } else {
         push('/userAccount')
