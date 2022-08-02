@@ -17,7 +17,8 @@ const Highcharts = require('highcharts')
 type Props={
     info:Info,
     token:string,
-    empresa:string
+    empresa:string,
+    error?:string
 }
 export default function UserAccount ({ info, empresa }:Props) {
   const ids:{

@@ -1,15 +1,14 @@
 import { GetServerSideProps } from 'next'
-import { Session } from 'next-auth'
-import { getSession } from 'next-auth/react'
+// eslint-disable-next-line camelcase
+import { Session, unstable_getServerSession } from 'next-auth'
 import LicitacionDetails from '../../../../components/common/LicitacionDetails'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
 import { getLicitacion } from '../../../../services/licitaciones'
 import { Licitacion } from '@mytypes/models'
-import { TypeToken } from '@mytypes/models/enums'
+import { configNextAuth } from '@/pages/api/auth/[...nextauth]'
 
 type Props={
-    licitacion:Omit<Licitacion, 'usuario' | 'participantes'>,
-    data:Session
+    licitacion:Omit<Licitacion, 'usuario' | 'participantes'>
 }
 export default function LicitacionDetail ({ licitacion }:Props) {
   return (
@@ -22,15 +21,12 @@ export default function LicitacionDetail ({ licitacion }:Props) {
 }
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
-    const data = await getSession({ req: ctx.req })
+    const session = await unstable_getServerSession(ctx.req, ctx.res, configNextAuth) as Session
     const param = ctx.params as {id:string}
-    if (!data) throw new Error('Debe Iniciar Sesión')
-    if (data.user.tipo !== TypeToken.Proveedor) throw new Error('No tiene acceso a esta página')
-    const licitacion = await getLicitacion(param.id, data.accessToken)
+    const licitacion = await getLicitacion(param.id, session.accessToken)
     return {
       props: {
-        licitacion,
-        data
+        licitacion
       }
     }
   } catch (err) {
@@ -38,10 +34,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         message: error.message
-      },
-      redirect: {
-        destination: '/login/empresa'
-
       }
     }
   }

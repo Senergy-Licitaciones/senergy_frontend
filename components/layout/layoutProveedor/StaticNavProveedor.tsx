@@ -8,7 +8,6 @@ import { useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import swal from 'sweetalert'
 import { signOut, useSession } from 'next-auth/react'
-import { logoutProveedor } from '../../../services/auth'
 import Loader from '../../common/Loader'
 export default function StaticNavProveedor () {
   const { pathname } = useRouter()
@@ -24,7 +23,6 @@ export default function StaticNavProveedor () {
       icon: 'warning'
     }).then(async (willLogout) => {
       if (willLogout) {
-        await logoutProveedor(session.accessToken)
         return await signOut()
       }
       return true
