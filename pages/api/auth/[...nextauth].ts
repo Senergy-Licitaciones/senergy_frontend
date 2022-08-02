@@ -1,3 +1,4 @@
+import type { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { loginUser } from '../../../services/auth'
@@ -5,7 +6,7 @@ import { loginProveedor } from '../../../services/auth/loginProveedor.service'
 import { TokenProveedor, TokenUser } from '@mytypes/models'
 import { TypeToken } from '@mytypes/models/enums'
 import { decode } from '../../../utils/handleJwt.utility'
-export default NextAuth({
+export const configNextAuth:NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -59,6 +60,9 @@ export default NextAuth({
   jwt: {
     maxAge: 60 * 60
   },
+  session: {
+    maxAge: 60 * 60
+  },
   callbacks: {
     async jwt ({ user, token, account }) {
       try {
@@ -95,6 +99,10 @@ export default NextAuth({
         return session
       }
     }
+  },
+  pages: {
+    signIn: '/login'
   }
 
-})
+}
+export default NextAuth(configNextAuth)
