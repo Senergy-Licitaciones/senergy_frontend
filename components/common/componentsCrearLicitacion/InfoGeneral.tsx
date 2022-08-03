@@ -49,7 +49,7 @@ export default function InfoGeneral ({ step, setStep, handleChange, form, servic
                                 <option value="Tipo03">Licitación Tipo 03</option>
                             </select>
                         </article>
-                        <InputSelect error={error.tipoServicio} handleChange={handleChange} label="Tipo de Servicio" name='tipoServicio' options={servicios.map((item) => ({ label: item.name, value: item.name }))} value={form.tipoServicio} />
+                        <InputSelect error={error.tipoServicio} handleChange={handleChange} label="Tipo de Servicio" name='tipoServicio' options={servicios.map((item) => ({ label: item.name, value: item._id }))} value={form.tipoServicio} />
                         <article className="flex justify-end pt-4">
                             <span onClick={() => setStep(step + 1)} className="bg-green-600 py-2 px-4 text-white block cursor-pointer">Continuar</span>
                         </article>

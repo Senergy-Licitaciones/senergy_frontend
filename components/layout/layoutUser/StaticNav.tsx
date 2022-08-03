@@ -8,6 +8,7 @@ import { useState } from 'react'
 import swal from 'sweetalert'
 import { signOut, useSession } from 'next-auth/react'
 import Loader from '../../common/Loader'
+import Image from 'next/image'
 export default function StaticNav () {
   const { pathname } = useRouter()
   const [show, setShow] = useState(false)
@@ -34,8 +35,8 @@ export default function StaticNav () {
   }
   return (
         <aside className="hidden md:flex md:flex-col md:items-center shadow-xl shadow-gray-400 sticky top-0 bottom-0 z-20 flex-col 2xl:py-6 2xl:px-10 py-4 px-4 lg:px-6 h-screen bg-gray-100 dark:bg-gray-900">
-            <div className="  " >
-                <img className="w-8 2xl:w-12 h-auto" src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
+            <div className="" >
+                <Image loading="lazy" width={60} height={21} src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
             </div>
             <ul className="flex flex-col flex-1  justify-around" >
                 <li>
@@ -73,9 +74,9 @@ export default function StaticNav () {
             <div className="relative " >
                 <div className={`${show ? 'flex flex-col' : 'hidden'} w-64 2xl:w-80 2xl:text-2xl shadow-2xl rounded absolute 2xl:left-24 2xl:p-6 left-20 bottom-0 bg-white `}>
                     <article className="flex p-4 bg-gray-50">
-
-                        <img className="w-16 h-16 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
-
+                        <figure className='rounded-full overflow-hidden flex ' >
+                        <Image loading='lazy' width={50} height={50} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="photo profile" />
+                        </figure>
                         <div className="flex flex-col p-2 justify-center">
                             <p className=" 2xl:text-2xl font-semibold" >{session ? session.user.name : 'Tiempo Agotado'}</p>
                             <p className="text-xs 2xl:text-sm font-semibold text-gray-400 uppercase" >Usuario</p>
@@ -107,7 +108,9 @@ export default function StaticNav () {
                         <button onClick={logout} className="py-2 transition-all 2xl:text-xl duration-300 rounded px-4 bg-yellow-500 text-white hover:opacity-80">Cerrar sesión</button>
                     </article>
                 </div>
-                <img onClick={() => show ? setShow(false) : setShow(true)} className="cursor-pointer w-8 2xl:w-12 2xl:h-12 h-8 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
+                <span onClick={() => show ? setShow(false) : setShow(true)} className='cursor-pointer overflow-hidden rounded-full flex' >
+                <Image loading='lazy' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" width={35} height={35} alt='user profile photo' />
+                </span>
             </div>
         </aside>
   )

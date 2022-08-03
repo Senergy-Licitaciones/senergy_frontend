@@ -13,6 +13,7 @@ import { getInfoDashboard } from '../../services/users'
 // eslint-disable-next-line camelcase
 import { Session, unstable_getServerSession } from 'next-auth'
 import { configNextAuth } from '../api/auth/[...nextauth]'
+import Image from 'next/image'
 const Highcharts = require('highcharts')
 type Props={
     info:Info,
@@ -123,8 +124,9 @@ export default function UserAccount ({ info, empresa }:Props) {
                             <p className="font-semibold dark:text-gray-400">{empresa}</p>
                             <p className="text-yellow-500 2xl:text-base text-xs">Empresa</p>
                         </article>
-
-                            <img className="w-12 2xl:w-16 2xl:h-16 h-12 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
+                        <figure className='rounded-full overflow-hidden flex' >
+                        <Image loading='lazy' width={48} height={48} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt='user profile photo' />
+                        </figure>
                     </div>
                     <article className="flex text-gray-500 2xl:text-lg text-sm dark:text-gray-400">
                         <span className="flex items-center mr-2">

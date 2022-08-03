@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { getFormatRoute } from '../../utils/formats'
@@ -5,9 +6,9 @@ import AsideBurger from './AsideBurger'
 export default function HeaderHome () {
   const { pathname } = useRouter()
   return (
-        <header className="sticky 2xl:text-2xl bg-gray-100 top-0 left-0 right-0 p-4 grid grid-cols-4" >
+        <header className="sticky z-40 2xl:text-2xl bg-gray-100 top-0 left-0 right-0 p-4 grid grid-cols-4" >
             <span className="col-span-2 md:col-span-1 w-40 2xl:w-48 h-auto flex">
-                <img src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
+                <Image loading='lazy' width={300} height={105} src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt='logo senergy' />
             </span>
             <AsideBurger/>
             <nav className="col-span-2 hidden md:flex justify-around items-center" >
