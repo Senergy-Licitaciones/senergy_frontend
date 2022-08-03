@@ -28,7 +28,7 @@ export default function LicitacionDetails ({ licitacion }:Props) {
                             <li><label className="font-bold" htmlFor="fechaInicio">Fecha de Inicio:</label> <p id="fechaInicio" >{licitacion.fechaInicio}</p></li>
                             <li><label className="font-bold" htmlFor="fechaFin">Fecha de Fin:</label> <p id="fechaFin" >{licitacion.fechaFin}</p></li>
                             <li><label className="font-bold" htmlFor="brg">BRG:</label> <p id="brg" >{licitacion.brg.name}</p></li>
-                            <li><label className="font-bold" htmlFor="author">Autor:</label><p id="author">{licitacion.author}</p></li>
+                            <li><label className="font-bold" htmlFor="author">Responsable de Licitación:</label><p id="author">{licitacion.author}</p></li>
                         </ul>
                     </article>
                         <article className="py-2" >
