@@ -32,7 +32,7 @@ type Props={
     idLicitacion:string,
 }
 export default function FormCrearOferta ({ idLicitacion }:Props) {
-  const { form, handleChange, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'|'tarifaPotencia'|'tarifaEnergiaHp'|'tarifaEnergiaHfp'|'potencia'|'energiaHp'|'energiaHfp'>>(initForm, validatorCrearOferta)
+  const { form, handleChange, handleChangeNumber, setForm, setLoading, loading, error } = useForm<FormCrearOfertaProveedor, Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp'|'excesoEnergiaHfp'|'formulaIndexEnergia'|'formulaIndexPotencia'|'tarifaPotencia'|'tarifaEnergiaHp'|'tarifaEnergiaHfp'|'potencia'|'energiaHp'|'energiaHfp'>>(initForm, validatorCrearOferta)
   console.log('FormCrearOferta ', form)
   const { push } = useRouter()
   const { data: session } = useSession()
@@ -68,12 +68,12 @@ export default function FormCrearOferta ({ idLicitacion }:Props) {
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="potMinFacturable">Potencia Mínima Facturable</label>
                             <div className="flex">
-                            <input onChange={handleChange} value={form.potMinFacturable} name="potMinFacturable" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Potencia Mínima Facturable" type="number" />
+                            <input onChange={handleChangeNumber} value={form.potMinFacturable} name="potMinFacturable" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Potencia Mínima Facturable" type="number" />
                             <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
                             </div>
                             {error.potMinFacturable && <p className='text-red-500 text-sm font-light' >{error.potMinFacturable}</p> }
                         </article>
-                        <InputExcesoPotencia error={error} form={form} handleChange={handleChange} />
+                        <InputExcesoPotencia error={error} form={form} handleChange={handleChangeNumber} />
                         <article className="flex justify-end pt-4">
                             {
                                 loading

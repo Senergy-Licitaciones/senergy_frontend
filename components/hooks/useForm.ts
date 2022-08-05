@@ -16,10 +16,18 @@ export const useForm:UseForm = (initForm, validator) => {
       [name]: value
     })
   }
+  const handleChangeNumber:HandlerChange = (e) => {
+    const { name, value } = e.target
+    setForm({
+      ...form,
+      [name]: parseFloat(value)
+    })
+  }
   return {
     error,
     setError,
     form,
+    handleChangeNumber,
     handleChange,
     setForm,
     loading,

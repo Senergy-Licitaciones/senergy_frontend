@@ -8,6 +8,7 @@ export type UseForm=<Form, ValidationForm>(initForm:Form, validatorForm:Validato
     setError:Dispatch<SetStateAction<ErrorsForm<ValidatorForm>>>
     loading:boolean,
     setLoading:Dispatch<SetStateAction<boolean>>
-    handleChange:HandlerChange
+    handleChange:HandlerChange,
+    handleChangeNumber:HandlerChange,
     setForm:Dispatch<SetStateAction<Form>>
 }

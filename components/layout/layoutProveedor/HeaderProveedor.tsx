@@ -9,6 +9,7 @@ import { FiSettings } from 'react-icons/fi'
 import { AiOutlineUser } from 'react-icons/ai'
 import { RiMenu4Line } from 'react-icons/ri'
 import NavResponsiveProveedor from './NavResponsiveProveedor'
+import Image from 'next/image'
 type Props={
     children?:ReactNode
 }
@@ -24,14 +25,15 @@ export default function HeaderProveedor ({ children }:Props) {
               <RiMenu4Line/>
             </button>
             <div className=" " >
-                <img className="w-24 h-auto" src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
+                <Image loading='lazy' width={60} height={21} src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt='logo senergy' />
             </div>
             <nav>
               <div className="relative " >
                 <div className={`${show ? 'flex flex-col' : 'hidden'} w-64 shadow-2xl rounded absolute right-0 top-20 bg-white `}>
                     <article className="flex p-4 bg-gray-50">
-
-                        <img className="w-16 h-16 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
+                        <figure className='rounded-full overflow-hidden flex' >
+                        <Image width={64} height={64} loading='lazy' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt='proveedor profile photo' />
+                        </figure>
 
                         <div className="flex flex-col p-2 justify-center">
                             <p className="font-semibold" >John Doe</p>
@@ -64,7 +66,9 @@ export default function HeaderProveedor ({ children }:Props) {
                         <button onClick={() => push('/')} className="py-2 transition-all duration-300 rounded px-4 bg-yellow-500 text-white hover:opacity-80">Cerrar sesión</button>
                     </article>
                 </div>
-                <img onClick={() => show ? setShow(false) : setShow(true)} className="cursor-pointer w-8 h-8 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
+                <span onClick={() => show ? setShow(false) : setShow(true)} className='cursor-pointer rounded-full overflow-hidden flex' >
+                <Image width={32} height={32} loading="lazy" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt='proveedor profile photo' />
+                </span>
             </div>
             </nav>
           </div>
