@@ -7,20 +7,21 @@ import InputSelect from '../inputs/InputSelect'
 
 type Props={
     handleChange:HandlerChange,
+    handleChangeNumber:HandlerChange,
     step:number,
     error:ErrorsForm<Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>
     setStep:Dispatch<SetStateAction<number>>,
     form:FormCrearLicitacionUser,
     setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>
 }
-export default function InfoDetallada ({ handleChange, step, setStep, form, setForm, error }:Props) {
+export default function InfoDetallada ({ handleChange, handleChangeNumber, step, setStep, form, setForm, error }:Props) {
   return (
         <div className={`dark:bg-gray-900 bg-white p-4 ${step === 2 ? 'block' : 'hidden'}`}>
                         <p className="font-semibold dark:text-gray-400">Información detallada</p>
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 dark:text-gray-400 text-sm" htmlFor="numLicitacion">Número de Licitación <strong className='text-red-500' >*</strong></label>
                             <div className='flex' >
-                            <input onChange={handleChange} value={form.numLicitacion} name="numLicitacion" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 placeholder:text-sm " placeholder="Número de Licitación" type="number" />
+                            <input onChange={handleChangeNumber} value={form.numLicitacion} name="numLicitacion" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 placeholder:text-sm " placeholder="Número de Licitación" type="number" />
                             <span onClick={() => setForm({ ...form, numLicitacion: generateNumber(5) })} className='flex px-2 bg-sky-500 transition-color duration-300 ease-in-out text-white justify-center items-center cursor-pointer hover:bg-sky-700' >Generar número</span>
                             </div>
                             {error.numLicitacion && <p className='text-red-500 font-light text-sm' >{error.numLicitacion}</p> }

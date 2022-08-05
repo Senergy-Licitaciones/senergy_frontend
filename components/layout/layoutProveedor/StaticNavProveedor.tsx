@@ -9,6 +9,7 @@ import { BsSearch } from 'react-icons/bs'
 import swal from 'sweetalert'
 import { signOut, useSession } from 'next-auth/react'
 import Loader from '../../common/Loader'
+import Image from 'next/image'
 export default function StaticNavProveedor () {
   const { pathname } = useRouter()
   const [show, setShow] = useState(false)
@@ -29,11 +30,11 @@ export default function StaticNavProveedor () {
     })
   }
   return (
-        <aside className="hidden md:flex sticky top-0 bottom-0 z-20 flex-col py-4 px-4 lg:px-8 h-screen bg-gray-100 dark:bg-gray-900">
+        <aside className="hidden md:flex sticky top-0 bottom-0 z-20 flex-col py-4 px-4 lg:px-3 h-screen bg-gray-100 dark:bg-gray-900">
             <div className=" " >
-                <img className="w-8 h-auto" src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
+                <Image loading="lazy" width={60} height={21} src="https://res.cloudinary.com/dream-music/image/upload/v1632869216/senergy/logo_n49xb5.png" alt="logo senergy" />
             </div>
-            <ul className="flex flex-col flex-1 justify-around" >
+            <ul className="flex flex-col items-center flex-1 justify-around" >
                 <li>
                     <Link href="/empresaAccount/dashboard" >
                         <a className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Dashboard"] text-2xl transition-all duration-300 hover:text-yellow-500 
@@ -60,18 +61,18 @@ export default function StaticNavProveedor () {
                 </li>
                 <li>
                     <Link href="/empresaAccount" >
-                        <a className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                        <a className={`after:-left-full relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
                             <FiSettings/>
                         </a>
                     </Link>
                 </li>
             </ul>
-            <div className="relative " >
+            <div className="relative flex items-center justify-center " >
                 <div className={`${show ? 'flex flex-col' : 'hidden'} w-64 shadow-2xl rounded absolute left-20 bottom-0 bg-white `}>
                     <article className="flex p-4 bg-gray-50">
-
-                        <img className="w-16 h-16 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
-
+                        <figure className='rounded-full overflow-hidden flex ' >
+                        <Image loading='lazy' width={50} height={50} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="photo profile" />
+                        </figure>
                         <div className="flex flex-col p-2 justify-center">
                             <p className="font-semibold" >{session ? session.user.name : 'Sesión cerrada'}</p>
                             <p className="text-xs font-semibold text-gray-400 uppercase" >Proveedor</p>
@@ -103,7 +104,9 @@ export default function StaticNavProveedor () {
                         <button onClick={logout} className="py-2 transition-all duration-300 rounded px-4 bg-yellow-500 text-white hover:opacity-80">Cerrar sesión</button>
                     </article>
                 </div>
-                <img onClick={() => show ? setShow(false) : setShow(true)} className="cursor-pointer w-8 h-8 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="user profile" />
+                 <span onClick={() => show ? setShow(false) : setShow(true)} className='cursor-pointer overflow-hidden rounded-full flex' >
+                <Image loading='lazy' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" width={35} height={35} alt='proveedor profile photo' />
+                </span>
             </div>
         </aside>
   )

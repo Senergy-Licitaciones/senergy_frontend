@@ -41,7 +41,7 @@ const formInit:FormCrearLicitacionUser = {
 }
 export default function FormCrearLicitacion ({ step, setStep }:Props) {
   const { data: session } = useSession()
-  const { form, handleChange, setForm, loading, setLoading, error } = useForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'description'|'requisitos'|'meses'>>({ ...formInit, empresa: session ? session.user.name : '' }, validatorCrearLicitacion)
+  const { form, handleChange, handleChangeNumber, setForm, loading, setLoading, error } = useForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'description'|'requisitos'|'meses'>>({ ...formInit, empresa: session ? session.user.name : '' }, validatorCrearLicitacion)
   const { push } = useRouter()
   const { servicios, brgs, puntoSums } = useData(session)
   if (!session) return <Loader/>
@@ -65,8 +65,8 @@ export default function FormCrearLicitacion ({ step, setStep }:Props) {
   return (
         <form onSubmit={sendForm} className="flex-1 mb-4 md:m-0">
                     <InfoGeneral error={error} servicios={servicios} setStep={setStep} step={step} handleChange={handleChange} form={form} />
-                    <InfoDetallada error={error} setForm={setForm} handleChange={handleChange} step={step} setStep={setStep} form={form} />
-                    <EspecificacionesTecnicas update={false} error={error} step={step} setForm={setForm} setStep={setStep} form={form} handleChange={handleChange} brgs={brgs} puntoSums={puntoSums} />
+                    <InfoDetallada handleChangeNumber={handleChangeNumber} error={error} setForm={setForm} handleChange={handleChange} step={step} setStep={setStep} form={form} />
+                    <EspecificacionesTecnicas handleChangeNumber={handleChangeNumber} update={false} error={error} step={step} setForm={setForm} setStep={setStep} form={form} handleChange={handleChange} brgs={brgs} puntoSums={puntoSums} />
                     <EspecificacionMes loading={loading} setLoading={setLoading} form={form} step={step} setForm={setForm} />
         </form>
   )

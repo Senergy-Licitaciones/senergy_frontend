@@ -6,7 +6,7 @@ import { handleAxiosError } from '../../utils/handleErrors'
 
 export const createOferta:FetcherBodyAuth<{form:FormCrearOfertaProveedor, licitacion:string}, {message:string}> = async ({ form, licitacion }, token) => {
   try {
-    const { data } = await senergy.post('/proveedor/createOferta', {
+    const { data } = await senergy.post('/proveedor/crearOferta', {
       ...form,
       excesoEnergiaHp: form.excesoPotencia > 100 ? form.excesoEnergiaHp : undefined,
       excesoEnergiaHfp: form.excesoPotencia > 100 ? form.excesoEnergiaHfp : undefined,

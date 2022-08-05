@@ -14,9 +14,10 @@ type Props={
     brgs:DataSelect[],
     puntoSums:DataSelect[],
     setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>,
+    handleChangeNumber:HandlerChange,
     update:boolean
 }
-export default function EspecificacionesTecnicas ({ step, setStep, handleChange, form, puntoSums, brgs, setForm, update, error }:Props) {
+export default function EspecificacionesTecnicas ({ step, setStep, handleChangeNumber, handleChange, form, puntoSums, brgs, setForm, update, error }:Props) {
   useMeses(update, form, setForm)
   return (
         <div className={`bg-white dark:bg-gray-900 p-4 ${step === 3 ? 'block' : 'hidden'}`}>
@@ -30,12 +31,7 @@ export default function EspecificacionesTecnicas ({ step, setStep, handleChange,
                         <InputSelect error={error.brg} handleChange={handleChange} label="Barra de Referencia de Generación (BRG)" name='brg' options={brgs.map((item) => ({ value: item._id, label: item.name }))} value={form.brg} />
                         <article className="flex flex-col my-4">
                             <label className="text-gray-500 text-sm" htmlFor="factorPlanta">Factor de Planta <strong className='text-red-500' >*</strong></label>
-                            <input onChange={(e) => {
-                              setForm({
-                                ...form,
-                                factorPlanta: parseFloat(e.target.value)
-                              })
-                            }} value={form.factorPlanta} name="factorPlanta" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Factor de Planta" type="number" />
+                            <input onChange={handleChangeNumber} value={form.factorPlanta} name="factorPlanta" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Factor de Planta" type="number" />
                             {error.factorPlanta && <p className='text-red-500 text-sm font-light' >{error.factorPlanta}</p> }
                         </article>
                         <article className="flex justify-end pt-4">

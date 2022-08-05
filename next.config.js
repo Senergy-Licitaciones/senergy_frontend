@@ -46,6 +46,6 @@ module.exports = {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL
   },
   images: {
-    domains: ['cdn.pixabay.com', 'res.cloudinary.com']
+    domains: ['cdn.pixabay.com', 'res.cloudinary.com', 'media.istockphoto.com']
   }
 }
