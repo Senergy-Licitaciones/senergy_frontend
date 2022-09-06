@@ -1,8 +1,8 @@
 import { configNextAuth } from '@/pages/api/auth/[...nextauth]'
 import { getNamesParametros } from '@/services/data'
 import { GetServerSideProps } from 'next'
-import { Session, unstable_getServerSession } from 'next-auth'
 // eslint-disable-next-line camelcase
+import { Session, unstable_getServerSession } from 'next-auth'
 import FormCrearOferta from '../../../../components/common/FormCrearOferta'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
 type Props={
