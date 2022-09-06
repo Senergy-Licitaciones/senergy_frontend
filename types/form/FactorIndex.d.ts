@@ -1,4 +1,4 @@
 export interface FactorIndex{
     factor:number,
-    index:string
+    indexId:string
 }

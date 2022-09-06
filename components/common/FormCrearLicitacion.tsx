@@ -1,60 +1,66 @@
-import { Dispatch, SetStateAction } from 'react'
-import { FormCrearLicitacionUser, HandlerSubmit } from '@mytypes/form'
+import { Dispatch, SetStateAction, useState } from 'react'
+import { IFormCrearLicitacionUser } from '@mytypes/form'
 import { useData } from '../hooks/useData'
-import { useForm } from '../hooks/useForm'
 import EspecificacionesTecnicas from './componentsCrearLicitacion/EspecificacionesTecnicas'
 import EspecificacionMes from './componentsCrearLicitacion/EspecificacionMes'
 import InfoDetallada from './componentsCrearLicitacion/InfoDetallada'
 import InfoGeneral from './componentsCrearLicitacion/InfoGeneral'
 
-import { Estado } from '@mytypes/form/enums'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import swal from 'sweetalert'
-import { validatorCrearLicitacion } from '../../utils/validators'
+import { crearLicitacionResolver } from '../../utils/validators'
 import Loader from './Loader'
 import { createLicitacion } from '../../services/licitaciones'
 import { handleErrorSwal } from '../../utils/handleErrors'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { Estado } from '@/types/form/enums'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>,
 }
-
-const formInit:FormCrearLicitacionUser = {
-  title: '',
-  description: '',
-  tipoLicitacion: '',
-  tipoServicio: '',
-  fechaInicioApertura: '',
-  fechaFinApertura: '',
-  numLicitacion: 0,
-  requisitos: '',
-  estado: Estado.Cerrado,
-  empresa: '',
-  fechaInicio: '',
-  fechaFin: '',
-  puntoSum: '',
+const initForm:IFormCrearLicitacionUser = {
   author: '',
   brg: '',
+  description: '',
+  empresa: '',
+  fechaFin: '',
+  fechaInicio: '',
+  estado: Estado.Abierto,
   factorPlanta: 0,
-  meses: []
+  fechaFinApertura: '',
+  fechaInicioApertura: '',
+  meses: [],
+  numLicitacion: 0,
+  requisitos: '',
+  puntoSum: '',
+  tipoLicitacion: '',
+  tipoServicio: '',
+  title: ''
 }
 export default function FormCrearLicitacion ({ step, setStep }:Props) {
   const { data: session } = useSession()
-  const { form, handleChange, handleChangeNumber, setForm, loading, setLoading, error } = useForm<FormCrearLicitacionUser, Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'description'|'requisitos'|'meses'>>({ ...formInit, empresa: session ? session.user.name : '' }, validatorCrearLicitacion)
+  const { handleSubmit, watch, register, formState: { errors }, setValue, control, getValues } = useForm<IFormCrearLicitacionUser>({
+    resolver: crearLicitacionResolver,
+    defaultValues: {
+      ...initForm,
+      empresa: session ? session.user.name : ''
+    }
+  })
+  const [loading, setLoading] = useState(false)
   const { push } = useRouter()
   const { servicios, brgs, puntoSums } = useData(session)
+  console.log('values', getValues())
   if (!session) return <Loader/>
-  const sendForm:HandlerSubmit = async (e) => {
+  const sendForm:SubmitHandler<IFormCrearLicitacionUser> = async (data) => {
     console.log('ejecutando form')
-    e.preventDefault()
     try {
       setLoading(true)
-      console.log('licitacion ', form)
-      const data = await createLicitacion({ form, user: session.user.sub }, session.accessToken)
+      console.log('licitacion ', data)
+      const response = await createLicitacion({ form: data, user: session.user.sub }, session.accessToken)
       setLoading(false)
-      console.log('mensaje ', data.message)
-      swal('Proceso exitoso', data.message, 'success').then(() => {
+      console.log('mensaje ', response.message)
+      swal('Proceso exitoso', response.message, 'success').then(() => {
         push('/userAccount/licitaciones')
       })
     } catch (err) {
@@ -63,11 +69,18 @@ export default function FormCrearLicitacion ({ step, setStep }:Props) {
     }
   }
   return (
-        <form onSubmit={sendForm} className="flex-1 mb-4 md:m-0">
-                    <InfoGeneral error={error} servicios={servicios} setStep={setStep} step={step} handleChange={handleChange} form={form} />
-                    <InfoDetallada handleChangeNumber={handleChangeNumber} error={error} setForm={setForm} handleChange={handleChange} step={step} setStep={setStep} form={form} />
-                    <EspecificacionesTecnicas handleChangeNumber={handleChangeNumber} update={false} error={error} step={step} setForm={setForm} setStep={setStep} form={form} handleChange={handleChange} brgs={brgs} puntoSums={puntoSums} />
-                    <EspecificacionMes loading={loading} setLoading={setLoading} form={form} step={step} setForm={setForm} />
+        <form onSubmit={handleSubmit(sendForm)} className="flex-1 mb-4 md:m-0">
+          {
+            step === 1 && servicios.length !== 0
+              ? <InfoGeneral watch={watch} control={control} errors={errors} register={register} servicios={servicios} setStep={setStep} step={step} />
+              : step === 2
+                ? <InfoDetallada setValue={setValue} control={control} step={step} setStep={setStep} errors={errors} register={register} />
+                : step === 3
+                  ? <EspecificacionesTecnicas watch={watch} control={control} errors={errors} form={getValues()} setValue={setValue} register={register} update={false} step={step} setStep={setStep} brgs={brgs} puntoSums={puntoSums} />
+                  : step === 4
+                    ? <EspecificacionMes watch={watch} loading={loading} form={getValues()} setValue={setValue} step={step} />
+                    : <Loader/>
+          }
         </form>
   )
 }

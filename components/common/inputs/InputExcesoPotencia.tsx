@@ -1,39 +1,22 @@
-import { FormCrearOfertaProveedor, HandlerChange } from '@mytypes/form'
-import { ErrorsForm } from '@mytypes/validators'
+import { Chip, Input } from '@material-tailwind/react'
+import { IFormCrearOfertaProveedor } from '@mytypes/form'
+import { FieldErrorsImpl, UseFormRegister, UseFormWatch } from 'react-hook-form'
 
 type Props={
-    handleChange:HandlerChange,
-    form:FormCrearOfertaProveedor,
-    error:ErrorsForm<Omit<FormCrearOfertaProveedor, 'excesoEnergiaHp' | 'excesoEnergiaHfp' | 'formulaIndexEnergia' | 'formulaIndexPotencia' | 'tarifaPotencia' | 'tarifaEnergiaHp' | 'tarifaEnergiaHfp' | 'potencia' | 'energiaHp' | 'energiaHfp'>>
+    register:UseFormRegister<IFormCrearOfertaProveedor>,
+    watch:UseFormWatch<IFormCrearOfertaProveedor>
+    errors:FieldErrorsImpl<IFormCrearOfertaProveedor>
 }
-export default function InputExcesoPotencia ({ handleChange, form, error }:Props) {
+export default function InputExcesoPotencia ({ register, errors, watch }:Props) {
   return (
         <>
-        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoPotencia">Exceso de Potencia</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.excesoPotencia} name="excesoPotencia" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage MDC" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >100% - 200%</span>
-                            </div>
-                            {error.excesoPotencia && <p className='text-red-500 text-sm font-light' >{error.excesoPotencia}</p> }
-                        </article>
+        <Input error={!!errors.excesoPotencia} size="lg" icon={<Chip className='-left-12' value="100% - 200%" />} {...register('excesoPotencia')} type="number" label='Exceso de Potencia' />
                         {
-                          form.excesoPotencia > 100 &&
+                          watch('excesoPotencia') > 100 &&
                           <>
-                            <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHp">Exceso de Energía en Horas Punta</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.excesoEnergiaHp} name="excesoEnergiaHp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energía HP" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
-                            </div>
-                        </article>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 dark:text-gray-400 text-sm 2xl:text-lg" htmlFor="excesoEnergiaHfp">Exceso de Energía en Horas Fuera de Punta</label>
-                            <div className="flex">
-                            <input onChange={handleChange} value={form.excesoEnergiaHfp} name="excesoEnergiaHfp" className="rounded flex-1 dark:bg-gray-800 dark:text-gray-400 2xl:placeholder:text-lg placeholder:text-sm " placeholder="Agregar Porcentage Energia HFP" type="number" />
-                            <span className="flex bg-gray-200 px-2 items-center" >0% - 100%</span>
-                            </div>
-                        </article>
+                          <Input error={!!errors.excesoEnergiaHp} {...register('excesoEnergiaHp')} size="lg" icon={<Chip className='-left-12' value="0% - 100%" />} label='Exceso de Energía en Horas Punta' type="number" />
+          <Input error={!!errors.excesoEnergiaHfp} {...register('excesoEnergiaHfp')} icon={<Chip className='-left-12' value="0% - 100%" />} label='Exceso de Energía en Horas Fuera de Punta' type="number" />
+
                           </>
                         }
         </>

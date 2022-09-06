@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios'
 import { FetcherBodyAuth } from '@mytypes/fetch'
-import { FormCrearLicitacionUser } from '@mytypes/form'
 import { senergy } from '../../utils'
 import { handleAxiosError } from '../../utils/handleErrors'
+import { IFormCrearLicitacionUser } from '@/types/form'
 
-export const updateLicitacion:FetcherBodyAuth<{form:FormCrearLicitacionUser, id:string}, {message:string}> = async ({ form, id }, token) => {
+export const updateLicitacion:FetcherBodyAuth<{form:IFormCrearLicitacionUser, id:string}, {message:string}> = async ({ form, id }, token) => {
   try {
     const { data } = await senergy.put(`/licitacion/actualizarLicitacion/${id}`, form, {
       headers: {

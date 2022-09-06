@@ -1,15 +1,17 @@
 import { Dispatch, SetStateAction } from 'react'
 import { API, useSession } from '../../../config'
 import { generateFileToMonths, uploadFile } from '../../../services/users'
-import { FormCrearLicitacionUser } from '@mytypes/form'
+import { IFormCrearLicitacionUser } from '@mytypes/form'
 import { handleErrorSwal } from '../../../utils/handleErrors'
 import Loader from '../Loader'
+import { UseFormSetValue } from 'react-hook-form'
+import { Button } from '@material-tailwind/react'
 
 type Props={
     loadFile:{status:boolean, filename:string, file:File|null}
     setLoadFile:Dispatch<SetStateAction<{status:boolean, filename:string, file:File|null}>>,
-    form:FormCrearLicitacionUser,
-    setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>
+    form:IFormCrearLicitacionUser,
+    setForm:UseFormSetValue<IFormCrearLicitacionUser>,
 }
 export default function EspecificacionMesFile ({ loadFile, setLoadFile, form, setForm }:Props) {
   const { data: session } = useSession()
@@ -32,10 +34,7 @@ export default function EspecificacionMesFile ({ loadFile, setLoadFile, form, se
       loadFile.file && bodyForm.append('especificacionMes', loadFile.file)
       const data = await uploadFile({ filename: loadFile.filename, form: bodyForm })
       console.log('data', data)
-      setForm({
-        ...form,
-        meses: data
-      })
+      setForm('meses', data)
       setLoadFile({
         status: false,
         filename: '',
@@ -56,7 +55,7 @@ export default function EspecificacionMesFile ({ loadFile, setLoadFile, form, se
                           <label className='text-sm text-gray-700 my-2' htmlFor="especificacionMes">Subir archivo llenado</label>
                           <input accept='.xlsx' multiple={false} onChange={(e) => setLoadFile({ ...loadFile, file: e.target.files ? e.target.files[0] : null })} type="file" name="especificacionMes" />
                           </article>
-                          <span className='cursor-pointer bg-sky-500 font-bold text-white py-2 px-4 my-2 transition-opacity duration-300 ease-in-out hover:opacity-70' onClick={validateFile} >Validar archivo</span>
+                          <Button onClick={validateFile} >Validar archivo</Button>
                           </div>
                           }
                           </div>

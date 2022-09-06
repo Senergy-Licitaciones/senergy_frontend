@@ -1,3 +1,5 @@
+import { crearLicitacionSchema } from '@/utils/validators'
+import { InferType } from 'yup'
 import { NumMes } from '.'
 import { Estado } from './enums'
 
@@ -20,3 +22,4 @@ export interface FormCrearLicitacionUser{
     factorPlanta:number,
     meses:NumMes[]
 }
+export type IFormCrearLicitacionUser=InferType<typeof crearLicitacionSchema>

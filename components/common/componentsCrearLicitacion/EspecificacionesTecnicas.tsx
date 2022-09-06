@@ -1,42 +1,62 @@
 import { Dispatch, SetStateAction } from 'react'
 import { DataSelect } from '@mytypes/models'
-import { FormCrearLicitacionUser, HandlerChange } from '@mytypes/form'
-import { ErrorsForm } from '@mytypes/validators'
-import InputSelect from '../inputs/InputSelect'
+import { IFormCrearLicitacionUser } from '@mytypes/form'
 import { useMeses } from '../../hooks/useMeses'
-import InputFechas from '../inputs/InputFechas'
+import { Card, CardBody, CardFooter, CardHeader, Input, Option, Select } from '@material-tailwind/react'
+import { Control, Controller, FieldErrorsImpl, UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form'
 type Props={
     step:number,
     setStep:Dispatch<SetStateAction<number>>,
-    handleChange:HandlerChange,
-    error:ErrorsForm<Omit<FormCrearLicitacionUser, 'tipoLicitacion'|'requisitos'|'description'|'meses'>>
-    form:FormCrearLicitacionUser,
     brgs:DataSelect[],
     puntoSums:DataSelect[],
-    setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>,
-    handleChangeNumber:HandlerChange,
-    update:boolean
+    update:boolean,
+    control:Control<IFormCrearLicitacionUser, any>,
+    register:UseFormRegister<IFormCrearLicitacionUser>,
+    errors:FieldErrorsImpl<IFormCrearLicitacionUser>,
+    setValue:UseFormSetValue<IFormCrearLicitacionUser>,
+    form:IFormCrearLicitacionUser,
+    watch:UseFormWatch<IFormCrearLicitacionUser>
 }
-export default function EspecificacionesTecnicas ({ step, setStep, handleChangeNumber, handleChange, form, puntoSums, brgs, setForm, update, error }:Props) {
-  useMeses(update, form, setForm)
+export default function EspecificacionesTecnicas ({ setValue, watch, step, form, control, setStep, puntoSums, brgs, update, errors, register }:Props) {
+  console.log('form antes de use', form)
+  useMeses(update, { ...form, fechaInicio: watch('fechaInicio'), fechaFin: watch('fechaFin') }, setValue)
+  console.log('form dsps de use', form)
   return (
-        <div className={`bg-white dark:bg-gray-900 p-4 ${step === 3 ? 'block' : 'hidden'}`}>
+        <div >
+                        <Card>
+                            <CardHeader className='p-4' >
                         <p className="font-semibold dark:text-gray-400 ">Especificaciones Técnicas</p>
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="empresa">Razón Social <strong className='text-red-500' >*</strong></label>
-                            <input disabled value={form.empresa} name="empresa" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Nombre de Empresa" type="text" />
-                        </article>
-                       <InputFechas error={error} form={form} handleChange={handleChange} />
-                        <InputSelect error={error.puntoSum} handleChange={handleChange} label="Punto de Suministro y Medición" name='puntoSum' options={puntoSums.map((item) => ({ value: item._id, label: item.name }))} value={form.puntoSum} />
-                        <InputSelect error={error.brg} handleChange={handleChange} label="Barra de Referencia de Generación (BRG)" name='brg' options={brgs.map((item) => ({ value: item._id, label: item.name }))} value={form.brg} />
-                        <article className="flex flex-col my-4">
-                            <label className="text-gray-500 text-sm" htmlFor="factorPlanta">Factor de Planta <strong className='text-red-500' >*</strong></label>
-                            <input onChange={handleChangeNumber} value={form.factorPlanta} name="factorPlanta" className="rounded dark:bg-gray-800 placeholder:text-sm " placeholder="Factor de Planta" type="number" />
-                            {error.factorPlanta && <p className='text-red-500 text-sm font-light' >{error.factorPlanta}</p> }
-                        </article>
+                            </CardHeader>
+                            <CardBody className='grid gap-4' >
+                        <Input {...register('empresa')} label="Razón Social" disabled size='lg' type="text" />
+                        <Input error={!!errors.fechaInicio} {...register('fechaInicio')} label='Fecha de Inicio' size='lg' type="date" />
+                        <Input error={!!errors.fechaFin} {...register('fechaFin')} label='Fecha Final' size='lg' type="date" />
+                        <Controller name='puntoSum' control={control} render={({ field }) => (
+                            <Select size='lg' error={!!errors.puntoSum} label="Punto de Suministro" {...field} >
+                                {
+                                    puntoSums.map((puntoSum) => (
+                                        <Option key={puntoSum._id} value={puntoSum._id} >{puntoSum.name}</Option>
+                                    ))
+                                }
+                            </Select>
+                        )} />
+                        <Controller name='brg' control={control} render={({ field }) => (
+                            <Select size='lg' error={!!errors.brg} label="BRG" {...field} >
+                                {
+                                    brgs.map((brg) => (
+                                        <Option key={brg._id} value={brg._id} >{brg.name}</Option>
+                                    ))
+                                }
+                            </Select>
+                        )} />
+                        <Input error={!!errors.factorPlanta} size="lg" {...register('factorPlanta')} label='Factor Planta' type="number" />
+                            </CardBody>
+                            <CardFooter divider>
                         <article className="flex justify-end pt-4">
                             <span onClick={() => setStep(step + 1)} className="bg-green-600 py-2 px-4 text-white block cursor-pointer">Continuar</span>
                         </article>
+                            </CardFooter>
+                        </Card>
                     </div>
   )
 }

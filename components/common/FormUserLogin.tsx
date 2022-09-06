@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { FormLogin, HandlerSubmit } from '@mytypes/form'
-import { useForm } from '../hooks/useForm'
+import { IFormLogin } from '@mytypes/form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import Loader from './Loader'
 import { signIn, useSession } from 'next-auth/react'
 import { TypeToken } from '@mytypes/models/enums'
@@ -8,20 +8,22 @@ import { IoLockOpenOutline } from 'react-icons/io5'
 import { URL_BASE } from '../../config'
 import { useRouter } from 'next/router'
 import swal from 'sweetalert'
-import { validatorLogin } from '../../utils/validators'
-const initForm:FormLogin = {
-  correo: '',
-  password: ''
-}
+import { Button, Card, CardBody, CardFooter, CardHeader, Input, Typography } from '@material-tailwind/react'
+import { BiKey, BiMailSend } from 'react-icons/bi'
+import { loginResolver } from '@/utils/validators'
+import { useState } from 'react'
+import { Errors } from './Errors'
 export default function FormUserLogin () {
-  const { form, handleChange, loading, setLoading, error } = useForm<FormLogin, FormLogin>(initForm, validatorLogin)
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormLogin>({
+    resolver: loginResolver
+  })
+  const [loading, setLoading] = useState(false)
   const { status } = useSession()
   const { push } = useRouter()
   console.log('status ', status)
-  const loginUser:HandlerSubmit = async (e) => {
-    e.preventDefault()
+  const loginUser:SubmitHandler<IFormLogin> = async (data) => {
     setLoading(true)
-    const result = await signIn('credentials', { correo: form.correo, password: form.password, tipo: TypeToken.User, redirect: false, callbackUrl: `${URL_BASE}/userAccount` }) as {error:string|null, ok:boolean, status:number, url:string}|undefined
+    const result = await signIn('credentials', { correo: data.correo, password: data.password, tipo: TypeToken.User, redirect: false, callbackUrl: `${URL_BASE}/userAccount` }) as {error:string|null, ok:boolean, status:number, url:string}|undefined
     console.log('result ', result)
     if (result) {
       if (result.error) { swal('Proceso Fallido', 'Credenciales incorrectas', 'error') } else {
@@ -33,45 +35,52 @@ export default function FormUserLogin () {
   }
 
   return (
-        <form onSubmit={loginUser} className={' transition-all duration-500 2xl:p-12 2xl:text-2xl p-8 flex flex-col justify-around rounded-lg shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.2)]'} >
+        <form onSubmit={handleSubmit(loginUser)} >
+          <Card>
+            <Errors errors={errors} />
+            <CardHeader className='py-4' >
                 <span className='flex items-center justify-center text-3xl text-sky-500' >
                   <IoLockOpenOutline/>
                 </span>
                 <h1 className=" text-3xl text-center 2xl:text-4xl">Usuarios Libres</h1>
-                <hr className='my-4'/>
-                <article className="flex mb-4 flex-col">
-                <label className="" htmlFor="correo">Correo</label>
-                <input className=' border-gray-300 rounded bg-gray-100' onChange={handleChange} value={form.correo} name="correo" type="email"/>
-                {error.correo && <p className='text-red-500 font-light text-sm' >{error.correo}</p> }
-                </article>
-                <article className="flex mb-6 flex-col">
-                <label className="" htmlFor="password">Contraseña</label>
-                <input className=' border-gray-300 rounded bg-gray-100 ' onChange={handleChange} value={form.password} name="password" type="password"/>
-                {error.password && <p className='text-red-500 font-light text-sm' >{error.password}</p> }
-                </article>
+            </CardHeader>
+            <CardBody className='grid gap-4' >
+              <Input {...register('correo')} error={!!errors.correo} label='Correo' icon={<BiMailSend/>} type="email" size='lg' />
+                <Input {...register('password')} error={!!errors.password} label='Contraseña' icon={<BiKey/>} size="lg" type="password" />
+            </CardBody>
+            <CardFooter divider >
+
                 {
                     loading
                       ? <article className="flex justify-center" >
                         <Loader/>
                     </article>
-                      : <button className="bg-sky-500 hover:bg-sky-700 duration-300 ease-in-out transition-colors mb-4 text-white font-bold py-2 rounded-md" type="submit" >Iniciar sesión</button>
+                      : <Button type="submit" fullWidth >Iniciar sesión</Button>
                 }
-                <article className="flex justify-center ">
+                <article className="flex justify-center  mt-4">
 
                 <Link href="/login/empresa">
-                <a className="text-sky-400">
+                <a>
+                  <Typography color="light-blue" variant="paragraph" >
                     Si eres un <strong>proveedor de energía eléctrica</strong> inicia sesión <strong>aquí</strong>!
+                  </Typography>
                 </a>
                 </Link>
                 </article>
                 <hr className="bg-gray-300 my-4"/>
                 <article className="flex justify-center">
                 <Link href="/register">
-                    <a className="text-sky-400">
+                  <a>
+                  <Typography color="light-blue" variant="small" >
+
                         ¿Aún no estás <strong>registrado</strong>? Ingresa <strong>aquí</strong>!
-                    </a>
+
+                  </Typography>
+                  </a>
                 </Link>
                 </article>
+            </CardFooter>
+          </Card>
             </form>
   )
 }

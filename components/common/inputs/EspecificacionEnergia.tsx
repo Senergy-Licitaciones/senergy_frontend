@@ -1,26 +1,25 @@
-import { Dispatch, SetStateAction } from 'react'
-import { FormCrearLicitacionUser, NumMes } from '@mytypes/form'
+import { Input } from '@material-tailwind/react'
+import { IFormCrearLicitacionUser, NumMes } from '@mytypes/form'
+import { UseFormSetValue } from 'react-hook-form'
 
 type Props={
-    form:FormCrearLicitacionUser,
-    setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>,
+    form:IFormCrearLicitacionUser,
+    setForm:UseFormSetValue<IFormCrearLicitacionUser>,
     index:number,
     typeEnergia:'hp'|'hfp',
 }
 export default function EspecificacionEnergia ({ setForm, form, index, typeEnergia }:Props) {
   return (
-    <input className="bg-transparent w-24 dark:text-gray-400" onChange={(e) => setForm({
-      ...form,
-      meses: form.meses.map((mes, i) => {
-        if (i === index) {
-          const newValue:NumMes = {
-            ...mes,
-            [typeEnergia]: parseFloat(e.target.value)
-          }
-          return newValue
+    <Input variant='static' size='lg' onChange={(e) => setForm('meses', form.meses.map((mes, i) => {
+      if (i === index) {
+        const newValue:NumMes = {
+          ...mes,
+          [typeEnergia]: parseFloat(e.target.value)
         }
-        return mes
-      })
-    })} value={form.meses[index][typeEnergia]} type="number" />
+        return newValue
+      }
+      return mes
+    })
+    )} value={form.meses[index][typeEnergia]} type="number" />
   )
 }

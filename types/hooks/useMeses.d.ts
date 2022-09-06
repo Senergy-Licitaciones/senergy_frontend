@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
-import { FormCrearLicitacionUser } from '../form'
+import { UseFormSetValue } from 'react-hook-form'
+import { IFormCrearLicitacionUser } from '../form'
 
-export type UseMeses = (update:boolean, form:FormCrearLicitacionUser, setForm:Dispatch<SetStateAction<FormCrearLicitacionUser>>) => void
+export type UseMeses = (update:boolean, form:IFormCrearLicitacionUser, setValue:UseFormSetValue<IFormCrearLicitacionUser>) => void

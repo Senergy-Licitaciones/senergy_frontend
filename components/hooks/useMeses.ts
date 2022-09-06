@@ -1,21 +1,22 @@
 import { useEffect, useRef } from 'react'
-import { NumMes } from '@mytypes/form'
+import { IFormCrearLicitacionUser, NumMes } from '@mytypes/form'
 import { UseMeses } from '@mytypes/hooks'
 import { convertToDate } from '../../utils/formats'
 
-export const useMeses:UseMeses = (update, form, setForm) => {
+export const useMeses:UseMeses = (update, form, setValue) => {
   const isMount = useRef(true)
   useEffect(() => {
+    console.log('cambio de form', form)
     if (update) {
-      if (isMount.current === false)generateMeses()
+      if (isMount.current === false)generateMeses(form)
     } else {
-      generateMeses()
+      generateMeses(form)
     }
     isMount.current = false
-  }, [form.fechaInicio, form.fechaFin])
-  const generateMeses = () => {
-    const fechaInicio = convertToDate(form.fechaInicio)
-    const fechaFin = convertToDate(form.fechaFin)
+  }, [form])
+  const generateMeses = (data:IFormCrearLicitacionUser) => {
+    const fechaInicio = convertToDate(data.fechaInicio)
+    const fechaFin = convertToDate(data.fechaFin)
     if (fechaFin > fechaInicio) {
       const array:NumMes[] = []
       do {
@@ -32,10 +33,8 @@ export const useMeses:UseMeses = (update, form, setForm) => {
         }
       // eslint-disable-next-line no-unmodified-loop-condition
       } while (fechaInicio <= fechaFin)
-      setForm({
-        ...form,
-        meses: array
-      })
+      console.log('array antes del set value', array)
+      setValue('meses', array)
     }
   }
 }

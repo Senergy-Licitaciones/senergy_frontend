@@ -1,16 +1,7 @@
-import { REGEX_FORM } from '../../constants/regex'
-import { FormLogin } from '@mytypes/form'
-import { ErrorsForm, ValidatorForm } from '@mytypes/validators'
-export const validatorLogin:ValidatorForm<FormLogin, FormLogin> = (form) => {
-  const errors: ErrorsForm<FormLogin> = {
-    correo: '',
-    password: ''
-  }
-  if (!form.correo.trim()) {
-    errors.correo = 'Campo requerido'
-  } else if (!REGEX_FORM.EMAIL.test(form.correo.trim())) errors.correo = 'Correo inválido'
-  if (!form.password.trim()) {
-    errors.password = 'Campo requerido'
-  } else if (form.password.trim().length < 8 || form.password.trim().length > 16) errors.password = 'La contraseña debe tener una longitud de entre 8 y 16 caracteres'
-  return errors
-}
+import { object, string } from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+export const loginSchema = object({
+  correo: string().email('Email inválido').required('Email es requerido'),
+  password: string().required('La contraseña es requerida').min(8, 'La contraseña debe tener al menos 8 caracteres').max(16, 'La contraseña debe tener máximo 16 caracteres')
+})
+export const loginResolver = yupResolver(loginSchema)

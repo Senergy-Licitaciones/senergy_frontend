@@ -1,3 +1,5 @@
+import { crearOfertaSchema } from '@/utils/validators'
+import { InferType } from 'yup'
 import { FactorIndex } from './FactorIndex'
 
 interface Bloque{
@@ -10,6 +12,7 @@ export interface BloqueEnergia extends Bloque{
 export interface BloquePotencia extends Bloque{
     potencia:number
 }
+export type IFormCrearOfertaProveedor=InferType<typeof crearOfertaSchema>
 export type FormCrearOfertaProveedor={
     potencia:Array<BloquePotencia>,
     energiaHp:Array<BloqueEnergia>,
