@@ -58,7 +58,7 @@ export default function FormEmpresaLogin () {
                 <Link href="/login">
                 <a >
                   <Typography variant="paragraph" color="light-blue" >
-                    Si posees una cuenta de <strong>usuario libre</strong> inicia sesión <strong>aquí</strong>!
+                    Si posees una cuenta de <strong >usuario libre</strong> inicia sesión <strong>aquí</strong>!
                   </Typography>
                 </a>
                 </Link>

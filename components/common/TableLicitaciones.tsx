@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { AiOutlineFileAdd, AiOutlineFileSearch } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
 import { Licitacion } from '@mytypes/models'
+import { Input, Option, Select } from '@material-tailwind/react'
 type Props={
     licitaciones:Licitacion[]
 }
@@ -10,14 +11,13 @@ export default function TableLicitaciones ({ licitaciones }:Props) {
             <>
         <div className="flex justify-between">
                     <article className="flex flex-col 2xl:w-44 w-32">
-                        <select className="rounded 2xl:text-2xl dark:bg-gray-800 dark:text-zinc-200" defaultValue={5} name="" id="">
-                            <option value={5}>5</option>
-                            <option value={10}>10</option>
-                        </select>
-                        <p className="text-sm 2xl:text-lg dark:text-gray-400 text-gray-500">items por página</p>
+                        <Select label='Ítems por Página' defaultValue={'5'} id="">
+                            <Option value={'5'}>5</Option>
+                            <Option value={'10'}>10</Option>
+                        </Select>
                     </article>
                     <article className="flex 2xl:text-2xl items-center relative" >
-                    <input placeholder="Buscar..." className="2xl:placeholder:text-2xl 2xl:p-4 rounded dark:placeholder:text-gray-300 dark:bg-gray-800 dark:text-gray-200" type="search"/>
+                    <Input label="Buscar" type="search"/>
                     <span className="flex items-center absolute dark:text-gray-300 text-gray-700 right-4">
                         <BsSearch/>
                     </span>

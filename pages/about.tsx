@@ -5,7 +5,7 @@ import LayoutHome from '../components/layout'
 
 export default function About () {
   return (
-    <LayoutHome>
+    <LayoutHome title="Acerca de Nosotros" >
         <section className="flex p-4 flex-col items-center justify-around min-h-screen" >
             <h1 className="font-bold 2xl:text-4xl xl:text-3xl text-2xl text-center" >¿Quiénes somos?</h1>
             <div className="grid grid-flow-row gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:gap-16 grid-cols-1" >

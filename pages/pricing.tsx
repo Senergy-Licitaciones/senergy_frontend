@@ -2,7 +2,7 @@ import LayoutHome from '../components/layout'
 
 const Pricing = () => {
   return (
-        <LayoutHome>
+        <LayoutHome title='Tarifas'>
             <section className="flex py-4 px-2 flex-col justify-center min-h-screen items-center" >
                 <h1 className=" text-xl lg:text-2xl text-center 2xl:font-semibold text-gray-700 2xl:text-5xl" >Escoge el plan que más se acomode a ti!</h1>
                 <div className="grid 2xl:text-2xl py-3 md:grid-cols-2 lg:grid-cols-3 gap-6 grid-cols-1 grid-flow-row " >

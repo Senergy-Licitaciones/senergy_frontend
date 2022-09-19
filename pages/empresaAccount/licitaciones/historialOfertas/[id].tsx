@@ -2,23 +2,23 @@ import { GetServerSideProps } from 'next'
 import FormUpdateOferta from '../../../../components/common/FormUpdateOferta'
 import LayoutProveedor from '../../../../components/layout/layoutProveedor'
 import { getOferta } from '../../../../services/ofertas'
-import { Oferta } from '@mytypes/models'
 // eslint-disable-next-line camelcase
 import { Session, unstable_getServerSession } from 'next-auth'
 import { configNextAuth } from '@/pages/api/auth/[...nextauth]'
 import { getNamesParametros } from '@/services/data'
+import { createOfertaByIdAdapter } from '@/adapters'
+import { OfertaByIdResponse } from '@/types/responses'
 
 type Props={
     id:string,
-    oferta:Oferta,
+    oferta:OfertaByIdResponse,
     parametros:Array<{_id:string, name:string}>
 }
 export default function EditOferta ({ oferta, parametros }:Props) {
   return (
         <LayoutProveedor>
             <section>
-                <h1>Editar Oferta</h1>
-                <FormUpdateOferta parametros={parametros} oferta={oferta} />
+                <FormUpdateOferta parametros={parametros} oferta={createOfertaByIdAdapter(oferta)} />
             </section>
         </LayoutProveedor>
   )

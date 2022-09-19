@@ -8,3 +8,6 @@ export interface Oferta extends FormCrearOfertaProveedor{
     createdAt:Date,
     updatedAt:Date
 }
+export interface OfertaById extends Omit<Oferta, 'licitacion'>{
+    licitacion:string
+}

@@ -1,3 +1,4 @@
+import { Button } from '@material-tailwind/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -13,31 +14,32 @@ export default function HeaderHome () {
             <AsideBurger/>
             <nav className="col-span-2 hidden md:flex justify-around items-center" >
                 <Link href="/">
-                <a className={`font-bold text-gray-400  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === '' ? 'text-yellow-500 after:block ' : 'after:hidden'}`}>
+                <a className={`font-bold text-gray-500  after:bg-yellow-600 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === '' ? 'text-yellow-600 after:block ' : 'after:hidden'}`}>
                     Inicio
                 </a>
                 </Link>
                 <Link href="/about">
-                <a className={`font-bold text-gray-400  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'about' ? 'text-yellow-500 after:block ' : 'after:hidden'}`}>
+                <a className={`font-bold text-gray-500  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'about' ? 'text-yellow-500 after:block ' : 'after:hidden'}`}>
                     Acerca de nosotros
                 </a>
                 </Link>
                 <Link href="/pricing">
-                <a className={`font-bold text-gray-400  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'pricing' ? 'text-yellow-500 after:block ' : 'after:hidden'}`}>
+                <a className={`font-bold text-gray-500  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'pricing' ? 'text-yellow-500 after:block ' : 'after:hidden'}`}>
                     Precios
                 </a>
                 </Link>
             </nav>
             <article aria-label="auth-links-desktop" className="md:flex hidden  justify-around items-center">
-                <Link href="/login" >
-                <a className="font-bold text-gray-500 rounded-xl border-2 border-gray-500 py-2 px-4">
-                    Iniciar Sesión
-                </a>
+                <Link href="/login" passHref >
+                    <Button color='gray' variant='outlined' >
+                        Iniciar Sesión
+                    </Button>
+
                 </Link>
                 <Link href="/register">
-                <a className="bg-yellow-500 rounded-full 2xl:py-3 2xl:px-6 py-2 px-4 font-bold text-white" >
+                <Button className='text-white' color='yellow' variant='gradient'>
                     Registrarse
-                </a>
+                </Button>
                 </Link>
             </article>
         </header>

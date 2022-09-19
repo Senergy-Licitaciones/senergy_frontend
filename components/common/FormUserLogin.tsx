@@ -62,7 +62,7 @@ export default function FormUserLogin () {
                 <Link href="/login/empresa">
                 <a>
                   <Typography color="light-blue" variant="paragraph" >
-                    Si eres un <strong>proveedor de energía eléctrica</strong> inicia sesión <strong>aquí</strong>!
+                    Si eres un <strong >proveedor de energía eléctrica</strong> inicia sesión <strong>aquí</strong>!
                   </Typography>
                 </a>
                 </Link>

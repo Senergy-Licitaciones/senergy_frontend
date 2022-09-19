@@ -1,10 +1,12 @@
+import Head from 'next/head'
 import { ReactNode, useEffect, useState } from 'react'
 import Footer from './Footer'
 import HeaderHome from './HeaderHome'
 type Props = {
-  children?: ReactNode
+  children?: ReactNode,
+  title:string
 }
-export default function LayoutHome ({ children }:Props) {
+export default function LayoutHome ({ children, title }:Props) {
   const [content, setContent] = useState(false)
   useEffect(() => {
     setContent(true)
@@ -14,6 +16,9 @@ export default function LayoutHome ({ children }:Props) {
   }, [])
   return (
         <section className="flex flex-col" >
+          <Head >
+            <title>{title}</title>
+          </Head>
             <HeaderHome/>
             <main className={`${content ? 'opacity-100' : 'opacity-0'} transition-all ease-in-out duration-1000 min-h-screen snap-y snap-mandatory `}>
                 {children}

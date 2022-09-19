@@ -3,7 +3,7 @@ import { IFormCrearOfertaProveedor } from '@mytypes/form'
 import swal from 'sweetalert'
 import Loader from './Loader'
 import { useRouter } from 'next/router'
-import { Oferta } from '@mytypes/models'
+import { OfertaById } from '@mytypes/models'
 import { useSession } from 'next-auth/react'
 import { crearOfertaResolver } from '../../utils/validators'
 import { editOferta } from '../../services/ofertas'
@@ -18,7 +18,7 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Input, Option, Se
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useState } from 'react'
 type Props={
-    oferta:Oferta,
+    oferta:OfertaById,
     parametros:Array<{_id:string, name:string}>
 }
 export default function FormUpdateOferta ({ oferta, parametros }:Props) {

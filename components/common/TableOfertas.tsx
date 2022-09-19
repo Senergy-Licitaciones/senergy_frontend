@@ -2,6 +2,7 @@ import { Oferta } from '@mytypes/models'
 import Link from 'next/link'
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
+import { Chip, IconButton, Input, Option, Select } from '@material-tailwind/react'
 type Props={
     ofertas:Oferta[]
 }
@@ -10,14 +11,13 @@ export default function TableOfertas ({ ofertas }:Props) {
         <>
         <div className="flex justify-between">
                     <article className="flex flex-col 2xl:w-44 w-32">
-                        <select className="rounded 2xl:text-2xl dark:bg-gray-800 dark:text-zinc-200" defaultValue={5} name="" id="">
-                            <option value={5}>5</option>
-                            <option value={10}>10</option>
-                        </select>
-                        <p className="text-sm 2xl:text-lg dark:text-gray-400 text-gray-500">items por página</p>
+                        <Select label='Ítems por Página' defaultValue={'5'} id="">
+                            <Option value={'5'}>5</Option>
+                            <Option value={'10'}>10</Option>
+                        </Select>
                     </article>
                     <article className="flex 2xl:text-2xl items-center relative" >
-                    <input placeholder="Buscar..." className="2xl:placeholder:text-2xl 2xl:p-4 rounded dark:placeholder:text-gray-300 dark:bg-gray-800 dark:text-gray-200" type="search"/>
+                    <Input label="Buscar" type="search"/>
                     <span className="flex items-center absolute dark:text-gray-300 text-gray-700 right-4">
                         <BsSearch/>
                     </span>
@@ -52,20 +52,21 @@ export default function TableOfertas ({ ofertas }:Props) {
                             <td className="p-4">
                                 {el.licitacion.fechaFinApertura}
                             </td>
-                            <td className="font-semibold p-4">
-                                {el.tarifaPotencia ? 'Modalidad por Tarifa' : 'Modalidad por bloques'}
+                            <td className=" p-4">
+                                <Chip color={el.tarifaPotencia ? 'light-blue' : 'light-green'} value={el.tarifaPotencia ? 'Tarifa' : 'Bloques'} />
                             </td>
                             <td className="p-4">
-                                {el.tarifaEnergiaHp ? 'Modalidad por Tarifa' : 'Modalidad por bloques'}
+                                <Chip color={el.tarifaEnergiaHp ? 'light-blue' : 'light-green'} value={el.tarifaEnergiaHp ? 'Tarifa' : 'Bloques'} />
                             </td>
                             <td className="p-4">
-                                {el.tarifaEnergiaHfp ? 'Modalidad por Tarifa' : 'Modalidad por bloques'}
+                                <Chip color={el.tarifaEnergiaHfp ? 'light-blue' : 'light-green'} value={el.tarifaEnergiaHfp ? 'Tarifa' : 'Bloques'} />
                             </td>
                             <td className="p-4 flex justify-around " >
                                 <Link href={`/empresaAccount/licitaciones/historialOfertas/${el._id}`} >
-                                <a className="bg-green-500 text-white p-2 text-xl rounded" >
+                                    <IconButton className='text-xl' variant='text' color='green' >
                                     <AiOutlineEdit/>
-                                </a>
+                                    </IconButton>
+
                                 </Link>
                             </td>
                         </tr>
