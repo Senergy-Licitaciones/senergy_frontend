@@ -4,7 +4,7 @@ import LayoutHome from '../../components/layout'
 
 export default function LoginUser () {
   return (
-        <LayoutHome>
+        <LayoutHome title='Login' >
 
         <section className="flex min-h-screen p-4 justify-center items-center md:justify-around ">
             <span className=" hidden md:flex ">

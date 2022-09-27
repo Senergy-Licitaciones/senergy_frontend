@@ -2,7 +2,7 @@ import LayoutHome from '../../components/layout'
 import FormUserRegister from '../../components/common/FormUserRegister'
 export default function RegisterUser () {
   return (
-        <LayoutHome>
+        <LayoutHome title='Register' >
             <section className="p-8">
                 <div className="shadow-2xl overflow-hidden flex rounded-xl ">
                     <FormUserRegister/>

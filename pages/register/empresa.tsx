@@ -2,7 +2,7 @@ import LayoutHome from '../../components/layout'
 import FormEmpresaRegister from '../../components/common/FormEmpresaRegister'
 export default function RegisterEmpresa () {
   return (
-        <LayoutHome>
+        <LayoutHome title="Register" >
             <section className="p-8">
                 <div className="shadow-2xl flex rounded-xl overflow-hidden">
                     <FormEmpresaRegister/>
