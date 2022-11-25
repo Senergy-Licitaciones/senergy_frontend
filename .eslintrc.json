@@ -22,6 +22,5 @@
         "@typescript-eslint"
     ],
     "rules": {
-      "react/jsx-runtime":0
     }
 }

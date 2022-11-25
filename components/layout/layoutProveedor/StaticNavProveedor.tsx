@@ -36,34 +36,34 @@ export default function StaticNavProveedor () {
             </div>
             <ul className="flex flex-col items-center flex-1 justify-around" >
                 <li>
-                    <Link href="/empresaAccount/dashboard" >
-                        <a className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Dashboard"] text-2xl transition-all duration-300 hover:text-yellow-500 
+                  <Link className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Dashboard"] text-2xl transition-all duration-300 hover:text-yellow-500 
                         ${getFormatRoute(pathname) === 'historialLicitaciones' || getFormatRoute(pathname) === 'dashboard' || getFormatRoute(pathname) === 'proveedoresFrecuentes' || getFormatRoute(pathname) === 'mejoresOfertas'
-                        ? 'text-yellow-500'
- : 'text-gray-400 dark:text-white'} `} >
+                          ? 'text-yellow-500'
+                          : 'text-gray-400 dark:text-white'} `} href="/empresaAccount/dashboard" >
+                        
                             <IoAnalyticsOutline/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/empresaAccount/licitaciones" >
-                        <a className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Licitaciones"]  text-2xl transition-all duration-300 hover:text-yellow-500 ${getFormatRoute(pathname) === 'licitaciones' || getFormatRoute(pathname) === 'licitacionesGuardadas' ? 'text-yellow-500' : 'text-gray-400 dark:text-white '} `} >
+                  <Link className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Licitaciones"]  text-2xl transition-all duration-300 hover:text-yellow-500 ${getFormatRoute(pathname) === 'licitaciones' || getFormatRoute(pathname) === 'licitacionesGuardadas' ? 'text-yellow-500' : 'text-gray-400 dark:text-white '} `} href="/empresaAccount/licitaciones" >
+                        
                             <BsSearch/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/empresaAccount" >
-                        <a className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Manuales"] text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                  <Link className={`after:-left-1/2 relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Manuales"] text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/empresaAccount" >
+                        
                             <AiOutlineQuestionCircle/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/empresaAccount" >
-                        <a className={`after:-left-full relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                  <Link className={`after:-left-full relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] text-2xl transition-all duration-300 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/empresaAccount" >
+                        
                             <FiSettings/>
-                        </a>
+                        
                     </Link>
                 </li>
             </ul>

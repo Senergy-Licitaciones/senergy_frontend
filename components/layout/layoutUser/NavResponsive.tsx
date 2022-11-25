@@ -13,34 +13,34 @@ export default function NavResponsive () {
         <aside className="flex  flex-col py-2 px-4   bg-gray-100 dark:bg-gray-900" >
             <ul className="flex flex-col flex-1 justify-around" >
                 <li>
-                    <Link href="/userAccount" >
-                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 
+                      <Link className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 
                         ${getFormatRoute(pathname) === 'userAccount' || getFormatRoute(pathname) === 'dashboard' || getFormatRoute(pathname) === 'proveedoresFrecuentes' || getFormatRoute(pathname) === 'mejoresOfertas'
-                        ? 'text-yellow-500'
- : 'text-gray-400 dark:text-white'} `} >
+                              ? 'text-yellow-500'
+                              : 'text-gray-400 dark:text-white'} `} href="/userAccount" >
+                        
                             <IoAnalyticsOutline/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/userAccount/licitaciones" >
-                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'licitaciones' || getFormatRoute(pathname) === 'crearLicitacion' || getFormatRoute(pathname) === 'actualizarLicitacion' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                      <Link className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'licitaciones' || getFormatRoute(pathname) === 'crearLicitacion' || getFormatRoute(pathname) === 'actualizarLicitacion' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/userAccount/licitaciones" >
+                        
                             <IoDocumentTextOutline/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/userAccount" >
-                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                      <Link className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/userAccount" >
+                        
                             <AiOutlineQuestionCircle/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/userAccount" >
-                        <a className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                      <Link className={`text-2xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/userAccount" >
+                        
                             <FiSettings/>
-                        </a>
+                        
                     </Link>
                 </li>
             </ul>

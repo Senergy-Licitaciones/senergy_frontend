@@ -60,23 +60,20 @@ export default function FormUserLogin () {
                 <article className="flex justify-center  mt-4">
 
                 <Link href="/login/empresa">
-                <a>
                   <Typography color="light-blue" variant="paragraph" >
                     Si eres un <strong >proveedor de energía eléctrica</strong> inicia sesión <strong>aquí</strong>!
                   </Typography>
-                </a>
                 </Link>
                 </article>
                 <hr className="bg-gray-300 my-4"/>
                 <article className="flex justify-center">
                 <Link href="/register">
-                  <a>
+                  
                   <Typography color="light-blue" variant="small" >
 
                         ¿Aún no estás <strong>registrado</strong>? Ingresa <strong>aquí</strong>!
 
                   </Typography>
-                  </a>
                 </Link>
                 </article>
             </CardFooter>

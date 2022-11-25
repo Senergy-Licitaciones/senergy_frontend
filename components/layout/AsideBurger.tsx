@@ -16,26 +16,26 @@ export default function AsideBurger () {
                 <ul className="flex divide-y-2 flex-col text-gray-200 items-center" >
                     <li>
                         <Link href="/" >
-                        <a>Inicio</a>
+                        Inicio
                         </Link>
                     </li>
                     <li>
                         <Link href="/about">
-                        <a>Acerca de nosotros</a>
+                        Acerca de nosotros
                         </Link>
                     </li>
                     <li>
                         <Link href="/pricing" >
-                        <a>Precios</a>
+                        Precios
                         </Link>
                     </li>
                 </ul>
                 <article className="flex" >
-                    <Link href="/login" >
-                    <a className="py-2 px-4 rounded-lg text-gray-200 bg-blue-600" > Iniciar sesión </a>
+                  <Link className="py-2 px-4 rounded-lg text-gray-200 bg-blue-600" href="/login" >
+                    Iniciar sesión
                     </Link>
-                    <Link href="/register" >
-                    <a className="py-2 px-4 text-gray-200" > Registrarse </a>
+                  <Link className="py-2 px-4 text-gray-200" href="/register" >
+                    Registrarse
                     </Link>
                 </article>
             </aside>

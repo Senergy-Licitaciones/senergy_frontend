@@ -13,20 +13,14 @@ export default function HeaderHome () {
             </span>
             <AsideBurger/>
             <nav className="col-span-2 hidden md:flex justify-around items-center" >
-                <Link href="/">
-                <a className={`font-bold text-gray-500  after:bg-yellow-600 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === '' ? 'text-yellow-600 after:block ' : 'after:hidden'}`}>
+              <Link className={`font-bold text-gray-500  after:bg-yellow-600 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === '' ? 'text-yellow-600 after:block ' : 'after:hidden'}`} href="/">
                     Inicio
-                </a>
                 </Link>
-                <Link href="/about">
-                <a className={`font-bold text-gray-500  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'about' ? 'text-yellow-500 after:block ' : 'after:hidden'}`}>
+              <Link className={`font-bold text-gray-500  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'about' ? 'text-yellow-500 after:block ' : 'after:hidden'}`} href="/about">
                     Acerca de nosotros
-                </a>
                 </Link>
-                <Link href="/pricing">
-                <a className={`font-bold text-gray-500  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'pricing' ? 'text-yellow-500 after:block ' : 'after:hidden'}`}>
-                    Precios
-                </a>
+              <Link className={`font-bold text-gray-500  after:bg-yellow-500 after:-bottom-1 after:h-1 after:w-full relative after:absolute ${getFormatRoute(pathname) === 'pricing' ? 'text-yellow-500 after:block ' : 'after:hidden'}`} href="/pricing">
+                    Precios 
                 </Link>
             </nav>
             <article aria-label="auth-links-desktop" className="md:flex hidden  justify-around items-center">

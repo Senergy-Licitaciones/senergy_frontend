@@ -95,23 +95,23 @@ function DashboardNav () {
                     </div>
                     <ul className={`overflow-hidden transition-all duration-500 ${show.licitaciones ? 'my-4 h-auto' : 'h-0'}`}>
                         <li >
-                            <Link href="/userAccount">
-                            <a className={` flex mb-2 pl-4 py-2  ${pathname.split('/').pop() === 'userAccount' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-white  hover:text-gray-900'} `} >
+                          <Link className={` flex mb-2 pl-4 py-2  ${pathname.split('/').pop() === 'userAccount' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-white  hover:text-gray-900'} `} href="/userAccount">
+                            
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
                             <h3>Licitaciones actuales</h3>
-                            </a>
+                            
                             </Link>
                         </li>
                         <li >
-                            <Link href="/userAccount/dashboard">
-                            <a className={` flex mb-2 pl-4 py-2  ${pathname.split('/').pop() === 'dashboard' ? 'text-yellow-500' : 'text-gray-400  dark:hover:text-gray-200 hover:text-gray-900'} `} >
+                          <Link className={` flex mb-2 pl-4 py-2  ${pathname.split('/').pop() === 'dashboard' ? 'text-yellow-500' : 'text-gray-400  dark:hover:text-gray-200 hover:text-gray-900'} `} href="/userAccount/dashboard">
+                            
                             <span className="flex justify-center items-center mr-2">
                                 <RiFileHistoryLine/>
                             </span>
                             <h3>Historial de licitaciones</h3>
-                            </a>
+                            
                             </Link>
                         </li>
 
@@ -128,23 +128,23 @@ function DashboardNav () {
                     </div>
                     <ul className={`overflow-hidden transition-all duration-500 ${show.proveedores ? 'my-4 h-auto' : 'h-0'}`}>
                         <li >
-                            <Link href="/userAccount/dashboard/proveedoresFrecuentes">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'proveedoresFrecuentes' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} >
+                          <Link className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'proveedoresFrecuentes' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} href="/userAccount/dashboard/proveedoresFrecuentes">
+                            
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
                             <h3>Proveedores frecuentes</h3>
-                            </a>
+                            
                             </Link>
                         </li>
                         <li >
-                            <Link href="/userAccount/dashboard/mejoresOfertas">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'mejoresOfertas' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} >
+                          <Link className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'mejoresOfertas' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} href="/userAccount/dashboard/mejoresOfertas">
+                            
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
                             <h3>Mejores ofertas</h3>
-                            </a>
+                            
                             </Link>
                         </li>
 

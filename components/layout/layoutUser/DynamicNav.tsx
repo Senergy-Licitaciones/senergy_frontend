@@ -86,13 +86,13 @@ function DashboardNav () {
                     </div>
                     <ul className={`overflow-hidden transition-all duration-500 ${show.licitaciones ? 'my-4 h-auto' : 'h-0'}`}>
                         <li >
-                            <Link href="/userAccount">
-                            <a className={` flex mb-2 pl-4 py-2  ${pathname.split('/').pop() === 'userAccount' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-white  hover:text-gray-900'} `} >
+                          <Link className={` flex mb-2 pl-4 py-2  ${pathname.split('/').pop() === 'userAccount' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-white  hover:text-gray-900'} `} href="/userAccount">
+                            
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
                             <h3>Licitaciones actuales</h3>
-                            </a>
+                            
                             </Link>
                         </li>
                     </ul>
@@ -108,13 +108,13 @@ function DashboardNav () {
                     </div>
                     <ul className={`overflow-hidden transition-all duration-500 ${show.proveedores ? 'my-4 h-auto' : 'h-0'}`}>
                         <li >
-                            <Link href="/userAccount/dashboard/listaProveedores">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'listaProveedores' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} >
+                          <Link className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'listaProveedores' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-gray-200  hover:text-gray-900'} `} href="/userAccount/dashboard/listaProveedores">
+                            
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
                             <h3>Lista de proveedores</h3>
-                            </a>
+                        
                             </Link>
                         </li>
 

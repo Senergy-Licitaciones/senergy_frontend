@@ -40,34 +40,32 @@ export default function StaticNav () {
             </div>
             <ul className="flex flex-col flex-1  justify-around" >
                 <li>
-                    <Link href="/userAccount" >
-                        <a className={` relative flex justify-center after:-left-1/2 after:hidden  after:top-full hover:after:block after:absolute after:text-xs  after:content-["Dashboard"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 
+                  <Link className={` relative flex justify-center after:-left-1/2 after:hidden  after:top-full hover:after:block after:absolute after:text-xs  after:content-["Dashboard"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 
                         ${getFormatRoute(pathname) === 'userAccount' || getFormatRoute(pathname) === 'dashboard' || getFormatRoute(pathname) === 'proveedoresFrecuentes' || getFormatRoute(pathname) === 'mejoresOfertas'
-                        ? 'text-yellow-500'
- : 'text-gray-400 dark:text-white'} `} >
+                          ? 'text-yellow-500'
+                          : 'text-gray-400 dark:text-white'} `} href="/userAccount" >
+                       
                             <IoAnalyticsOutline/>
-                        </a>
+                    
                     </Link>
                 </li>
                 <li>
-                    <Link href="/userAccount/licitaciones" >
-                        <a className={`relative flex justify-center after:-left-1/2 after:top-full after:hidden hover:after:block after:absolute after:text-xs  after:content-["Licitaciones"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'licitaciones' || getFormatRoute(pathname) === 'crearLicitacion' || getFormatRoute(pathname) === 'actualizarLicitacion' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                  <Link className={`relative flex justify-center after:-left-1/2 after:top-full after:hidden hover:after:block after:absolute after:text-xs  after:content-["Licitaciones"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'licitaciones' || getFormatRoute(pathname) === 'crearLicitacion' || getFormatRoute(pathname) === 'actualizarLicitacion' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/userAccount/licitaciones" >
                             <IoDocumentTextOutline/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/userAccount" >
-                        <a className={`relative flex justify-center after:-left-1/2 after:top-full after:hidden hover:after:block after:absolute after:text-xs  after:content-["Manuales"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                  <Link className={`relative flex justify-center after:-left-1/2 after:top-full after:hidden hover:after:block after:absolute after:text-xs  after:content-["Manuales"] text-2xl 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'questions' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/userAccount" >
                             <AiOutlineQuestionCircle/>
-                        </a>
+                        
                     </Link>
                 </li>
                 <li>
-                    <Link href="/userAccount" >
-                        <a className={`text-2xl flex justify-center after:-left-full after:top-full relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} >
+                  <Link className={`text-2xl flex justify-center after:-left-full after:top-full relative after:hidden hover:after:block after:absolute after:text-xs  after:content-["Configuración"] 2xl:text-4xl transition-all duration-300 dark:hover:text-yellow-500 hover:text-yellow-500 ${pathname.split('/').pop() === 'settings' ? 'text-yellow-500' : 'text-gray-400 dark:text-white'} `} href="/userAccount" >
+                    
                             <FiSettings/>
-                        </a>
+                        
                     </Link>
                 </li>
             </ul>

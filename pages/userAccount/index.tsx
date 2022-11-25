@@ -188,39 +188,35 @@ export default function UserAccount ({ info, empresa }:Props) {
                     <h2 className="font-semibold dark:text-gray-400">Licitaciones detalles</h2>
                     <ul>
                         <li>
-                            <Link href={`/userAccount/dashboard/${ids.id1}`} >
-                            <a className="flex justify-between text-sm items-center py-1 my-1" >
+                            <Link className="flex justify-between text-sm items-center py-1 my-1" href={`/userAccount/dashboard/${ids.id1}`} >
                             <p className="text-gray-500">Licitación 01</p>
 
                             <p className="bg-red-500 text-white text-xs rounded px-2 py-1 shadow" >Cierre</p>
-                            </a>
+                            
                             </Link>
                         </li>
                         <li>
-                            <Link href={`/userAccount/dashboard/${ids.id2}`}>
-                            <a className="flex justify-between text-sm items-center py-1 my-1" >
+                            <Link className="flex justify-between text-sm items-center py-1 my-1" href={`/userAccount/dashboard/${ids.id2}`}>
                             <p className="text-gray-500">Licitación 02</p>
 
                             <p className="bg-yellow-500 text-white text-xs py-1 rounded px-2 shadow" >Evaluación</p>
-                            </a>
+                          
                             </Link>
                         </li>
                         <li>
-                            <Link href={`/userAccount/dashboard/${ids.id3}`}>
-                            <a className="flex justify-between text-sm items-center py-1 my-1" >
+                            <Link className="flex justify-between text-sm items-center py-1 my-1" href={`/userAccount/dashboard/${ids.id3}`}>
                             <p className="text-gray-500">Licitación 03</p>
 
                             <p className="bg-red-500 text-white text-xs py-1 rounded px-2 shadow" >Cierre</p>
-                            </a>
+                            
                             </Link>
                         </li>
                         <li>
-                            <Link href={`/userAccount/dashboard/${ids.id4}`}>
-                            <a className="flex justify-between text-sm items-center py-1 my-1" >
+                            <Link className="flex justify-between text-sm items-center py-1 my-1" href={`/userAccount/dashboard/${ids.id4}`}>
                             <p className="text-gray-500">Licitación 04</p>
 
                             <p className="bg-yellow-500 text-white text-xs rounded py-1 px-2 shadow ">Evaluación</p>
-                            </a>
+                            
                             </Link>
                         </li>
                     </ul>

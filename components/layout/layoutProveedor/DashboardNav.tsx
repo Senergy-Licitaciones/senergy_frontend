@@ -31,13 +31,13 @@ export default function DashboardNav () {
                     </div>
                     <ul className={`overflow-hidden transition-all duration-500 ${show.licitaciones ? 'my-4 h-auto' : 'h-0'}`}>
                         <li >
-                            <Link href="/empresaAccount/dashboard">
-                            <a className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'dashboard' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-white hover:text-gray-900'} `} >
+                          <Link className={` flex mb-2 pl-4 py-2  ${getFormatRoute(pathname) === 'dashboard' ? 'text-yellow-500' : 'text-gray-400 dark:hover:text-white hover:text-gray-900'} `} href="/empresaAccount/dashboard">
+                            
                             <span className="flex justify-center items-center mr-2">
                                 <HiOutlineDocumentText/>
                             </span>
                             <h3>Licitaciones actuales</h3>
-                            </a>
+                            
                             </Link>
                         </li>
 

@@ -56,21 +56,19 @@ export default function FormEmpresaLogin () {
                 <article className="flex justify-center mt-4">
 
                 <Link href="/login">
-                <a >
                   <Typography variant="paragraph" color="light-blue" >
                     Si posees una cuenta de <strong >usuario libre</strong> inicia sesión <strong>aquí</strong>!
                   </Typography>
-                </a>
                 </Link>
                 </article>
                 <hr className="bg-gray-300 my-3 2xl:my-4 "/>
                 <article className="flex justify-center">
                 <Link href="/register/empresa">
-                    <a>
+                    
                   <Typography variant="small" color="light-blue" >
                         ¿Aún no estás <strong>registrado</strong>? Ingresa <strong>aquí</strong>!
                   </Typography>
-                    </a>
+                    
                 </Link>
                 </article>
             </CardFooter>
