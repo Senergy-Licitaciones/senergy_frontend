@@ -1,16 +1,15 @@
 /* eslint-disable no-undef */
 import { fireEvent, render, screen } from '@testing-library/react'
 import AsideBurger from '../../../components/layout/AsideBurger'
-import '@testing-library/jest-dom'
 describe('AsideBurger', () => {
   beforeEach(() => {
-    render(<AsideBurger/>)
+    render(<AsideBurger />)
   })
   test('renders AsideBurger components children', () => {
     const aside = screen.getByRole('group')
     expect(aside).toHaveClass('-translate-x-full')
   })
-  test('open burger ', async () => {
+  test('open burger', async () => {
     const btn = await screen.findByRole('button', {
       name: /burger-open/i
     })

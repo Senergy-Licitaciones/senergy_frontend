@@ -1,8 +1,8 @@
+/* eslint-disable jest/no-mocks-import */
 /* eslint-disable no-undef */
+import { mockNextUseRouter } from '@/__mocks__/mockUseRouter'
 import { render, screen, within } from '@testing-library/react'
 import HeaderHome from '../../../components/layout/HeaderHome'
-import '@testing-library/jest-dom'
-import { mockNextUseRouter } from '../../../__mocks__/mockUseRouter'
 describe('Rendering Component', () => {
   beforeEach(() => {
     mockNextUseRouter({
@@ -10,9 +10,9 @@ describe('Rendering Component', () => {
       pathname: '',
       asPath: ''
     })
-    render(<HeaderHome/>)
+    render(<HeaderHome />)
   })
-  test('render HeaderHome nav desktop children component ', () => {
+  test('render HeaderHome nav desktop children component', () => {
     const nav = screen.getByRole('navigation')
     const linkInicio = within(nav).getByRole('link', {
       name: /inicio/i
@@ -31,7 +31,7 @@ describe('Rendering Component', () => {
     expect(linkPrecio).toBeInTheDocument()
     expect(linkPrecio).toHaveAttribute('href', '/pricing')
   })
-  test('render auth links ', () => {
+  test('render auth links', () => {
     const article = screen.getByLabelText(/auth-links-desktop/i)
     const login = within(article).getByRole('link', {
       name: /iniciar sesión/i
@@ -44,7 +44,7 @@ describe('Rendering Component', () => {
     expect(register).toBeInTheDocument()
     expect(register).toHaveAttribute('href', '/register')
   })
-  test('render underlying link inicio ', () => {
+  test('render underlying link inicio', () => {
     const names = [/inicio/i, /about/i, /pricing/i]
     const nav = screen.getByRole('navigation')
     const linkUnderlying = within(nav).getByRole('link', {
@@ -61,7 +61,7 @@ describe('underlying links', () => {
       pathname: 'about',
       asPath: ''
     })
-    render(<HeaderHome/>)
+    render(<HeaderHome />)
     const nav = screen.getByRole('navigation')
     const linkAbout = within(nav).getByRole('link', { name: /acerca de nosotros/i })
     expect(linkAbout).toHaveClass('text-yellow-500 after:block')
@@ -72,7 +72,7 @@ describe('underlying links', () => {
       pathname: 'pricing',
       asPath: ''
     })
-    render(<HeaderHome/>)
+    render(<HeaderHome />)
     const nav = screen.getByRole('navigation')
     const linkPricing = within(nav).getByRole('link', { name: /precios/i })
     expect(linkPricing).toHaveClass('text-yellow-500 after:block')
